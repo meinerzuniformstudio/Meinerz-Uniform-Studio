@@ -1,0 +1,42 @@
+{
+  "base": "pack26-normal-polo-retro-sem-recorte-paired-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06819883827120066,
+  "areaAfter": 0.06819883741536682,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        -0.05977528496677781,
+        -0.3132573671000102
+      ],
+      "pala": [
+        0.05093788625465677,
+        0.41740455085342426
+      ]
+    },
+    "1": {
+      "side": [
+        0.03786030643593762,
+        0.37920057863413503
+      ],
+      "pala": [
+        -0.021221753043770185,
+        0.4046883593122366
+      ]
+    },
+    "2": {
+      "side": [
+        0.08124221499929646,
+        0.42828855765821566
+      ]
+    },
+    "3": {
+      "side": [
+        -0.06177151723788016,
+        -0.23480828771224113
+      ]
+    }
+  }
+}
