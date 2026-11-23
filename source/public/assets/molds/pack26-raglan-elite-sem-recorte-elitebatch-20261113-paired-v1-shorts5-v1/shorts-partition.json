@@ -1,0 +1,42 @@
+{
+  "base": "pack26-raglan-elite-sem-recorte-elitebatch-20261113-paired-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06841599871404469,
+  "areaAfter": 0.06841599742459048,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        -0.01959617753108889,
+        -0.3310262205500661
+      ],
+      "pala": [
+        0.014720143998609369,
+        0.39690740604795577
+      ]
+    },
+    "1": {
+      "side": [
+        0.017366056151806607,
+        0.36937468001655976
+      ],
+      "pala": [
+        -0.015004981868066041,
+        0.39839960037352806
+      ]
+    },
+    "2": {
+      "side": [
+        -0.014357456944352127,
+        0.41166761796998447
+      ]
+    },
+    "3": {
+      "side": [
+        0.0015604311728306171,
+        -0.273878595744485
+      ]
+    }
+  }
+}

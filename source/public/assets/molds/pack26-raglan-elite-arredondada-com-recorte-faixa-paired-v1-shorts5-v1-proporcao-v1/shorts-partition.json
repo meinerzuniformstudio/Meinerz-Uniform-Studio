@@ -1,0 +1,42 @@
+{
+  "base": "pack26-raglan-elite-arredondada-com-recorte-faixa-paired-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06846333062276244,
+  "areaAfter": 0.06846333288424687,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        -0.018506405176335262,
+        -0.3318389027395495
+      ],
+      "pala": [
+        0.0077550508222730685,
+        0.393623666280883
+      ]
+    },
+    "1": {
+      "side": [
+        0.01583414628262081,
+        0.36893350077612447
+      ],
+      "pala": [
+        -0.005384230297792672,
+        0.3944029405431188
+      ]
+    },
+    "2": {
+      "side": [
+        -0.04689809643351957,
+        0.41590870578509864
+      ]
+    },
+    "3": {
+      "side": [
+        -0.008663496941086453,
+        -0.27323496194800057
+      ]
+    }
+  }
+}

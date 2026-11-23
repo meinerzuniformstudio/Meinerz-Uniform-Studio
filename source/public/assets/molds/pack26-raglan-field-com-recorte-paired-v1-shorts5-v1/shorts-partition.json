@@ -1,0 +1,42 @@
+{
+  "base": "pack26-raglan-field-com-recorte-paired-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06826104992069304,
+  "areaAfter": 0.06826105070965036,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        -0.055096236293371265,
+        -0.3132622988034404
+      ],
+      "pala": [
+        0.05056613797562845,
+        0.41802296534367905
+      ]
+    },
+    "1": {
+      "side": [
+        0.037317251132336325,
+        0.38032382253008595
+      ],
+      "pala": [
+        -0.012535940689986072,
+        0.40040876608705417
+      ]
+    },
+    "2": {
+      "side": [
+        0.0809869634709805,
+        0.430547414334602
+      ]
+    },
+    "3": {
+      "side": [
+        -0.08613350964441942,
+        -0.2298210564732873
+      ]
+    }
+  }
+}
