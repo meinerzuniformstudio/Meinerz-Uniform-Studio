@@ -1,0 +1,380 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-normal-v-traspassada-sem-recorte-elitebatch-20261113-paired-v1",
+  "name": "KIT · NORMAL · V TRASPASSADA · SEM RECORTE · CALÇÃO 2 PARTES",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "3e92742e427c9f79b5a38d6613d3c0484feac5885fe11693734e8e0d399c3796",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 125098,
+  "vertices": 63849,
+  "panelCount": 11,
+  "primitives": [
+    {
+      "key": "m0p0",
+      "mesh": 0,
+      "primitive": 0,
+      "label": "Calção direito",
+      "islandCount": 1,
+      "displayName": "Calção direito"
+    },
+    {
+      "key": "m1p0",
+      "mesh": 1,
+      "primitive": 0,
+      "label": "Calção esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção esquerdo"
+    },
+    {
+      "key": "m2p0",
+      "mesh": 2,
+      "primitive": 0,
+      "label": "Cós esquerdo",
+      "islandCount": 1,
+      "displayName": "Cós esquerdo"
+    },
+    {
+      "key": "m3p0",
+      "mesh": 3,
+      "primitive": 0,
+      "label": "Cós direito",
+      "islandCount": 1,
+      "displayName": "Cós direito"
+    },
+    {
+      "key": "m4p0",
+      "mesh": 4,
+      "primitive": 0,
+      "label": "Filete manga direita",
+      "islandCount": 1,
+      "displayName": "Filete manga direita"
+    },
+    {
+      "key": "m5p0",
+      "mesh": 5,
+      "primitive": 0,
+      "label": "Filete manga esquerda",
+      "islandCount": 1,
+      "displayName": "Filete manga esquerda"
+    },
+    {
+      "key": "m6p0",
+      "mesh": 6,
+      "primitive": 0,
+      "label": "Manga direita",
+      "islandCount": 1,
+      "displayName": "Manga direita"
+    },
+    {
+      "key": "m7p0",
+      "mesh": 7,
+      "primitive": 0,
+      "label": "Manga esquerda",
+      "islandCount": 1,
+      "displayName": "Manga esquerda"
+    },
+    {
+      "key": "m8p0",
+      "mesh": 8,
+      "primitive": 0,
+      "label": "Costas",
+      "islandCount": 1,
+      "displayName": "Costas"
+    },
+    {
+      "key": "m9p0",
+      "mesh": 9,
+      "primitive": 0,
+      "label": "Frente",
+      "islandCount": 1,
+      "displayName": "Frente"
+    },
+    {
+      "key": "m10p0",
+      "mesh": 10,
+      "primitive": 0,
+      "label": "Gola inteira",
+      "islandCount": 1,
+      "displayName": "Gola inteira"
+    }
+  ],
+  "panels": [
+    {
+      "number": 1,
+      "mesh": 0,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 2096.392586709424,
+        "w": 1549.7265625835525,
+        "h": 1043.634233651701
+      },
+      "uvBounds": [
+        -0.6705940961837769,
+        0.17785602807998657,
+        -0.004368520341813564,
+        0.6265131235122681
+      ],
+      "contourVertices": 332,
+      "label": "Calção direito",
+      "displayName": "Calção direito"
+    },
+    {
+      "number": 2,
+      "mesh": 1,
+      "primitive": 0,
+      "rect": {
+        "x": 1729.7265625835525,
+        "y": 2096.392586709424,
+        "w": 1549.7265084241437,
+        "h": 1043.634233651701
+      },
+      "uvBounds": [
+        0.0484999418258667,
+        0.17963844537734985,
+        0.7147254943847656,
+        0.6282955408096313
+      ],
+      "contourVertices": 332,
+      "label": "Calção esquerdo",
+      "displayName": "Calção esquerdo"
+    },
+    {
+      "number": 3,
+      "mesh": 2,
+      "primitive": 0,
+      "rect": {
+        "x": 2131.7082664415057,
+        "y": 3220.026820361125,
+        "w": 981.5451941795664,
+        "h": 107.41223239546585
+      },
+      "uvBounds": [
+        0.19317439198493958,
+        0.1003044843673706,
+        0.6151394844055176,
+        0.14648087322711945
+      ],
+      "contourVertices": 159,
+      "label": "Cós esquerdo",
+      "displayName": "Cós esquerdo"
+    },
+    {
+      "number": 4,
+      "mesh": 3,
+      "primitive": 0,
+      "rect": {
+        "x": 1070.1630029378962,
+        "y": 3220.026820361125,
+        "w": 981.5452635036097,
+        "h": 107.41223239546585
+      },
+      "uvBounds": [
+        -0.4963292181491852,
+        0.09851616621017456,
+        -0.07436409592628479,
+        0.1446925550699234
+      ],
+      "contourVertices": 159,
+      "label": "Cós direito",
+      "displayName": "Cós direito"
+    },
+    {
+      "number": 5,
+      "mesh": 4,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 3859.33604355115,
+        "w": 764.5433998383819,
+        "h": 69.53395644839242
+      },
+      "uvBounds": [
+        -0.13566231727600098,
+        0.9919999837875366,
+        0.1930139660835266,
+        1.0218925476074219
+      ],
+      "contourVertices": 108,
+      "label": "Filete manga direita",
+      "displayName": "Filete manga direita"
+    },
+    {
+      "number": 6,
+      "mesh": 5,
+      "primitive": 0,
+      "rect": {
+        "x": 944.5433998383819,
+        "y": 3859.33604355115,
+        "w": 764.5433998383819,
+        "h": 69.53395644839242
+      },
+      "uvBounds": [
+        -0.13566230237483978,
+        0.9919999837875366,
+        0.1930139809846878,
+        1.0218925476074219
+      ],
+      "contourVertices": 107,
+      "label": "Filete manga esquerda",
+      "displayName": "Filete manga esquerda"
+    },
+    {
+      "number": 7,
+      "mesh": 6,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 3220.026820361125,
+        "w": 890.1630029378963,
+        "h": 559.3092231900251
+      },
+      "uvBounds": [
+        -0.9272143244743347,
+        -0.7240221500396729,
+        -0.5445343255996704,
+        -0.4835757911205292
+      ],
+      "contourVertices": 177,
+      "label": "Manga direita",
+      "displayName": "Manga direita"
+    },
+    {
+      "number": 8,
+      "mesh": 7,
+      "primitive": 0,
+      "rect": {
+        "x": 2640.0239604210783,
+        "y": 280,
+        "w": 890.1630679291868,
+        "h": 559.3092231900251
+      },
+      "uvBounds": [
+        -0.026815293356776237,
+        -0.7236143350601196,
+        0.3558647334575653,
+        -0.48316797614097595
+      ],
+      "contourVertices": 181,
+      "label": "Manga esquerda",
+      "displayName": "Manga esquerda"
+    },
+    {
+      "number": 9,
+      "mesh": 8,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 280,
+        "w": 1189.9092127323686,
+        "h": 1736.3925867094242
+      },
+      "uvBounds": [
+        0.3847728371620178,
+        -0.6904433965682983,
+        0.8963133692741394,
+        0.056029677391052246
+      ],
+      "contourVertices": 417,
+      "label": "Costas",
+      "displayName": "Costas"
+    },
+    {
+      "number": 10,
+      "mesh": 9,
+      "primitive": 0,
+      "rect": {
+        "x": 1369.9092127323686,
+        "y": 280,
+        "w": 1190.1147476887097,
+        "h": 1589.2622875831942
+      },
+      "uvBounds": [
+        -0.5230591893196106,
+        -0.6400471925735474,
+        -0.01143029797822237,
+        0.04317474365234375
+      ],
+      "contourVertices": 419,
+      "label": "Frente",
+      "displayName": "Frente"
+    },
+    {
+      "number": 11,
+      "mesh": 10,
+      "primitive": 0,
+      "rect": {
+        "x": 1789.0867996767638,
+        "y": 3859.33604355115,
+        "w": 1098.1019264575175,
+        "h": 59.528001342517854
+      },
+      "uvBounds": [
+        -0.5236313939094543,
+        -0.7473708391189575,
+        -0.05155870318412781,
+        -0.7217798233032227
+      ],
+      "contourVertices": 187,
+      "label": "Gola inteira",
+      "displayName": "Gola inteira"
+    }
+  ],
+  "texelsPerUvUnit": 2326.128895044351,
+  "artBleedPixels": 16,
+  "sourceName": "KIT GOLA V TRASPASSADA NORMAL.glb",
+  "originalSourceSha256": "c34815e6c0436d7f8c0ea1a429a5f0ceec42701ad27360751e796dbf6f0ae105",
+  "labels": [
+    "Calção direito",
+    "Calção esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Filete manga direita",
+    "Filete manga esquerda",
+    "Manga direita",
+    "Manga esquerda",
+    "Costas",
+    "Frente",
+    "Gola inteira"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "filet",
+    "filet",
+    "sleeve",
+    "sleeve",
+    "body",
+    "body",
+    "collar"
+  ],
+  "decorativeMeshes": [],
+  "modeling": "NORMAL",
+  "collar": "V TRASPASSADA",
+  "sideCut": false,
+  "bottomParts": 2,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "cutType": "SEM RECORTE",
+  "variantSource": "KIT GOLA V TRASPASSADA NORMAL.glb",
+  "uploadedSourceSha256": "c34815e6c0436d7f8c0ea1a429a5f0ceec42701ad27360751e796dbf6f0ae105",
+  "refreshBatch": "elite-2026-11-13",
+  "intermediateOnly": true,
+  "replaces": "pack26-normal-v-traspassada-sem-recorte-elitebatch-20261113",
+  "pairNormalization": "intrinsic-paired-v1",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "NORMAL",
+    "V TRASPASSADA",
+    "SEM RECORTE",
+    "CALÇÃO 2 PARTES"
+  ]
+}

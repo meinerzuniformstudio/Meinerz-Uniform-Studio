@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-normal-v-sem-recorte-elitebatch-20261113-paired-v1-shorts-lateral-v1",
+  "name": "KIT · NORMAL · V · SEM RECORTE · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "42f51a5afc64cdbd87fefa1fc6d511cc1b62d8477b36fee1eccbdc15d5521173",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 124936,
+  "vertices": 63766,
+  "panelCount": 11,
+  "texelsPerUvUnit": 5456.456998474607,
+  "artBleedPixels": 16,
+  "sourceName": "Variante aprovada — KIT · NORMAL · V · SEM RECORTE · CALÇÃO 2 PARTES.glb",
+  "originalSourceSha256": "9e7b82f40c1cc77f3d5339953998966e4117e380e5ad844d9c5b06a1e2cef900",
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Filete manga direita",
+    "Filete manga esquerda",
+    "Gola inteira",
+    "Manga direita",
+    "Manga esquerda",
+    "Costas",
+    "Frente"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "decorativeMeshes": [],
+  "modeling": "NORMAL",
+  "collar": "V",
+  "sideCut": false,
+  "bottomParts": 6,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "cutType": "SEM RECORTE",
+  "variantSource": "KIT GOLA V  NORMAL.glb",
+  "uploadedSourceSha256": "ffa4109795d3fc06e0b962e7d5c9fac473d7685f7a3663c6888d356ae9aaa87a",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "pairNormalization": "intrinsic-paired-v1",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "NORMAL",
+    "V",
+    "SEM RECORTE",
+    "CALÇÃO 2 PARTES"
+  ],
+  "preparedFrom": "pack26-normal-v-sem-recorte-elitebatch-20261113-paired-v1",
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 11,
+      "text": "Frente · P11",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "Costas · P10",
+      "x": 1245.1671185519274,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Gola inteira · P07",
+      "x": 2900,
+      "y": 385,
+      "w": 177.468,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Manga direita · P08",
+      "x": 100,
+      "y": 2090.714820823023,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Manga esquerda · P09",
+      "x": 928.9866101082945,
+      "y": 2090.714820823023,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 5,
+      "text": "Filete manga direita · P05",
+      "x": 1757.9732202165892,
+      "y": 2090.714820823023,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Filete manga esquerda · P06",
+      "x": 2480.9569529193227,
+      "y": 2090.714820823023,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2750.809426554306,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1483.3596165449474,
+      "y": 2750.809426554306,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2866.7192330898947,
+      "y": 2750.809426554306,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3754.0471711082328,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "intermediateOnly": true,
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-normal-v-sem-recorte-elitebatch-20261113-paired-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1",
+  "uvCanonicalMeshes": []
+}

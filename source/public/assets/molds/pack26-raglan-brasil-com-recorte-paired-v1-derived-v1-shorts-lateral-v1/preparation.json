@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-raglan-brasil-com-recorte-paired-v1-derived-v1-shorts-lateral-v1",
+  "name": "KIT · RAGLAN · BRASIL · COM RECORTE · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "c9c9d17fb84e755e9032230f07b6f9dd0de0cc3864842f7d28e2a52796eecf60",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 80579,
+  "vertices": 42020,
+  "panelCount": 14,
+  "texelsPerUvUnit": 5125.234748208924,
+  "artBleedPixels": 16,
+  "originalSourceSha256": "8f07894180ecb12d4e128786596552c44c1765f0a86c76e0771966afd946617b",
+  "preparation": "outer-surfaces-v1",
+  "packId": "kits-2026-11",
+  "uvCanonicalMeshes": [
+    16,
+    17
+  ],
+  "cutVersion": "armhole-through-shared-seam-v1",
+  "pairNormalization": "intrinsic-paired-v1",
+  "derivedFrom": "pack26-raglan-brasil-sem-recorte-paired-v1-proporcao-v1",
+  "cutReference": "pack26-normal-redonda-com-recorte-v2",
+  "modeling": "RAGLAN",
+  "collar": "BRASIL",
+  "sideCut": true,
+  "bottomParts": 6,
+  "variant": "",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "RAGLAN",
+    "BRASIL",
+    "COM RECORTE",
+    "CALÇÃO 2 PARTES"
+  ],
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 5,
+      "text": "Frente · P05",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Costas · P06",
+      "x": 982.5110994013631,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 13,
+      "text": "Recorte lateral",
+      "x": 1754.248117333489,
+      "y": 385,
+      "w": 150.236,
+      "h": 29
+    },
+    {
+      "panel": 13,
+      "text": "esquerdo · P13",
+      "x": 1754.248117333489,
+      "y": 413,
+      "w": 155.986,
+      "h": 29
+    },
+    {
+      "panel": 14,
+      "text": "Recorte lateral direito",
+      "x": 2065.248117333489,
+      "y": 385,
+      "w": 219.259,
+      "h": 29
+    },
+    {
+      "panel": 14,
+      "text": "· P14",
+      "x": 2065.248117333489,
+      "y": 413,
+      "w": 53.705,
+      "h": 29
+    },
+    {
+      "panel": 11,
+      "text": "Gola frente · P11",
+      "x": 2900,
+      "y": 385,
+      "w": 173.88,
+      "h": 29
+    },
+    {
+      "panel": 12,
+      "text": "Gola inteira · P12",
+      "x": 3211,
+      "y": 385,
+      "w": 177.468,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Manga esquerda · P07",
+      "x": 100,
+      "y": 1909.0948814003834,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Manga direita · P09",
+      "x": 901.2080571941725,
+      "y": 1909.0948814003834,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Filete manga esquerda · P08",
+      "x": 1702.4161143883452,
+      "y": 1909.0948814003834,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "Filete manga direita · P10",
+      "x": 2401.087350182731,
+      "y": 1909.0948814003834,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2811.6580564261217,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1408.819286891719,
+      "y": 2811.6580564261217,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2717.638573783438,
+      "y": 2811.6580564261217,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3758.300479974057,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Frente",
+    "Costas",
+    "Manga esquerda",
+    "Filete manga esquerda",
+    "Manga direita",
+    "Filete manga direita",
+    "Gola frente",
+    "Gola inteira",
+    "Recorte lateral esquerdo",
+    "Recorte lateral direito"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-raglan-brasil-com-recorte-paired-v1-derived-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "decorativeMeshes": [],
+  "sourceName": "Variante aprovada — KIT · RAGLAN · BRASIL · COM RECORTE · CALÇÃO 2 PARTES.glb",
+  "intermediateOnly": true
+}

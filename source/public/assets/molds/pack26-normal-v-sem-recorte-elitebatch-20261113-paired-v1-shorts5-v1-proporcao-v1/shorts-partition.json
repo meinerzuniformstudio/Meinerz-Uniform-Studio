@@ -1,0 +1,42 @@
+{
+  "base": "pack26-normal-v-sem-recorte-elitebatch-20261113-paired-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06881455075927079,
+  "areaAfter": 0.06881455079290409,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        0.006161122330064312,
+        -0.3347962149030846
+      ],
+      "pala": [
+        0.018090564766321385,
+        0.4091917764310232
+      ]
+    },
+    "1": {
+      "side": [
+        0.004643396969551975,
+        0.3799245344955902
+      ],
+      "pala": [
+        -0.004588491528442659,
+        0.4036795598731874
+      ]
+    },
+    "2": {
+      "side": [
+        0.018381520341929594,
+        0.39912637722854666
+      ]
+    },
+    "3": {
+      "side": [
+        -0.03487501971546945,
+        -0.27706760349024157
+      ]
+    }
+  }
+}
