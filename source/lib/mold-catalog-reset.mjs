@@ -3,10 +3,11 @@ import {RETAINED_MOLD_ID} from './removed-molds.mjs';
 const RESET='2026-10-29-edge-only-v1';
 const TABLE='atlas_mold_catalog_resets';
 const inflight=new WeakMap();
+const completed=new WeakSet();
 export function resetMoldCatalog(db,bucket){
-  if(!db||!bucket)return Promise.resolve();
+  if(!db||!bucket||completed.has(db))return Promise.resolve();
   if(inflight.has(db))return inflight.get(db);
-  const pending=reset(db,bucket).finally(()=>inflight.delete(db));
+  const pending=reset(db,bucket).then(()=>completed.add(db)).finally(()=>inflight.delete(db));
   inflight.set(db,pending);return pending;
 }
 async function reset(db,bucket){

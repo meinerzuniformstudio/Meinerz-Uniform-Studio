@@ -1,5 +1,5 @@
 import {newRecordId} from './record-id.js';
-// Factory-approved production rules. Atlas is the software; MEINERZ below is
+// Factory-approved production rules. Meinerz is the software; MEINERZ below is
 // the physical supplier/sponsor mark specified in the approved product sheets.
 export const CATALOG_VERSION='2026-10-26.1';
 export const PRODUCT_CATALOG=Object.freeze([
@@ -13,7 +13,9 @@ const combinations=[['VERMELHO','MEXICO'],['MEXICO','BRANCO'],['VERMELHO','BRANC
 const rib=(id,factoryColorRef)=>({id,factoryColorRef,displayColorName:factoryColorRef.map(c=>COLORS_FACTORY[c]).join(' + ')});
 export const SHARED_RIBBONS=Object.freeze([...combinations.map((refs,i)=>rib('COMP-'+String(i+1).padStart(2,'0'),refs)),...['VERMELHO','MEXICO','BRANCO','COLIBRI','TROPICAL','SOL 1048','PRETO','LAGE','UVA','P-6931'].map((ref,i)=>rib('LISA-'+String(i+1).padStart(2,'0'),[ref]))]);
 export const POLO_RIBBONS=Object.freeze(['COLONIAL','VERMELHO','MEXICO','BRANCO','COLIBRI','TROPICAL','SOL 1048','PRETO','LAGE','UVA'].map((ref,i)=>rib('POLO-'+String(i+1).padStart(2,'0'),[ref])));
-export const COLLARS=Object.freeze(['REDONDA','V','POLO','BRASIL','REDONDA COM PEITILHO','PRIME','FIELD','PRESTIGE','EDGE']);
+// EDGE remains the stored key so existing orders retain their rules and links.
+export const collarLabel=value=>value==='EDGE'?'MAX':value;
+export const COLLARS=Object.freeze(['REDONDA','V','POLO','BRASIL','REDONDA COM PEITILHO','PRIME','PRIME V','FIELD','PRESTIGE','EDGE']);
 export const SHORT_MOLDS=Object.freeze([
  {id:'CAL-M01',fit:'MASCULINA',label:'CALÇÃO 2 (PADRÃO)',filet:true,description:'2 partes; barra convencional ou filete costurado'},
  {id:'CAL-M02',fit:'MASCULINA',label:'CALÇÃO 5 PARTES',filet:true,five:true,description:'5 partes; barra convencional ou filete costurado'},
@@ -33,8 +35,8 @@ export const productDefinition=code=>PRODUCT_CATALOG.find(p=>p.code===code);
 export const productCodeFor=type=>['CAMISETA','CAMISETA SUBLIMADA / TRANSFER'].includes(norm(type))?'CAM-001':['CALCAO','CALCAO DE JOGO'].includes(norm(type))?'CAL-001':null;
 export const moldFor=technical=>SHORT_MOLDS.find(m=>m.id===technical?.moldId);
 export const ribbonOptions=t=>t?.collarModel==='POLO'?POLO_RIBBONS:SHARED_RIBBONS;
-export const needsRibbon=t=>t.collarModel==='EDGE'||['PRIME','FIELD','PRESTIGE','POLO'].includes(t.collarModel)&&t.collarFinish==='PRONTA';
-export function collarFinishes(model){return ({REDONDA:['RIBANA','GALÃO'],V:['RIBANA'],POLO:['PRONTA','SUBLIMADA COM ENTRETELA'],BRASIL:['DRY SUBLIMADO'],'REDONDA COM PEITILHO':['RIBANA'],PRIME:['SUBLIMADA','PRONTA'],FIELD:['SUBLIMADA','PRONTA'],PRESTIGE:['SUBLIMADA','PRONTA'],EDGE:['PRONTA']})[model]||[];}
+export const needsRibbon=t=>t.collarModel==='EDGE'||['PRIME','PRIME V','FIELD','PRESTIGE','POLO'].includes(t.collarModel)&&t.collarFinish==='PRONTA';
+export function collarFinishes(model){return ({REDONDA:['RIBANA','GALÃO'],V:['RIBANA'],POLO:['PRONTA','SUBLIMADA COM ENTRETELA'],BRASIL:['DRY SUBLIMADO'],'REDONDA COM PEITILHO':['RIBANA'],PRIME:['SUBLIMADA','PRONTA'],'PRIME V':['SUBLIMADA','PRONTA'],FIELD:['SUBLIMADA','PRONTA'],PRESTIGE:['SUBLIMADA','PRONTA'],EDGE:['PRONTA']})[model]||[];}
 export function newTechnical(code,designId=''){
  if(!productDefinition(code))throw Error('Produto sem ficha técnica cadastrada.');
  return {version:CATALOG_VERSION,productCode:code,designId,fit:'',fabricId:code==='CAL-001'?'DRY_CALCAO':'',moldId:'',collarModel:'',collarFinish:'',ribanaId:'',vConstruction:'',buttons:null,poloSideV:false,sleeveLength:'CURTA',sleeveFinish:'BARRA COMUM',filetMaterial:'',filetException:'',hasSideCut:false,sideCutFabric:'MESMO TECIDO DA PEÇA',hemShape:'RETA',hemFinish:'BARRA COMUM',drawstringColor:'',biasColorNote:'',pocketRequest:'',specialReference:'',specialDescription:'',applications:[],legacyReviewed:true};
@@ -166,7 +168,7 @@ export function suggestPageGrouping(order){
 }
 export function technicalLines(product,order={}){
  const t=product.technical;if(!t)return [];const lines=[t.productCode+' · '+fitLabel(t.productCode,t.fit)];
- if(t.productCode==='CAM-001')lines.push('Manga: '+(order.shirtSleeveCut||'CORTE PENDENTE')+' · '+t.sleeveLength+' · '+(t.sleeveFinish==='PUNHO'?'PUNHO DE RIBANA SUBLIMADA':t.sleeveFinish),'Gola: '+[t.collarModel,t.collarFinish,t.vConstruction,t.buttons!==null?t.buttons+' BOTÕES':''].filter(Boolean).join(' · '));
+ if(t.productCode==='CAM-001')lines.push('Manga: '+(order.shirtSleeveCut||'CORTE PENDENTE')+' · '+t.sleeveLength+' · '+(t.sleeveFinish==='PUNHO'?'PUNHO DE RIBANA SUBLIMADA':t.sleeveFinish),'Gola: '+[collarLabel(t.collarModel),t.collarFinish,t.vConstruction,t.buttons!==null?t.buttons+' BOTÕES':''].filter(Boolean).join(' · '));
  if(t.collarModel==='REDONDA COM PEITILHO')lines.push('PEITILHO FIXO: DRY');if(t.collarModel==='PRIME')lines.push('VIÉS FIXO DA GOLA: DRY SUBLIMADO');
  if(t.productCode==='CAL-001'){const m=moldFor(t);lines.push('Molde: '+(m?.label||'PENDENTE'),m?.description||'',m?.stein?'VIÉS FIXO: DRY · COR: '+(t.biasColorNote||'PENDENTE'):t.hemFinish,'CORDÃO OBRIGATÓRIO: '+(t.drawstringColor||'PENDENTE'));}
  if(t.sleeveFinish==='FILETE COSTURADO')lines.push('Filete: '+t.filetMaterial+(t.filetException?' · EXCEÇÃO: '+t.filetException:''));
@@ -190,7 +192,7 @@ export function productionSummary(order,parseGrade){
 
 export function productDisplayName(product){
  const t=product.technical;if(!t)return product.model||product.type;
- if(t.productCode==='CAM-001')return product.type+(t.collarModel?' gola '+t.collarModel:'')+(t.hasSideCut?' com recorte':'')+(t.sleeveLength==='LONGA'?' · manga longa':'');
+ if(t.productCode==='CAM-001')return product.type+(t.collarModel?' gola '+collarLabel(t.collarModel):'')+(t.hasSideCut?' com recorte':'')+(t.sleeveLength==='LONGA'?' · manga longa':'');
  const mold=moldFor(t);return 'Calção de jogo'+(mold?.cut?' com recorte':'')+(mold?.label?' · '+mold.label.replace(/\s*\(PADRÃO\)/,''):'');
 }
 export function finishSummary(product){

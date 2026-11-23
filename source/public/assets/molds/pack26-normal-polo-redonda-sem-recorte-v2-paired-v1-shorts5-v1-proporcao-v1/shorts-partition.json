@@ -1,0 +1,42 @@
+{
+  "base": "pack26-normal-polo-redonda-sem-recorte-v2-paired-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06914882990531623,
+  "areaAfter": 0.06914883696653273,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        -0.01705939911788933,
+        -0.3181183874258469
+      ],
+      "pala": [
+        0.012311983698443498,
+        0.4037010403396696
+      ]
+    },
+    "1": {
+      "side": [
+        0.013312344685819894,
+        0.3839823677813629
+      ],
+      "pala": [
+        -0.014435386734061867,
+        0.4065466028184191
+      ]
+    },
+    "2": {
+      "side": [
+        -0.06831909309570171,
+        0.4258098917190284
+      ]
+    },
+    "3": {
+      "side": [
+        0.009194412121362842,
+        -0.26474268531483014
+      ]
+    }
+  }
+}

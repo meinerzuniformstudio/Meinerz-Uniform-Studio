@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-raglan-redonda-sem-recorte-paired-v1-shorts-lateral-v1",
+  "name": "KIT · RAGLAN · REDONDA · SEM RECORTE · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "4285050de4f384a94dd47fd3a17fb87f3403e4104e79292de3980548ec84f581",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 79535,
+  "vertices": 40955,
+  "panelCount": 11,
+  "texelsPerUvUnit": 5122.443963002581,
+  "originalSourceSha256": "9b017a0140ee7e046fe696765897d5a4f3e065432673660b5a4e50cf1b5ade94",
+  "preparation": "outer-surfaces-v1",
+  "packId": "kits-2026-11",
+  "artBleedPixels": 16,
+  "pairNormalization": "intrinsic-paired-v1",
+  "modeling": "RAGLAN",
+  "collar": "REDONDA",
+  "sideCut": false,
+  "bottomParts": 6,
+  "variant": "",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "RAGLAN",
+    "REDONDA",
+    "SEM RECORTE",
+    "CALÇÃO 2 PARTES"
+  ],
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 5,
+      "text": "Frente · P05",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Costas · P06",
+      "x": 1163.8544583405715,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Gola inteira · P07",
+      "x": 2900,
+      "y": 385,
+      "w": 177.468,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Manga esquerda · P08",
+      "x": 100,
+      "y": 1909.929451921177,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "Manga direita · P10",
+      "x": 900.8128109763614,
+      "y": 1909.929451921177,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Filete manga esquerda · P09",
+      "x": 1701.6256219527227,
+      "y": 1909.929451921177,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 11,
+      "text": "Filete manga direita · P11",
+      "x": 2399.9578134380445,
+      "y": 1909.929451921177,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2812.1525129536185,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1408.1479463693252,
+      "y": 2812.1525129536185,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2716.2958927386503,
+      "y": 2812.1525129536185,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3758.34752363813,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Frente",
+    "Costas",
+    "Gola inteira",
+    "Manga esquerda",
+    "Filete manga esquerda",
+    "Manga direita",
+    "Filete manga direita"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-raglan-redonda-sem-recorte-paired-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "decorativeMeshes": [],
+  "uvCanonicalMeshes": [],
+  "sourceName": "Variante aprovada — KIT · RAGLAN · REDONDA · SEM RECORTE · CALÇÃO 2 PARTES.glb",
+  "intermediateOnly": true
+}

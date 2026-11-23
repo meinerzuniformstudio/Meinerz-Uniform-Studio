@@ -1,5 +1,10 @@
 ## 19/11/2026 — Nome oficial e transferência
 
+## v133 · Fonte de 18/11/2026
+
+Em 23/11/2026 foi preparada a importação da fonte oficial da **v133**. Consulte [a origem, os testes e o inventário de migração](docs/MIGRACAO-SITES-V133.md). As notas sobre v90 abaixo são históricas.
+
+
 MEINERZ UNIFORM STUDIO substitui Atlas Uniform Studio na documentação de continuidade. Identificadores técnicos legados preservados. Handoff e AGENTS registrados; sincronização com Sites e validação de produção pendentes. Nenhuma alteração funcional nesta entrega.
 
 ## v88/v89 — Paisagem, quatro vistas e link do orçamento (31/10/2026)

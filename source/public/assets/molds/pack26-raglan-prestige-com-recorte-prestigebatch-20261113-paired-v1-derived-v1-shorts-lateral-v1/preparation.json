@@ -1,0 +1,241 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-raglan-prestige-com-recorte-prestigebatch-20261113-paired-v1-derived-v1-shorts-lateral-v1",
+  "name": "KIT · RAGLAN · PRESTIGE · COM RECORTE · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "c44c1961db821187a7761bffdf492dfe31c0e9ff13ed02a00fbade34f881c6fd",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 121561,
+  "vertices": 63079,
+  "panelCount": 14,
+  "texelsPerUvUnit": 5143.01741768719,
+  "artBleedPixels": 16,
+  "sourceName": "Variante aprovada — KIT · RAGLAN · PRESTIGE · COM RECORTE · CALÇÃO 2 PARTES.glb",
+  "originalSourceSha256": "d05d19ecd48e8b78ae9785f1ac18cad1f0187c17768e1e9d094e53dbbdcc0e05",
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Frente",
+    "Gola frente direita",
+    "Gola frente esquerda",
+    "Filete manga direita",
+    "Filete manga esquerda",
+    "Costas",
+    "Manga direita",
+    "Manga esquerda",
+    "Recorte lateral esquerdo",
+    "Recorte lateral direito"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "decorativeMeshes": [],
+  "modeling": "RAGLAN",
+  "collar": "PRESTIGE",
+  "sideCut": true,
+  "bottomParts": 6,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "cutType": "LATERAL",
+  "variantSource": "KIT PRESTIGE RAGLAN - CALÇÃO BASICO(1).glb",
+  "uploadedSourceSha256": "a1424ac2d61aceb475e6aa567318d6f991ec83a1100244a1d7fe37383ee2a2db",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "pairNormalization": "intrinsic-paired-v1",
+  "derivedFrom": "pack26-raglan-prestige-sem-recorte-prestigebatch-20261113-paired-v1-proporcao-v1",
+  "cutReference": "pack26-normal-redonda-com-recorte-v2",
+  "cutVersion": "armhole-through-shared-seam-v1",
+  "uvCanonicalMeshes": [
+    16,
+    17
+  ],
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "RAGLAN",
+    "PRESTIGE",
+    "RECORTE LATERAL",
+    "CALÇÃO 2 PARTES"
+  ],
+  "preparedFrom": "pack26-raglan-prestige-com-recorte-prestigebatch-20261113-paired-v1-derived-v1",
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 5,
+      "text": "Frente · P05",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "Costas · P10",
+      "x": 966.3446770050305,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 13,
+      "text": "Recorte lateral",
+      "x": 1803.8346823486781,
+      "y": 385,
+      "w": 150.236,
+      "h": 29
+    },
+    {
+      "panel": 13,
+      "text": "esquerdo · P13",
+      "x": 1803.8346823486781,
+      "y": 413,
+      "w": 155.986,
+      "h": 29
+    },
+    {
+      "panel": 14,
+      "text": "Recorte lateral direito",
+      "x": 2114.834682348678,
+      "y": 385,
+      "w": 219.259,
+      "h": 29
+    },
+    {
+      "panel": 14,
+      "text": "· P14",
+      "x": 2114.834682348678,
+      "y": 413,
+      "w": 53.705,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Gola frente direita ·",
+      "x": 2900,
+      "y": 385,
+      "w": 195.59199999999998,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "P06",
+      "x": 2900,
+      "y": 413,
+      "w": 40.917,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Gola frente esquerda",
+      "x": 3211,
+      "y": 385,
+      "w": 216.06199999999998,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "· P07",
+      "x": 3211,
+      "y": 413,
+      "w": 53.705,
+      "h": 29
+    },
+    {
+      "panel": 11,
+      "text": "Manga direita · P11",
+      "x": 100,
+      "y": 1936.2727039624333,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 12,
+      "text": "Manga esquerda · P12",
+      "x": 932.4673582263565,
+      "y": 1936.2727039624333,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Filete manga direita · P08",
+      "x": 1764.934716452713,
+      "y": 1936.2727039624333,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Filete manga esquerda · P09",
+      "x": 2498.2006299502373,
+      "y": 1936.2727039624333,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2800.0287769592624,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1412.7952823693859,
+      "y": 2800.0287769592624,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2725.5905647387717,
+      "y": 2800.0287769592624,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3749.5545894608704,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "intermediateOnly": true,
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-raglan-prestige-com-recorte-prestigebatch-20261113-paired-v1-derived-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1"
+}

@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-raglan-v-traspassada-sem-recorte-vfix-20261113-paired-v1-shorts-lateral-v1",
+  "name": "KIT · RAGLAN · V TRASPASSADA · SEM RECORTE · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "f87d4cc4d2d3ee9086b16b72a3272e184f7fb08c81f4aa3219f9de74200a6a58",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 125662,
+  "vertices": 64134,
+  "panelCount": 11,
+  "texelsPerUvUnit": 5068.9687671069805,
+  "artBleedPixels": 16,
+  "sourceName": "Variante aprovada — KIT · RAGLAN · V TRASPASSADA · SEM RECORTE · CALÇÃO 2 PARTES.glb",
+  "originalSourceSha256": "bd74f60802354ba4f1c0c03f76c3dabbe657284f14cae5b7cdd510120538c354",
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Costas",
+    "Filete manga direita",
+    "Filete manga esquerda",
+    "Manga esquerda",
+    "Manga direita",
+    "Frente",
+    "Gola inteira"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "decorativeMeshes": [],
+  "modeling": "RAGLAN",
+  "collar": "V TRASPASSADA",
+  "sideCut": false,
+  "bottomParts": 6,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "cutType": "SEM RECORTE",
+  "variantSource": "KIT GOLA V RAGLAN TRASPASSADA - CALÇÃO BASICO(1).glb",
+  "uploadedSourceSha256": "105bacc736b9b51e2c0c4d0ea15e85fa780f0739ee74dcad9d3a416b03f45ed0",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "pairNormalization": "intrinsic-paired-v1",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "RAGLAN",
+    "V TRASPASSADA",
+    "SEM RECORTE",
+    "CALÇÃO 2 PARTES"
+  ],
+  "preparedFrom": "pack26-raglan-v-traspassada-sem-recorte-vfix-20261113-paired-v1",
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 10,
+      "text": "Frente · P10",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 5,
+      "text": "Costas · P05",
+      "x": 1172.1528163381245,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 11,
+      "text": "Gola inteira · P11",
+      "x": 2900,
+      "y": 385,
+      "w": 177.468,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Manga esquerda · P08",
+      "x": 100,
+      "y": 1952.336750503336,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Manga direita · P09",
+      "x": 852.8494833174954,
+      "y": 1952.336750503336,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Filete manga direita · P06",
+      "x": 1605.6989666349907,
+      "y": 1952.336750503336,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Filete manga esquerda · P07",
+      "x": 2276.734776743256,
+      "y": 1952.336750503336,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2813.270250860807,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1394.9878924998266,
+      "y": 2813.270250860807,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2689.975784999653,
+      "y": 2813.270250860807,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3750.9245423096113,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "intermediateOnly": true,
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-raglan-v-traspassada-sem-recorte-vfix-20261113-paired-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1",
+  "uvCanonicalMeshes": []
+}

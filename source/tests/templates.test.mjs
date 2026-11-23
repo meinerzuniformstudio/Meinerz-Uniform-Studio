@@ -57,7 +57,7 @@ test('KIT EDGE 2027 preserves its prepared exterior geometry and source UVs with
 });
 
 test('installed molds support normal project selection, admin edits, archive and trash without reappearing or breaking existing projects',async()=>{
-  const entry=INSTALLED_TEMPLATES[0],id=entry.descriptor.id,{templates,projects,db,bucket}=setup(INSTALLED_TEMPLATES);
+  const entry=INSTALLED_TEMPLATES.find(e=>e.descriptor.id==='kit-edge-2027-mapa-v3-proporcao-v1'),id=entry.descriptor.id,{templates,projects,db,bucket}=setup(INSTALLED_TEMPLATES);
   await assert.rejects(templates.catalog(null),{status:401});await assert.rejects(templates.adminList(other),{status:403});
   assert.equal((await templates.adminList(admin)).filter(t=>t.id===id).length,1);assert.ok((await templates.catalog(other)).some(t=>t.id===id));
   const project=await projects.create(other,{name:'Teste kit',templateId:id});assert.equal((await projects.template(other,project.id)).panelCount,19);
@@ -132,7 +132,7 @@ function tinyGlb(change=()=>{}){
 test('the uploaded CLO model generates all 10 panels and the 1,739 exact boundary vertices',{skip:'Historical mold removed at owner request; current catalog covered by mold-reset.test.mjs'},()=>{
   assert.equal(generated.descriptor.panelCount,10);assert.equal(generated.descriptor.triangles,71405);
   assert.equal(generated.descriptor.panels.reduce((n,p)=>n+p.contourVertices,0),1739);
-  assert.match(generated.svg,/id="ARTE_DESENHE_AQUI"/);assert.match(generated.svg,/id="GUIAS_OCULTAR_ANTES_DE_EXPORTAR"/);
+  assert.doesNotMatch(generated.svg,/\sdata-[\w:-]+=/);assert.match(generated.svg,/id="GUIAS_OCULTAR_ANTES_DE_EXPORTAR"/);
 });
 
 test('registration preserves every original position, index and UV while the new atlas matches the drawing',()=>{
@@ -193,18 +193,20 @@ test('administrator privileges depend on the configured stable identity and cann
 
 test('only the admin can upload, list drafts, publish, archive or download draft models',async()=>{
   const {templates,objects}=setup(),file=new File([source],'camiseta.glb',{type:'model/gltf-binary'}),input={name:'Novo modelo',category:'camiseta'};
+  const initialCatalog=await templates.catalog(other);
   await assert.rejects(templates.create(other,input,file),{status:403});assert.equal(objects.size,0);
   const draft=await templates.create(admin,input,file);assert.equal(draft.status,'draft');assert.equal(objects.size,4);
-  assert.equal((await templates.catalog(other)).length,1);
+  assert.equal((await templates.catalog(other)).length,initialCatalog.length);
   await assert.rejects(templates.readable(other,draft.id),{status:404});await assert.rejects(templates.adminList(other),{status:403});
   await assert.rejects(templates.status(other,draft.id,{status:'published',confirmed:true}),{status:403});
   await assert.rejects(templates.status(admin,draft.id,{status:'published'}),{status:400});
-  await templates.status(admin,draft.id,{status:'published',confirmed:true});assert.equal((await templates.catalog(other)).length,2);
+  await templates.status(admin,draft.id,{status:'published',confirmed:true});assert.equal((await templates.catalog(other)).length,initialCatalog.length+1);
   await assert.rejects(templates.status(other,draft.id,{status:'archived'}),{status:403});
 });
 
 test('new projects bind to the chosen published model; archiving keeps saved projects and client presentations usable',async()=>{
   const {templates,projects}=setup(),file=new File([source],'camiseta.glb',{type:'model/gltf-binary'});
+  const initialCatalog=await templates.catalog(other);
   const draft=await templates.create(admin,{name:'Outro corte',category:'camiseta'},file);
   await assert.rejects(projects.create(other,{name:'Draft selection',templateId:draft.id}),{status:404});
   await templates.status(admin,draft.id,{status:'published',confirmed:true});
@@ -217,7 +219,7 @@ test('new projects bind to the chosen published model; archiving keeps saved pro
   const publicDescriptor=await projects.template(null,null,token);assert.equal(publicDescriptor.templateUrl,null);assert.equal(publicDescriptor.proofUrl,null);
   await assert.rejects(projects.asset(null,null,'template',token),{status:404});
   await templates.status(admin,draft.id,{status:'archived'});
-  assert.equal((await templates.catalog(other)).length,1);
+  assert.equal((await templates.catalog(other)).length,initialCatalog.length);
   assert.ok((await projects.asset(null,null,'model',token)).data.length);
   assert.equal((await projects.template(other,p.id)).id,draft.id);
   await assert.rejects(projects.create(other,{name:'No new project',templateId:draft.id}),{status:404});
@@ -226,10 +228,11 @@ test('new projects bind to the chosen published model; archiving keeps saved pro
 
 test('failed registrations clean uploaded files and leave the existing approved template untouched',async()=>{
   const {templates,db,bucket,objects}=setup();
+  const initialCatalog=await templates.catalog(other);
   const failing=new TemplateService({prepare(query){if(query.startsWith('INSERT INTO templates'))throw new Error('Write failed');return db.prepare(query);}},bucket,admin.userId);
   await assert.rejects(failing.create(admin,{name:'Falha',category:'camiseta'},new File([source],'modelo.glb')),/Write failed/);assert.equal(objects.size,0);
-  assert.equal((await templates.catalog(admin)).length,1);
-  assert.equal((await templates.descriptor('kit-edge-2027-mapa-v3')).kind,'generated');
+  assert.equal((await templates.catalog(admin)).length,initialCatalog.length);
+  assert.equal((await templates.descriptor(initialCatalog[0].id)).kind,'generated');
 });
 
 test('only the administrator edits metadata; renaming updates descriptors and SVG without changing the atlas',async()=>{
@@ -247,12 +250,13 @@ test('only the administrator edits metadata; renaming updates descriptors and SV
 
 test('deleted molds leave the catalog, retain saved project assets, and can be restored',async()=>{
   const {templates,projects,objects}=setup();
+  const initialCatalog=await templates.catalog(other);
   const draft=await templates.create(admin,{name:'Meu molde',category:'camiseta'},new File([source],'modelo.glb'));
   await templates.status(admin,draft.id,{status:'published',confirmed:true});
   const project=await projects.create(other,{name:'Pedido existente',templateId:draft.id});
   await assert.rejects(templates.remove(other,draft.id),{status:403});
   await templates.remove(admin,draft.id);assert.equal(objects.size,4);
-  assert.equal((await templates.catalog(other)).length,1);
+  assert.equal((await templates.catalog(other)).length,initialCatalog.length);
   assert.ok((await projects.asset(other,project.id,'model')).data.length);
   assert.equal((await projects.template(other,project.id)).id,draft.id);
   await assert.rejects(templates.available(other,draft.id),{status:404});
@@ -290,7 +294,7 @@ test('twelve order molds preserve cloth geometry, original UVs and scene transfo
   }
   for(let i=0;i<d.panels.length;i++)for(let j=i+1;j<d.panels.length;j++){const a=d.panels[i].rect,b=d.panels[j].rect;assert.ok(a.x+a.w<=b.x||b.x+b.w<=a.x||a.y+a.h<=b.y||b.y+b.h<=a.y);}
   const gltf=await new GLTFLoader().parseAsync(modelBytes.buffer.slice(modelBytes.byteOffset,modelBytes.byteOffset+modelBytes.byteLength),'');let cloth=0,decorations=0;gltf.scene.traverse(mesh=>{if(!mesh.isMesh)return;const a=gltf.parser.associations.get(mesh),p=d.primitives.find(p=>p.key===`m${a.meshes??0}p${a.primitives}`);assert.ok(p);if(p.decorativeOnly)decorations++;else {cloth++;prepareBakedGeometry(mesh.geometry);}});assert.equal(cloth,d.panelCount);assert.equal(decorations,d.id.startsWith('polo')?6:d.id==='kit-passeio-prime'?2:0);
-  assert.match(entry.templateSvg,/ARTE_DESENHE_AQUI/);assert.match(entry.templateSvg,/GUIAS_OCULTAR_ANTES_DE_EXPORTAR/);
+  assert.doesNotMatch(entry.templateSvg,/\sdata-[\w:-]+=/);assert.match(entry.templateSvg,/GUIAS_OCULTAR_ANTES_DE_EXPORTAR/);
  }
  const simulator=await readFile(new URL('../public/simulator-catalog.js',import.meta.url),'utf8').catch(()=> '');for(const e of ORDER_MOLD_TEMPLATES)assert.ok(!simulator.includes(`/assets/molds/${e.descriptor.id}/`));
 });
@@ -403,4 +407,25 @@ test('the new casual shorts and ten checked combinations are available without r
  const {COMPOSED_PASSEIO_V2_TEMPLATES:kits}=await import('../lib/composed-passeio-v2-templates.mjs'),{templates,projects}=setup(INSTALLED_TEMPLATES),catalog=await templates.catalog(other);
  for(const e of [INSTALLED_TEMPLATES.find(e=>e.descriptor.id==='bermuda-passeio-v2'),...kits]){const d=e.descriptor;assert.ok(catalog.some(t=>t.id===d.id&&t.line==='passeio'));const p=await projects.create(other,{name:d.name,templateId:d.id}),template=await projects.template(other,p.id);assert.equal(template.fitVersion,'passeio-v2');assert.equal(template.previewBaseColors.lower,'#d51d2f');assert.deepEqual(await projects.asset(other,p.id,'model'),{redirect:e.assets.model});}
  assert.ok(WITHDRAWN_TEMPLATE_IDS.every(id=>!catalog.some(t=>t.id===id)));
+});
+
+test('replacement templates replace persisted catalog rows while saved artwork keeps its original immutable atlas',async()=>{
+ for(const oldId of ['pack26-normal-polo-redonda-sem-recorte','pack26-normal-redonda-com-recorte']){
+ const nextId=oldId+'-v2-paired-v1-proporcao-v1-compacto-v2';
+ const {SUPERSEDED_PRESENTATION_TEMPLATES}=await import('../lib/superseded-presentation-templates.mjs');
+ const old=SUPERSEDED_PRESENTATION_TEMPLATES.find(e=>e.descriptor.id===oldId);
+ const {templates,projects,sql}=setup();
+ await templates.ensureInstalled(oldId);
+ sql.prepare("UPDATE templates SET status='published' WHERE id=?").run(oldId);
+ const before=await projects.create(other,{name:'Arte existente',templateId:nextId});
+ sql.prepare('UPDATE projects SET template_id=? WHERE id=?').run(oldId,before.id);
+ const catalog=await templates.catalog(other);
+ assert.ok(catalog.some(e=>e.id===nextId));assert.ok(!catalog.some(e=>e.id===oldId));
+ await assert.rejects(projects.create(other,{name:'Molde substituído',templateId:oldId}),{status:404});
+ assert.equal((await projects.get(other,before.id)).templateId,oldId);
+ assert.deepEqual((await projects.template(other,before.id)).panels,old.descriptor.panels);
+ assert.deepEqual((await templates.readable(other,oldId)).panels,old.descriptor.panels);
+ assert.equal((await templates.asset(oldId,'model')).redirect,old.assets.model);
+ assert.notEqual((await templates.descriptor(nextId)).sourceSha256,old.descriptor.sourceSha256);
+ }
 });

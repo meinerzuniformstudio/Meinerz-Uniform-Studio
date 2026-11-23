@@ -1,0 +1,42 @@
+{
+  "base": "pack26-normal-gola-27-com-recorte-paired-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06925615877844393,
+  "areaAfter": 0.06925616131323271,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        -0.0002514078470681791,
+        -0.15246009456098686
+      ],
+      "pala": [
+        0.01162908505603479,
+        0.957945833837919
+      ]
+    },
+    "1": {
+      "side": [
+        0.002585109400329038,
+        -0.16249320609967172
+      ],
+      "pala": [
+        -0.0027185238096847676,
+        0.9534705639710009
+      ]
+    },
+    "2": {
+      "side": [
+        -0.031008253795255597,
+        -0.0685519674354964
+      ]
+    },
+    "3": {
+      "side": [
+        0.002136611310648301,
+        -0.09847442050162777
+      ]
+    }
+  }
+}

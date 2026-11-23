@@ -1,0 +1,249 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-calcao-4-partes-referencia",
+  "name": "CALÇÃO 4 PARTES",
+  "category": "calcao",
+  "pageSize": 4096,
+  "sourceSha256": "329f83c9236c0be328492e89d5343b3763ebe8bd9f06d3cf5a6d012a099e1999",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 47546,
+  "vertices": 24428,
+  "panelCount": 8,
+  "primitives": [
+    {
+      "key": "m0p0",
+      "mesh": 0,
+      "primitive": 0,
+      "label": "Cós frente direito",
+      "islandCount": 1,
+      "displayName": "Cós frente direito"
+    },
+    {
+      "key": "m1p0",
+      "mesh": 1,
+      "primitive": 0,
+      "label": "Cós frente esquerdo",
+      "islandCount": 1,
+      "displayName": "Cós frente esquerdo"
+    },
+    {
+      "key": "m2p0",
+      "mesh": 2,
+      "primitive": 0,
+      "label": "Cós costas esquerdo",
+      "islandCount": 1,
+      "displayName": "Cós costas esquerdo"
+    },
+    {
+      "key": "m3p0",
+      "mesh": 3,
+      "primitive": 0,
+      "label": "Cós costas direito",
+      "islandCount": 1,
+      "displayName": "Cós costas direito"
+    },
+    {
+      "key": "m4p0",
+      "mesh": 4,
+      "primitive": 0,
+      "label": "Calção frente esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção frente esquerdo"
+    },
+    {
+      "key": "m5p0",
+      "mesh": 5,
+      "primitive": 0,
+      "label": "Calção costas esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção costas esquerdo"
+    },
+    {
+      "key": "m6p0",
+      "mesh": 6,
+      "primitive": 0,
+      "label": "Calção frente direito",
+      "islandCount": 1,
+      "displayName": "Calção frente direito"
+    },
+    {
+      "key": "m7p0",
+      "mesh": 7,
+      "primitive": 0,
+      "label": "Calção costas direito",
+      "islandCount": 1,
+      "displayName": "Calção costas direito"
+    }
+  ],
+  "panels": [
+    {
+      "number": 1,
+      "mesh": 0,
+      "primitive": 0,
+      "rect": {
+        "x": 2874.5621380711536,
+        "y": 2019.1557196249296,
+        "w": 737.139931054181,
+        "h": 207.4989462881124
+      },
+      "uvBounds": [
+        -0.10383818298578262,
+        0.9707704186439514,
+        0.10383818298578262,
+        1.0292296409606934
+      ],
+      "contourVertices": 90,
+      "label": "Cós frente direito",
+      "displayName": "Cós frente direito"
+    },
+    {
+      "number": 2,
+      "mesh": 1,
+      "primitive": 0,
+      "rect": {
+        "x": 1288.2819586159173,
+        "y": 2019.1557196249296,
+        "w": 737.1399839453267,
+        "h": 207.4991578526953
+      },
+      "uvBounds": [
+        -0.10383819788694382,
+        0.9707703590393066,
+        0.10383818298578262,
+        1.0292296409606934
+      ],
+      "contourVertices": 90,
+      "label": "Cós frente esquerdo",
+      "displayName": "Cós frente esquerdo"
+    },
+    {
+      "number": 3,
+      "mesh": 2,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 3732.6110537102963,
+        "w": 737.1396665984524,
+        "h": 207.4989462881124
+      },
+      "uvBounds": [
+        -0.10383810847997665,
+        0.9707704186439514,
+        0.10383818298578262,
+        1.0292296409606934
+      ],
+      "contourVertices": 91,
+      "label": "Cós costas esquerdo",
+      "displayName": "Cós costas esquerdo"
+    },
+    {
+      "number": 4,
+      "mesh": 3,
+      "primitive": 0,
+      "rect": {
+        "x": 2081.421942561244,
+        "y": 2019.1557196249296,
+        "w": 737.1401955099096,
+        "h": 207.4989462881124
+      },
+      "uvBounds": [
+        -0.10383825749158859,
+        0.9707704186439514,
+        0.10383818298578262,
+        1.0292296409606934
+      ],
+      "contourVertices": 91,
+      "label": "Cós costas direito",
+      "displayName": "Cós costas direito"
+    },
+    {
+      "number": 5,
+      "mesh": 4,
+      "primitive": 0,
+      "rect": {
+        "x": 2509.1540660542887,
+        "y": 268,
+        "w": 1132.2818528336259,
+        "h": 1657.4555456499495
+      },
+      "uvBounds": [
+        -0.1544903665781021,
+        0.7720810770988464,
+        0.16451036930084229,
+        1.2390403747558594
+      ],
+      "contourVertices": 230,
+      "label": "Calção frente esquerdo",
+      "displayName": "Calção frente esquerdo"
+    },
+    {
+      "number": 6,
+      "mesh": 5,
+      "primitive": 0,
+      "rect": {
+        "x": 1304.5769801359986,
+        "y": 268,
+        "w": 1148.57708591829,
+        "h": 1695.1555080603466
+      },
+      "uvBounds": [
+        -0.1672709435224533,
+        0.7387374043464661,
+        0.1563206911087036,
+        1.2163180112838745
+      ],
+      "contourVertices": 236,
+      "label": "Calção costas esquerdo",
+      "displayName": "Calção costas esquerdo"
+    },
+    {
+      "number": 7,
+      "mesh": 6,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 2019.1557196249296,
+        "w": 1132.2819586159173,
+        "h": 1657.4553340853668
+      },
+      "uvBounds": [
+        -0.1544903963804245,
+        0.7720811367034912,
+        0.16451036930084229,
+        1.2390403747558594
+      ],
+      "contourVertices": 230,
+      "label": "Calção frente direito",
+      "displayName": "Calção frente direito"
+    },
+    {
+      "number": 8,
+      "mesh": 7,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 268,
+        "w": 1148.5769801359986,
+        "h": 1695.1557196249296
+      },
+      "uvBounds": [
+        -0.1672709733247757,
+        0.7387374639511108,
+        0.15632063150405884,
+        1.216318130493164
+      ],
+      "contourVertices": 236,
+      "label": "Calção costas direito",
+      "displayName": "Calção costas direito"
+    }
+  ],
+  "texelsPerUvUnit": 3549.4647048817733,
+  "artBleedPixels": 16,
+  "bottomParts": 4,
+  "line": "jogo",
+  "referenceSourceSha256": "4fd1cf4bee85af08f8ffc369d0b7674fab5cd4d239b8e79b41f3fcf920dba9bc"
+}

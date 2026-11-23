@@ -1,0 +1,95 @@
+{
+  "previousId": "pack26-raglan-polo-sem-recorte-20261113",
+  "bodyUvUnitsPerModelUnit": 2.7211800316998076,
+  "method": "intrinsic axis units, sewn cuff alignment, shared pair bounds, outside-readable UV winding",
+  "pairs": [
+    {
+      "kind": "Manga",
+      "leftMesh": 12,
+      "rightMesh": 11,
+      "before": {
+        "11": [
+          0.38896846771240234,
+          0.350885272026062
+        ],
+        "12": [
+          0.3889685273170471,
+          0.3512369394302368
+        ]
+      },
+      "targetWidth": 0.4107082548126342,
+      "targetHeight": 0.35612078944184067,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.7907725247570663,
+      "leftFrontCorrelationAfter": -0.7860284079867536,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Filete manga",
+      "leftMesh": 4,
+      "rightMesh": 5,
+      "before": {
+        "4": [
+          0.18559682369232178,
+          0.010397076606750488
+        ],
+        "5": [
+          0.313240110874176,
+          0.017547607421875
+        ]
+      },
+      "targetWidth": 0.3329918360540976,
+      "targetHeight": 0.020624314212791574,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.7609878803219091,
+      "leftFrontCorrelationAfter": -0.7616588054715594,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Cal\u00e7\u00e3o",
+      "leftMesh": 1,
+      "rightMesh": 0,
+      "before": {
+        "0": [
+          0.6401803493499756,
+          0.4113668203353882
+        ],
+        "1": [
+          0.6401804089546204,
+          0.41136687994003296
+        ]
+      },
+      "targetWidth": 0.6547979829432481,
+      "targetHeight": 0.43646683415916115,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.8470047694672642,
+      "leftFrontCorrelationAfter": -0.8441384008021778,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "C\u00f3s",
+      "leftMesh": 2,
+      "rightMesh": 3,
+      "before": {
+        "2": [
+          0.3438284993171692,
+          0.05845922231674194
+        ],
+        "3": [
+          0.34382855892181396,
+          0.05845928192138672
+        ]
+      },
+      "targetWidth": 0.44015795594060125,
+      "targetHeight": 0.04445183211971684,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.9805365498867487,
+      "leftFrontCorrelationAfter": -0.9806916119536839,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    }
+  ]
+}

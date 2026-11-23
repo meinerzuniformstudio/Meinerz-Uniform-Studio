@@ -1,0 +1,873 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-raglan-max-com-recorte-maxbatch-20261113-paired-v1-shorts-lateral-v1",
+  "name": "KIT · RAGLAN · MAX · RECORTE LATERAL · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "c73488e5c581b1c1a940a493fc54f693530a72a168c3a993ee73efda0f534369",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 223496,
+  "vertices": 113777,
+  "panelCount": 17,
+  "primitives": [
+    {
+      "key": "m0p0",
+      "mesh": 0,
+      "primitive": 0,
+      "label": "Calção frente direito",
+      "islandCount": 1,
+      "displayName": "Calção frente direito"
+    },
+    {
+      "key": "m1p0",
+      "mesh": 1,
+      "primitive": 0,
+      "label": "Calção costas direito",
+      "islandCount": 1,
+      "displayName": "Calção costas direito"
+    },
+    {
+      "key": "m2p0",
+      "mesh": 2,
+      "primitive": 0,
+      "label": "Calção lateral direito",
+      "islandCount": 1,
+      "displayName": "Calção lateral direito"
+    },
+    {
+      "key": "m3p0",
+      "mesh": 3,
+      "primitive": 0,
+      "label": "Calção frente esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção frente esquerdo"
+    },
+    {
+      "key": "m4p0",
+      "mesh": 4,
+      "primitive": 0,
+      "label": "Calção costas esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção costas esquerdo"
+    },
+    {
+      "key": "m5p0",
+      "mesh": 5,
+      "primitive": 0,
+      "label": "Calção lateral esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção lateral esquerdo"
+    },
+    {
+      "key": "m6p0",
+      "mesh": 6,
+      "primitive": 0,
+      "label": "Cós esquerdo",
+      "islandCount": 1,
+      "displayName": "Cós esquerdo"
+    },
+    {
+      "key": "m7p0",
+      "mesh": 7,
+      "primitive": 0,
+      "label": "Cós direito",
+      "islandCount": 1,
+      "displayName": "Cós direito"
+    },
+    {
+      "key": "m8p0",
+      "mesh": 8,
+      "primitive": 0,
+      "label": "Filete manga esquerda",
+      "islandCount": 1,
+      "displayName": "Filete manga esquerda"
+    },
+    {
+      "key": "m9p0",
+      "mesh": 9,
+      "primitive": 0,
+      "label": "Filete manga direita",
+      "islandCount": 1,
+      "displayName": "Filete manga direita"
+    },
+    {
+      "key": "m10p0",
+      "mesh": 10,
+      "primitive": 0,
+      "label": "Gola costas",
+      "islandCount": 1,
+      "displayName": "Gola costas"
+    },
+    {
+      "key": "m11p0",
+      "mesh": 11,
+      "primitive": 0,
+      "label": "Gola lateral esquerda",
+      "islandCount": 1,
+      "displayName": "Gola lateral esquerda"
+    },
+    {
+      "key": "m12p0",
+      "mesh": 12,
+      "primitive": 0,
+      "label": "Gola lateral direita",
+      "islandCount": 1,
+      "displayName": "Gola lateral direita"
+    },
+    {
+      "key": "m13p0",
+      "mesh": 13,
+      "primitive": 0,
+      "label": "Gola frente esquerda",
+      "islandCount": 1,
+      "displayName": "Gola frente esquerda"
+    },
+    {
+      "key": "m14p0",
+      "mesh": 14,
+      "primitive": 0,
+      "label": "Gola frente direita",
+      "islandCount": 1,
+      "displayName": "Gola frente direita"
+    },
+    {
+      "key": "m15p0",
+      "mesh": 15,
+      "primitive": 0,
+      "label": "Manga direita",
+      "islandCount": 1,
+      "displayName": "Manga direita"
+    },
+    {
+      "key": "m16p0",
+      "mesh": 16,
+      "primitive": 0,
+      "label": "Manga esquerda",
+      "islandCount": 1,
+      "displayName": "Manga esquerda"
+    },
+    {
+      "key": "m17p0",
+      "mesh": 17,
+      "primitive": 0,
+      "label": "Costas",
+      "islandCount": 1,
+      "displayName": "Costas"
+    },
+    {
+      "key": "m18p0",
+      "mesh": 18,
+      "primitive": 0,
+      "label": "Frente",
+      "islandCount": 1,
+      "displayName": "Frente"
+    },
+    {
+      "key": "m19p0",
+      "mesh": 19,
+      "primitive": 0,
+      "label": "Recorte lateral esquerdo",
+      "islandCount": 1,
+      "displayName": "Recorte lateral esquerdo"
+    },
+    {
+      "key": "m20p0",
+      "mesh": 20,
+      "primitive": 0,
+      "label": "Recorte lateral direito",
+      "islandCount": 1,
+      "displayName": "Recorte lateral direito"
+    }
+  ],
+  "panels": [
+    {
+      "number": 1,
+      "mesh": 0,
+      "primitive": 0,
+      "rect": {
+        "x": 843.7730712731583,
+        "y": 1977.8496696845723,
+        "w": 615.7803978734578,
+        "h": 931.7401485087851
+      },
+      "uvBounds": [
+        -0.3020021319389343,
+        0.18934792280197144,
+        -0.024071216583251953,
+        0.6098864674568176
+      ],
+      "contourVertices": 336,
+      "label": "Calção frente direito",
+      "displayName": "Calção frente direito"
+    },
+    {
+      "number": 2,
+      "mesh": 1,
+      "primitive": 0,
+      "rect": {
+        "x": 2702.8069087615186,
+        "y": 280,
+        "w": 622.1988777354502,
+        "h": 955.9548123043257
+      },
+      "uvBounds": [
+        -0.6705940961837769,
+        0.17785602807998657,
+        -0.38976621627807617,
+        0.6093237996101379
+      ],
+      "contourVertices": 340,
+      "label": "Calção costas direito",
+      "displayName": "Calção costas direito"
+    },
+    {
+      "number": 3,
+      "mesh": 2,
+      "primitive": 0,
+      "rect": {
+        "x": 3405.0057864969685,
+        "y": 280,
+        "w": 194.44905113990058,
+        "h": 939.210513989376
+      },
+      "uvBounds": [
+        -0.38976621627807617,
+        0.18533651530742645,
+        -0.3020021319389343,
+        0.6092467904090881
+      ],
+      "contourVertices": 404,
+      "label": "Calção lateral direito",
+      "displayName": "Calção lateral direito"
+    },
+    {
+      "number": 4,
+      "mesh": 3,
+      "primitive": 0,
+      "rect": {
+        "x": 1539.553469146616,
+        "y": 1977.8496696845723,
+        "w": 574.2062043357497,
+        "h": 929.4323786137522
+      },
+      "uvBounds": [
+        0.0484999418258667,
+        0.19217194616794586,
+        0.30766645073890686,
+        0.6116688847541809
+      ],
+      "contourVertices": 340,
+      "label": "Calção frente esquerdo",
+      "displayName": "Calção frente esquerdo"
+    },
+    {
+      "number": 5,
+      "mesh": 4,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 1977.8496696845723,
+        "w": 663.7730712731583,
+        "h": 955.9545481856558
+      },
+      "uvBounds": [
+        0.3954305350780487,
+        0.17963844537734985,
+        0.6950228214263916,
+        0.6111060976982117
+      ],
+      "contourVertices": 350,
+      "label": "Calção costas esquerdo",
+      "displayName": "Calção costas esquerdo"
+    },
+    {
+      "number": 6,
+      "mesh": 5,
+      "primitive": 0,
+      "rect": {
+        "x": 3679.4548376368693,
+        "y": 280,
+        "w": 194.44905113990058,
+        "h": 937.8149769661139
+      },
+      "uvBounds": [
+        0.30766645073890686,
+        0.18780197203159332,
+        0.3954305350780487,
+        0.6110823750495911
+      ],
+      "contourVertices": 418,
+      "label": "Calção lateral esquerdo",
+      "displayName": "Calção lateral esquerdo"
+    },
+    {
+      "number": 7,
+      "mesh": 6,
+      "primitive": 0,
+      "rect": {
+        "x": 1058.9252624596475,
+        "y": 3013.804217870228,
+        "w": 921.6524660517773,
+        "h": 107.6509732362245
+      },
+      "uvBounds": [
+        0.19317445158958435,
+        0.1003044843673706,
+        0.6091599464416504,
+        0.14889247715473175
+      ],
+      "contourVertices": 161,
+      "label": "Cós esquerdo",
+      "displayName": "Cós esquerdo"
+    },
+    {
+      "number": 8,
+      "mesh": 7,
+      "primitive": 0,
+      "rect": {
+        "x": 2060.5777285114245,
+        "y": 3013.804217870228,
+        "w": 921.6524330369435,
+        "h": 107.6509732362245
+      },
+      "uvBounds": [
+        -0.49632930755615234,
+        0.09851616621017456,
+        -0.0803438276052475,
+        0.1471041589975357
+      ],
+      "contourVertices": 161,
+      "label": "Cós direito",
+      "displayName": "Cós direito"
+    },
+    {
+      "number": 9,
+      "mesh": 8,
+      "primitive": 0,
+      "rect": {
+        "x": 3062.230161548368,
+        "y": 3013.804217870228,
+        "w": 742.8049707857059,
+        "h": 54.151326519959525
+      },
+      "uvBounds": [
+        0.500575065612793,
+        0.1409766674041748,
+        0.8358381986618042,
+        0.16541773080825806
+      ],
+      "contourVertices": 179,
+      "label": "Filete manga esquerda",
+      "displayName": "Filete manga esquerda"
+    },
+    {
+      "number": 10,
+      "mesh": 9,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 3874.7186734789693,
+        "w": 742.8049707857059,
+        "h": 54.151326519959525
+      },
+      "uvBounds": [
+        -0.882204532623291,
+        0.3074684739112854,
+        -0.5469413995742798,
+        0.33190953731536865
+      ],
+      "contourVertices": 179,
+      "label": "Filete manga direita",
+      "displayName": "Filete manga direita"
+    },
+    {
+      "number": 11,
+      "mesh": 10,
+      "primitive": 0,
+      "rect": {
+        "x": 922.8049707857059,
+        "y": 3874.7186734789693,
+        "w": 451.98159207498065,
+        "h": 46.573101577457294
+      },
+      "uvBounds": [
+        -0.5068649649620056,
+        0.1296008825302124,
+        -0.3028642237186432,
+        0.15062153339385986
+      ],
+      "contourVertices": 119,
+      "label": "Gola costas",
+      "displayName": "Gola costas"
+    },
+    {
+      "number": 12,
+      "mesh": 11,
+      "primitive": 0,
+      "rect": {
+        "x": 3325.7061666022764,
+        "y": 1977.8496696845723,
+        "w": 93.02120899427888,
+        "h": 242.32940807513137
+      },
+      "uvBounds": [
+        -0.21562564373016357,
+        0.17077183723449707,
+        -0.17364075779914856,
+        0.28014659881591797
+      ],
+      "contourVertices": 61,
+      "label": "Gola lateral esquerda",
+      "displayName": "Gola lateral esquerda"
+    },
+    {
+      "number": 13,
+      "mesh": 12,
+      "primitive": 0,
+      "rect": {
+        "x": 3152.6849576079976,
+        "y": 1977.8496696845723,
+        "w": 93.02120899427888,
+        "h": 246.5959810722972
+      },
+      "uvBounds": [
+        -0.3235802948474884,
+        0.16909551620483398,
+        -0.2815954089164734,
+        0.2803959846496582
+      ],
+      "contourVertices": 62,
+      "label": "Gola lateral direita",
+      "displayName": "Gola lateral direita"
+    },
+    {
+      "number": 14,
+      "mesh": 13,
+      "primitive": 0,
+      "rect": {
+        "x": 3739.7629058385387,
+        "y": 1977.8496696845723,
+        "w": 155.786468806794,
+        "h": 92.79254825561998
+      },
+      "uvBounds": [
+        -0.2586175799369812,
+        0.2450694441795349,
+        -0.18830375373363495,
+        0.28695112466812134
+      ],
+      "contourVertices": 47,
+      "label": "Gola frente esquerda",
+      "displayName": "Gola frente esquerda"
+    },
+    {
+      "number": 15,
+      "mesh": 14,
+      "primitive": 0,
+      "rect": {
+        "x": 3498.7273755965552,
+        "y": 1977.8496696845723,
+        "w": 161.03553024198342,
+        "h": 94.59462994186873
+      },
+      "uvBounds": [
+        -0.30794137716293335,
+        0.2301497459411621,
+        -0.23525840044021606,
+        0.2728447914123535
+      ],
+      "contourVertices": 48,
+      "label": "Gola frente direita",
+      "displayName": "Gola frente direita"
+    },
+    {
+      "number": 16,
+      "mesh": 15,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 3013.804217870228,
+        "w": 878.9252624596476,
+        "h": 780.9144556087414
+      },
+      "uvBounds": [
+        -0.9200693964958191,
+        -0.04001033306121826,
+        -0.5233687162399292,
+        0.31245341897010803
+      ],
+      "contourVertices": 323,
+      "label": "Manga direita",
+      "displayName": "Manga direita"
+    },
+    {
+      "number": 17,
+      "mesh": 16,
+      "primitive": 0,
+      "rect": {
+        "x": 2193.7596734823655,
+        "y": 1977.8496696845723,
+        "w": 878.9252841256323,
+        "h": 780.9144556087414
+      },
+      "uvBounds": [
+        -0.0003844299353659153,
+        -0.04025447368621826,
+        0.396316260099411,
+        0.31220927834510803
+      ],
+      "contourVertices": 325,
+      "label": "Manga esquerda",
+      "displayName": "Manga esquerda"
+    },
+    {
+      "number": 18,
+      "mesh": 17,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 280,
+        "w": 971.3008498722279,
+        "h": 1617.8496696845723
+      },
+      "uvBounds": [
+        0.12369485944509506,
+        0.29128849506378174,
+        0.5620890259742737,
+        1.021500825881958
+      ],
+      "contourVertices": 550,
+      "label": "Costas",
+      "displayName": "Costas"
+    },
+    {
+      "number": 19,
+      "mesh": 18,
+      "primitive": 0,
+      "rect": {
+        "x": 1151.300849872228,
+        "y": 280,
+        "w": 926.9901888230437,
+        "h": 1454.9182956284465
+      },
+      "uvBounds": [
+        -0.45937177538871765,
+        0.32240599393844604,
+        -0.0409771129488945,
+        0.9790796637535095
+      ],
+      "contourVertices": 543,
+      "label": "Frente",
+      "displayName": "Frente"
+    },
+    {
+      "number": 20,
+      "mesh": 19,
+      "primitive": 0,
+      "rect": {
+        "x": 2158.2910386952717,
+        "y": 280,
+        "w": 192.2579474136861,
+        "h": 1124.8394541998562
+      },
+      "uvBounds": [
+        -0.03750552609562874,
+        -0.6485466957092285,
+        0.04926960915327072,
+        -0.14085327088832855
+      ],
+      "contourVertices": 302,
+      "label": "Recorte lateral esquerdo",
+      "displayName": "Recorte lateral esquerdo"
+    },
+    {
+      "number": 21,
+      "mesh": 20,
+      "primitive": 0,
+      "rect": {
+        "x": 2430.5489861089577,
+        "y": 280,
+        "w": 192.25792265256075,
+        "h": 1124.8394541998562
+      },
+      "uvBounds": [
+        0.5168514847755432,
+        -0.6510426998138428,
+        0.6036266088485718,
+        -0.1433492749929428
+      ],
+      "contourVertices": 300,
+      "label": "Recorte lateral direito",
+      "displayName": "Recorte lateral direito"
+    }
+  ],
+  "texelsPerUvUnit": 5142.722942332795,
+  "artBleedPixels": 16,
+  "sourceName": "Variante aprovada — KIT · RAGLAN · MAX · RECORTE LATERAL · CALÇÃO 2 PARTES.glb",
+  "originalSourceSha256": "c73488e5c581b1c1a940a493fc54f693530a72a168c3a993ee73efda0f534369",
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Filete manga esquerda",
+    "Filete manga direita",
+    "Gola costas",
+    "Gola lateral esquerda",
+    "Gola lateral direita",
+    "Gola frente esquerda",
+    "Gola frente direita",
+    "Manga direita",
+    "Manga esquerda",
+    "Costas",
+    "Frente",
+    "Recorte lateral esquerdo",
+    "Recorte lateral direito"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "decorativeMeshes": [],
+  "modeling": "RAGLAN",
+  "collar": "MAX",
+  "sideCut": true,
+  "bottomParts": 6,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "cutType": "LATERAL",
+  "variantSource": "RAGLAN COM RECORTE.glb",
+  "uploadedSourceSha256": "76340eb0e6c2077ef6f98ddc934947159e7c56c7e7b73ac3d8f96c3d6ea49438",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "pairNormalization": "intrinsic-paired-v1",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "RAGLAN",
+    "MAX",
+    "COM RECORTE",
+    "CALÇÃO 6 PARTES"
+  ],
+  "preparedFrom": "pack26-raglan-max-com-recorte-maxbatch-20261113-paired-v1",
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 15,
+      "text": "Frente · P15",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 14,
+      "text": "Costas · P14",
+      "x": 1004.3465501826545,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 16,
+      "text": "Recorte lateral",
+      "x": 1860.2791478897984,
+      "y": 385,
+      "w": 150.236,
+      "h": 29
+    },
+    {
+      "panel": 16,
+      "text": "esquerdo · P16",
+      "x": 1860.2791478897984,
+      "y": 413,
+      "w": 155.986,
+      "h": 29
+    },
+    {
+      "panel": 17,
+      "text": "Recorte lateral direito",
+      "x": 2171.2791478897984,
+      "y": 385,
+      "w": 219.259,
+      "h": 29
+    },
+    {
+      "panel": 17,
+      "text": "· P17",
+      "x": 2171.2791478897984,
+      "y": 413,
+      "w": 53.705,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Gola costas · P07",
+      "x": 2900,
+      "y": 385,
+      "w": 181.539,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Gola lateral esquerda",
+      "x": 3366.8874939988877,
+      "y": 385,
+      "w": 219.65,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "· P08",
+      "x": 3366.8874939988877,
+      "y": 413,
+      "w": 53.705,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Gola lateral direita ·",
+      "x": 3677.8874939988877,
+      "y": 385,
+      "w": 199.18,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "P09",
+      "x": 3677.8874939988877,
+      "y": 413,
+      "w": 40.917,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "Gola frente esquerda",
+      "x": 2900,
+      "y": 735.2298293005939,
+      "w": 216.06199999999998,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "· P10",
+      "x": 2900,
+      "y": 763.2298293005939,
+      "w": 53.705,
+      "h": 29
+    },
+    {
+      "panel": 11,
+      "text": "Gola frente direita ·",
+      "x": 3211,
+      "y": 735.2298293005939,
+      "w": 195.59199999999998,
+      "h": 29
+    },
+    {
+      "panel": 11,
+      "text": "P11",
+      "x": 3211,
+      "y": 763.2298293005939,
+      "w": 40.917,
+      "h": 29
+    },
+    {
+      "panel": 12,
+      "text": "Manga direita · P12",
+      "x": 100,
+      "y": 1938.1721694895743,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 13,
+      "text": "Manga esquerda · P13",
+      "x": 931.8295659102954,
+      "y": 1938.1721694895743,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 5,
+      "text": "Filete manga esquerda · P05",
+      "x": 1763.6591318205908,
+      "y": 1938.1721694895743,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Filete manga direita · P06",
+      "x": 2474.655837026655,
+      "y": 1938.1721694895743,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2800.081421938338,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1412.7243763455483,
+      "y": 2800.081421938338,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2725.4487526910966,
+      "y": 2800.081421938338,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3749.5600545045177,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "intermediateOnly": true,
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-raglan-max-com-recorte-maxbatch-20261113-paired-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1",
+  "uvCanonicalMeshes": []
+}

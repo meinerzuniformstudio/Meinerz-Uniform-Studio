@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-raglan-polo-com-recorte-20261113-paired-v1-derived-v1-shorts-lateral-v1",
+  "name": "KIT · RAGLAN · POLO · COM RECORTE · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "d541a538aca57c820774f110937e6718353f576e252f8b562a69d713eb4799a6",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 231896,
+  "vertices": 119463,
+  "panelCount": 15,
+  "texelsPerUvUnit": 5259.187133044918,
+  "artBleedPixels": 16,
+  "sourceName": "Variante aprovada — KIT · RAGLAN · POLO · COM RECORTE · CALÇÃO 2 PARTES.glb",
+  "originalSourceSha256": "d24696ccc510bf23d9aea814510bb61f3e1d0eb12916e107c7c8e2a03996ced7",
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Filete manga esquerda",
+    "Filete manga direita",
+    "Costas",
+    "Gola inteira",
+    "Peitilho 1",
+    "Peitilho 2",
+    "Frente",
+    "Manga direita",
+    "Manga esquerda",
+    "Recorte lateral esquerdo",
+    "Recorte lateral direito"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "decorativeMeshes": [
+    19,
+    20,
+    21
+  ],
+  "modeling": "RAGLAN",
+  "collar": "POLO",
+  "sideCut": true,
+  "bottomParts": 6,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "uploadedSourceSha256": "27bea9ecd0c75087559e4582757f001d5fc8edce9c70386462b78b9fc6de4f5f",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "pairNormalization": "intrinsic-paired-v1",
+  "derivedFrom": "pack26-raglan-polo-sem-recorte-20261113-paired-v1-proporcao-v1",
+  "cutReference": "pack26-normal-redonda-com-recorte-v2",
+  "cutVersion": "armhole-through-shared-seam-v1",
+  "uvCanonicalMeshes": [
+    17,
+    18
+  ],
+  "preparedFrom": "pack26-raglan-polo-com-recorte-20261113-paired-v1-derived-v1",
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 11,
+      "text": "Frente · P11",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Costas · P07",
+      "x": 1028.9661182729928,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 14,
+      "text": "Recorte lateral",
+      "x": 1939.078260256183,
+      "y": 385,
+      "w": 150.236,
+      "h": 29
+    },
+    {
+      "panel": 14,
+      "text": "esquerdo · P14",
+      "x": 1939.078260256183,
+      "y": 413,
+      "w": 155.986,
+      "h": 29
+    },
+    {
+      "panel": 15,
+      "text": "Recorte lateral direito",
+      "x": 2250.078260256183,
+      "y": 385,
+      "w": 219.259,
+      "h": 29
+    },
+    {
+      "panel": 15,
+      "text": "· P15",
+      "x": 2250.078260256183,
+      "y": 413,
+      "w": 53.705,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Gola inteira · P08",
+      "x": 2900,
+      "y": 385,
+      "w": 177.468,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Peitilho 1 · P09",
+      "x": 2900,
+      "y": 695.0033901204542,
+      "w": 153.548,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "Peitilho 2 · P10",
+      "x": 3211,
+      "y": 695.0033901204542,
+      "w": 153.548,
+      "h": 29
+    },
+    {
+      "panel": 12,
+      "text": "Manga direita · P12",
+      "x": 100,
+      "y": 1905.1244284889272,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 13,
+      "text": "Manga esquerda · P13",
+      "x": 973.400762844693,
+      "y": 1905.1244284889272,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 5,
+      "text": "Filete manga esquerda · P05",
+      "x": 1846.801525689386,
+      "y": 1905.1244284889272,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Filete manga direita · P06",
+      "x": 2565.979850334413,
+      "y": 1905.1244284889272,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2788.0575486429925,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1439.9116817035836,
+      "y": 2788.0575486429925,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2779.8233634071667,
+      "y": 2788.0575486429925,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3757.301410955737,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "intermediateOnly": true,
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "RAGLAN",
+    "POLO",
+    "COM RECORTE",
+    "CALÇÃO 2 PARTES"
+  ],
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-raglan-polo-com-recorte-20261113-paired-v1-derived-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1"
+}

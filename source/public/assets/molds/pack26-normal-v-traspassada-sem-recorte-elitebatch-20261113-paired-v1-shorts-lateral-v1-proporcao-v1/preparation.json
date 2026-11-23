@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-normal-v-traspassada-sem-recorte-elitebatch-20261113-paired-v1-shorts-lateral-v1",
+  "name": "KIT · NORMAL · V TRASPASSADA · SEM RECORTE · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "3e92742e427c9f79b5a38d6613d3c0484feac5885fe11693734e8e0d399c3796",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 125098,
+  "vertices": 63849,
+  "panelCount": 11,
+  "texelsPerUvUnit": 5337.384959082669,
+  "artBleedPixels": 16,
+  "sourceName": "Variante aprovada — KIT · NORMAL · V TRASPASSADA · SEM RECORTE · CALÇÃO 2 PARTES.glb",
+  "originalSourceSha256": "533d0248a0aee513129c312104264b1fdbd717a14d99a29b1f7f9336b2e88ed3",
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Filete manga direita",
+    "Filete manga esquerda",
+    "Manga direita",
+    "Manga esquerda",
+    "Costas",
+    "Frente",
+    "Gola inteira"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "decorativeMeshes": [],
+  "modeling": "NORMAL",
+  "collar": "V TRASPASSADA",
+  "sideCut": false,
+  "bottomParts": 6,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "cutType": "SEM RECORTE",
+  "variantSource": "KIT GOLA V TRASPASSADA NORMAL.glb",
+  "uploadedSourceSha256": "c34815e6c0436d7f8c0ea1a429a5f0ceec42701ad27360751e796dbf6f0ae105",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "pairNormalization": "intrinsic-paired-v1",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "NORMAL",
+    "V TRASPASSADA",
+    "SEM RECORTE",
+    "CALÇÃO 2 PARTES"
+  ],
+  "preparedFrom": "pack26-normal-v-traspassada-sem-recorte-elitebatch-20261113-paired-v1",
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 10,
+      "text": "Frente · P10",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Costas · P09",
+      "x": 1224.1476361976138,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 11,
+      "text": "Gola inteira · P11",
+      "x": 2900,
+      "y": 385,
+      "w": 177.468,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Manga direita · P07",
+      "x": 100,
+      "y": 2066.301097568814,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Manga esquerda · P08",
+      "x": 912.5547570459091,
+      "y": 2066.301097568814,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 5,
+      "text": "Filete manga direita · P05",
+      "x": 1725.1095140918183,
+      "y": 2066.301097568814,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Filete manga esquerda · P06",
+      "x": 2433.9746204348357,
+      "y": 2066.301097568814,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2716.1372047372174,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1454.8301207340025,
+      "y": 2716.1372047372174,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2809.6602414680056,
+      "y": 2716.1372047372174,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3700.2098976053076,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "intermediateOnly": true,
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-normal-v-traspassada-sem-recorte-elitebatch-20261113-paired-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1",
+  "uvCanonicalMeshes": []
+}

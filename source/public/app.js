@@ -1,6 +1,7 @@
-import { alignPresentationKit } from './kit-alignment.js?v=4';
+import{setupSeparatedKit}from'./separated-kit.js';
+import { alignPresentationKit } from './kit-alignment.js?v=female-20261117';
 import { BUILTIN_TEMPLATE } from './template-catalog.js';
-import { prepareBakedGeometry, selectPresentationGarments, presentationPanelNumber } from './model-panels.js?v=3';
+import { prepareBakedGeometry, selectPresentationGarments, presentationPanelNumber } from './model-panels.js?v=ord1';
 import { createProjectSession } from './project-session.js?v=quotation-20261031';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -9,10 +10,10 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { ATLAS_LAYOUT } from './atlas-layout.js';
 import { preparePanelGeometry, validateMapDimensions, createAtlasTexture, assignAtlasTexture } from './map-atlas.js';
 import { DEFAULT_VISUALS, STUDIO_LIGHTING, LIGHT_PRESETS, VISUAL_RANGES, sanitizeVisuals, isDarkBackdrop, applyLighting, paintBackdrop, composeSnapshot } from './presentation.js?v=3';
-import { fourViewFilename } from './four-view-export.js?v=3';
+import { fourViewFilename } from './four-view-export.js?v=female-20261117';
 import {cleanPresentation,cleanCamera} from './presentation-contract.js';
 import {createDeliveryTools} from './delivery-tools.js?v=8';
-import {captureProductionSheet,renderExportImage,createVideoPreview,asBlob} from './export-package.js?v=4';
+import {captureProductionSheet,renderExportImage,createVideoPreview,asBlob} from './export-package.js?v=female-20261117';
 import {useFabricInterior} from './fabric-interior.js?v=2';
 
 const $ = (s) => document.querySelector(s);
@@ -232,6 +233,7 @@ async function loadPresentationModel(prefetched) {
     modelRoot = new THREE.Group(); modelRoot.add(vertical);
     modelRoot.rotation.y = { '+z': 0, '-z': Math.PI, '+x': -Math.PI / 2, '-x': Math.PI / 2 }[templateConfig.orientation?.front || '+z'];
   }
+  scene.userData.separatedKit=templateConfig.separated?setupSeparatedKit(modelRoot,THREE):null;
   alignPresentationKit(modelRoot, gltf.parser.associations, templateConfig, THREE);
   const box = new THREE.Box3().setFromObject(modelRoot);
   const size = box.getSize(new THREE.Vector3());
@@ -261,9 +263,9 @@ async function loadPresentationModel(prefetched) {
     if (!info || !mesh.geometry.attributes.position || !mesh.geometry.attributes.uv) throw new Error('Os painéis do modelo não correspondem a este molde.');
     mesh.name = info.label;
     mesh.geometry = mesh.geometry.clone();
-    const uv = builtin ? preparePanelGeometry(mesh.geometry, ATLAS_LAYOUT.panels[id]?.rect) : prepareBakedGeometry(mesh.geometry);
-    const whiteMaterial = neutralMaterial(mesh.material);
     const mappedPanel = !builtin && templateConfig.panels?.find(p=>p.mesh===entry?.mesh&&p.primitive===entry?.primitive);
+    const uv = builtin ? preparePanelGeometry(mesh.geometry, ATLAS_LAYOUT.panels[id]?.rect) : prepareBakedGeometry(mesh.geometry,mappedPanel);
+    const whiteMaterial = neutralMaterial(mesh.material);
     if(templateConfig.previewBaseColors?.lower && ['BERMUDA','CALCAO_E_COS'].includes(mappedPanel?.group)) whiteMaterial.color.set(templateConfig.previewBaseColors.lower);
     const proof = makeProof(info);
     const proofMaterial = whiteMaterial.clone(); proofMaterial.map = proof.texture; proofMaterial.color.set(0xffffff);
@@ -314,7 +316,8 @@ function setView(view, instant = false) {
   controls.autoRotate = false; $('#autoRotate').checked = false; $('#clientRotateBtn').setAttribute('aria-pressed', 'false');
   const directions = { front: new THREE.Vector3(0, 0.12, 1), back: new THREE.Vector3(0, 0.12, -1), left: new THREE.Vector3(-1, 0.12, 0), right: new THREE.Vector3(1, 0.12, 0) };
   const target = new THREE.Vector3(0, 0.04, 0);
-  const to = directions[view].normalize().multiplyScalar(fitDistance).add(target);
+  if(scene.userData.separatedKit)scene.userData.separatedKit.setView(view);
+  const to = directions[scene.userData.separatedKit?'front':view].normalize().multiplyScalar(fitDistance).add(target);
   if (instant || reducedMotion) { camera.position.copy(to); controls.target.copy(target); controls.update(); }
   else {
     const fromSphere = new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
@@ -407,7 +410,7 @@ function setPresentation(value){presentationSettings=cleanPresentation(value);if
 function armPick(value){if(!projectSession?.proposalToken||!ready)return;pickArmed=value;controls.enabled=!value;$('#pickInstruction').hidden=!value;renderer.domElement.style.cursor=value?'crosshair':'';}
 function positionPin(){if(!activeAnchor||!camera||!renderer)return;const point=new THREE.Vector3(...activeAnchor.point).project(camera),rect=renderer.domElement.getBoundingClientRect(),pin=$('#piecePin');pin.hidden=Math.abs(point.x)>1||Math.abs(point.y)>1||point.z>1||point.z< -1;if(!pin.hidden){pin.style.left=`${rect.left+(point.x+1)*rect.width/2}px`;pin.style.top=`${rect.top+(1-point.y)*rect.height/2}px`;}}
 function focusAnchor(anchor){if(!anchor?.camera)return;setCamera(anchor.camera);activeAnchor=anchor;positionPin();}
-async function getExportAssets(){exportAssets ||= Promise.all([new Promise((resolve,reject)=>{const logo=new Image();logo.onload=()=>resolve(logo);logo.onerror=()=>reject(new Error('Não foi possível carregar a logo.'));logo.src='/assets/atlas/atlas-logo-light.png';}),document.fonts.load('400 32px "Chakra Petch"'),document.fonts.load('500 32px "Chakra Petch"'),document.fonts.load('700 64px "Chakra Petch"')]).catch(error=>{exportAssets=null;throw error;});return exportAssets;}
+async function getExportAssets(){exportAssets ||= Promise.all([new Promise((resolve,reject)=>{const logo=new Image();logo.onload=()=>resolve(logo);logo.onerror=()=>reject(new Error('Não foi possível carregar a logo.'));logo.src='/assets/meinerz/studio-light.png';}),document.fonts.load('400 32px "RBNo3.1"'),document.fonts.load('500 32px "RBNo3.1"'),document.fonts.load('700 64px "RBNo3.1"')]).catch(error=>{exportAssets=null;throw error;});return exportAssets;}
 
 $$('.view-button').forEach((b) => b.addEventListener('click', () => setView(b.dataset.view)));
 $$('.material-button').forEach((b) => b.addEventListener('click', () => applyMode(b.dataset.mode)));
@@ -461,11 +464,11 @@ $('#exportFourViewsBtn').addEventListener('click', async () => {
         const logo = new Image();
         logo.onload = () => resolve(logo);
         logo.onerror = () => reject(new Error('Não foi possível carregar a logo. Tente novamente.'));
-        logo.src = '/assets/atlas/atlas-logo-light.png';
+        logo.src = '/assets/meinerz/studio-light.png';
       }),
-      document.fonts.load('400 32px "Chakra Petch"'),
-      document.fonts.load('500 32px "Chakra Petch"'),
-      document.fonts.load('700 64px "Chakra Petch"'),
+      document.fonts.load('400 32px "RBNo3.1"'),
+      document.fonts.load('500 32px "RBNo3.1"'),
+      document.fonts.load('700 64px "RBNo3.1"'),
     ]).catch(error => { exportAssets = null; throw error; });
     const [logo] = await exportAssets;
     await new Promise(resolve => requestAnimationFrame(resolve));
@@ -513,6 +516,8 @@ const viewerApi={
     $('#moldNameBadge').textContent = template.name.toUpperCase();
     if (template.templateUrl) { $('#templateDownload').href = template.templateUrl; $('#templateDownload').download = `Template_${template.name.replace(/[^a-zA-Z0-9_-]/g, '_')}_4096.svg`; }
     $('#templateDownload').hidden = !template.templateUrl;
+    const bleedHelp=$('#templateBleedHelp');bleedHelp.hidden=!template.artBleedPixels;bleedHelp.textContent=template.artBleedPixels?'Preencha até a borda externa da sangria ('+template.artBleedPixels.toLocaleString('pt-BR',{maximumFractionDigits:2})+' px). No SVG, oculte as guias antes de exportar.':'';
+    const pdfMap=$('#templatePdfDownload');pdfMap.hidden=!template.id||!template.templateUrl;if(!pdfMap.hidden){pdfMap.href='/api/templates/'+encodeURIComponent(template.id)+'/assets/pdf';pdfMap.download='Mapa_'+template.id+'.pdf';}
     $('#exampleMapBtn').hidden = !template.proofUrl;
     $('#mapStatusText').textContent = `Use a página inteira do template de ${template.name}, em 4096 × 4096 pixels.`;
   },
@@ -520,7 +525,7 @@ const viewerApi={
   replaceTemplate:async(template,keepArt=false)=>{
     if(!ready||exportInProgress)throw new Error('Aguarde o carregamento ou a exportação terminar.');
     const gltf=await new GLTFLoader().loadAsync(template.modelUrl);
-    const oldRoot=modelRoot,oldPanels=new Map(panels),oldTemplate=templateConfig,oldArt={image:sourceImage,texture:atlasTexture,url:sourceObjectUrl,mode:currentMode},oldPresentation=presentationSettings;
+    const oldRoot=modelRoot,oldSeparated=scene.userData.separatedKit,oldPanels=new Map(panels),oldTemplate=templateConfig,oldArt={image:sourceImage,texture:atlasTexture,url:sourceObjectUrl,mode:currentMode},oldPresentation=presentationSettings;
     ready=false;$('#loading').hidden=false;panels.clear();scene.remove(oldRoot);
     try {
       viewerApi.configureTemplate(template);
@@ -532,7 +537,7 @@ const viewerApi={
       oldRoot.traverse(m=>{if(m.isMesh){geometries.add(m.geometry);materials.add(m.material);}});
       for(const g of geometries)g.dispose();for(const m of materials)m?.dispose();for(const t of textures)t.dispose();
       return true;
-    }catch(error){if(modelRoot!==oldRoot)scene.remove(modelRoot);modelRoot=oldRoot;panels.clear();for(const [key,p]of oldPanels)panels.set(key,p);scene.add(oldRoot);viewerApi.configureTemplate(oldTemplate);sourceImage=oldArt.image;atlasTexture=oldArt.texture;sourceObjectUrl=oldArt.url;currentMode=oldArt.mode;presentationSettings=oldPresentation;ready=true;setPresentation(oldPresentation);applyMode(oldArt.mode);$('#loading').hidden=true;throw error;}
+    }catch(error){if(modelRoot!==oldRoot)scene.remove(modelRoot);modelRoot=oldRoot;scene.userData.separatedKit=oldSeparated;panels.clear();for(const [key,p]of oldPanels)panels.set(key,p);scene.add(oldRoot);viewerApi.configureTemplate(oldTemplate);sourceImage=oldArt.image;atlasTexture=oldArt.texture;sourceObjectUrl=oldArt.url;currentMode=oldArt.mode;presentationSettings=oldPresentation;ready=true;setPresentation(oldPresentation);applyMode(oldArt.mode);$('#loading').hidden=true;throw error;}
   },
   getVisuals: () => ({ ...visualSettings }),
   setVisuals: (value) => { visualSettings = sanitizeVisuals(value); applyVisualState(); },

@@ -1,0 +1,42 @@
+{
+  "base": "pack26-normal-redonda-com-recorte-v2-paired-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06908475956879556,
+  "areaAfter": 0.06908476348765859,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        -0.010006886454116938,
+        -0.3383937557302861
+      ],
+      "pala": [
+        0.016148199259745852,
+        0.39887595484442206
+      ]
+    },
+    "1": {
+      "side": [
+        0.008374715205134503,
+        0.36841722310098773
+      ],
+      "pala": [
+        -0.018024865883558117,
+        0.40108491067016644
+      ]
+    },
+    "2": {
+      "side": [
+        -0.04719143856949146,
+        0.412420526206135
+      ]
+    },
+    "3": {
+      "side": [
+        -0.028100750308522097,
+        -0.2747356617601114
+      ]
+    }
+  }
+}

@@ -66,7 +66,7 @@ test('parallel public comments obey the proposal limit and revocation blocks wri
   assert.equal(sql.prepare('SELECT COUNT(*) AS count FROM piece_comments WHERE proposal_id=?').get(other.id).count,0);
   const third=await proposal(await saved()),thirdVersion=(await workspace.ownerDetail(alice,third.id)).versions[0];
   workspace.option=async(...args)=>{const option=await original(...args);await workspace.disableProposal(alice,third.id);return option;};
-  await assert.rejects(workspace.approve(third.token,{versionId:thirdVersion.id,authorName:'Cliente',statement:APPROVAL_STATEMENT,confirmed:true}),{status:404});
+  await assert.rejects(workspace.approve(third.token,{versionId:thirdVersion.id,authorName:'Cliente',statement:APPROVAL_STATEMENT,confirmed:true}),{status:400});
   assert.equal(sql.prepare('SELECT COUNT(*) AS count FROM proposal_approvals WHERE proposal_id=?').get(third.id).count,0);
 });
 test('a proposal keeps at most eight options and re-adding an included revision is idempotent',async()=>{
@@ -75,14 +75,23 @@ test('a proposal keeps at most eight options and re-adding an included revision 
   const extra=await saved(alice,{...base,name:'Nona opção'});await assert.rejects(workspace.addOption(alice,{proposalId:entry.id,projectId:extra.id,version:extra.version}),{status:400});
   const again=await workspace.addOption(alice,{proposalId:entry.id,projectId:first.id,version:first.version});assert.equal(again.alreadyIncluded,true);assert.equal((await workspace.sharedDetail(entry.token)).versions.length,8);
 });
-test('approval records keep first signer and time for the exact option; a new revision stays unapproved',async()=>{
-  const {workspace,projects,saved,proposal}=setup(),project=await saved(),entry=await proposal(project),version=(await workspace.sharedDetail(entry.token)).versions[0];
-  const input={versionId:version.id,authorName:'Responsável A',statement:APPROVAL_STATEMENT,confirmed:true};
-  await assert.rejects(workspace.approve(entry.token,{...input,confirmed:false}),{status:400});await assert.rejects(workspace.approve(entry.token,{...input,statement:'ok'}),{status:400});
-  let detail=await workspace.approve(entry.token,input);const record=detail.approvals[0];await workspace.approve(entry.token,{...input,authorName:'Outra pessoa'});assert.deepEqual((await workspace.sharedDetail(entry.token)).approvals[0],record);
-  const revised=await projects.save(alice,project.id,{...base,version:project.version},map);await workspace.addOption(alice,{proposalId:entry.id,projectId:project.id,version:revised.version});detail=await workspace.sharedDetail(entry.token);assert.equal(detail.versions.length,2);assert.equal(detail.approvals.length,1);assert.equal(detail.approvals[0].versionId,version.id);
-  await workspace.disableProposal(alice,entry.id);for(const operation of [()=>workspace.sharedDetail(entry.token),()=>workspace.comment(entry.token,{...input,body:'Teste',anchor}),()=>workspace.approve(entry.token,input),()=>workspace.versionAsset(entry.token,version.id,'map')])await assert.rejects(operation(),{status:404});assert.equal((await workspace.ownerDetail(alice,entry.id)).approvals.length,1);
+test('live presentation replaces artwork, keeps comments and logs every save without approvals',async()=>{
+ const {workspace,projects,saved,proposal,sql}=setup(),project=await saved(),entry=await proposal(project),version=(await workspace.sharedDetail(entry.token)).versions[0];
+ await workspace.comment(entry.token,{versionId:version.id,authorName:'Cliente',body:'Aumentar escudo',anchor});
+ const revised=await projects.save(alice,project.id,{...base,name:'Arte nova',visuals:{background:'light'},version:project.version},map);
+ let detail=await workspace.sharedDetail(entry.token);
+ assert.equal(detail.versions.length,1);assert.equal(detail.versions[0].id,version.id);assert.equal(detail.versions[0].version,revised.version);assert.equal(detail.versions[0].name,'Arte nova');assert.equal(detail.versions[0].visuals.background,'light');
+ assert.equal(detail.comments.length,1);assert.equal(detail.comments[0].body,'Aumentar escudo');assert.ok(detail.changes.some(c=>c.name==='Arte nova'));
+ assert.deepEqual((await workspace.versionAsset(entry.token,version.id,'map')).bytes,original);
+ await workspace.addOption(alice,{proposalId:entry.id,projectId:project.id,version:revised.version});assert.equal((await workspace.sharedDetail(entry.token)).versions.length,1);
+ // Old proposals with several snapshots of one project also expose one current art.
+ const old=await workspace.freeze(alice,project.id,revised.version);
+ sql.prepare('INSERT INTO proposal_options(id,proposal_id,version_id,created_at) VALUES(?,?,?,?)').run('legacy-option',entry.id,old.id,new Date().toISOString());
+ await workspace.comment(entry.token,{versionId:old.id,authorName:'Cliente',body:'Outra observação',anchor});
+ detail=await workspace.sharedDetail(entry.token);assert.equal(detail.versions.length,1);assert.equal(detail.comments.length,2);assert.ok(detail.comments.every(c=>c.versionId===version.id));
+ await assert.rejects(workspace.approve(entry.token,{}),{status:400});assert.deepEqual(detail.approvals,[]);
 });
+
 test('failed snapshot writes clean their uploads and leave the saved project readable',async()=>{
   const {workspace,projects,saved,db,bucket,objects,templates}=setup(),project=await saved(),count=objects.size;
   const broken={...db,prepare(query){if(query.startsWith('INSERT INTO proposal_versions'))throw new Error('Storage metadata failure');return db.prepare(query);}};
@@ -96,9 +105,9 @@ test('project link filters include active proposals and folder moves preserve th
   const {projects,workspace,saved,proposal}=setup(),project=await saved(),entry=await proposal(project),folder=await projects.createFolder(alice,{name:'ADEMA'});
   assert.equal((await projects.list(alice))[0].presentationPath,entry.path);
   const version=(await workspace.sharedDetail(entry.token)).versions[0];
-  await workspace.approve(entry.token,{versionId:version.id,authorName:'Cliente',statement:APPROVAL_STATEMENT,confirmed:true});
+  await assert.rejects(workspace.approve(entry.token,{}),{status:400});
   await projects.moveToFolder(alice,project.id,{folderId:folder.id});await projects.removeFolder(alice,folder.id);
-  const after=await workspace.sharedDetail(entry.token);assert.equal(after.versions[0].id,version.id);assert.equal(after.approvals[0].versionId,version.id);assert.equal((await projects.get(alice,project.id)).version,project.version);
+  const after=await workspace.sharedDetail(entry.token);assert.equal(after.versions[0].id,version.id);assert.deepEqual(after.approvals,[]);assert.equal((await projects.get(alice,project.id)).version,project.version);
   const legacy=await projects.share(alice,project.id,true);await workspace.disableProposal(alice,entry.id);
   assert.equal((await projects.list(alice))[0].presentationPath,legacy.sharePath);
   await projects.share(alice,project.id,false);assert.equal((await projects.list(alice))[0].presentationPath,null);
@@ -139,7 +148,7 @@ test('file moves enforce both owners, preserve file bytes and retain unfiled ass
 
 test('folder palette edits preserve project revisions and approval while validating account and color input',async()=>{
   const {workspace,projects,saved,proposal}=setup(),folder=await projects.createFolder(alice,{name:'ADEMA'}),project=await saved(alice,{...base,folderId:folder.id}),entry=await proposal(project),version=(await workspace.sharedDetail(entry.token)).versions[0];
-  await workspace.approve(entry.token,{versionId:version.id,authorName:'Cliente',statement:APPROVAL_STATEMENT,confirmed:true});
+  await assert.rejects(workspace.approve(entry.token,{}),{status:400});
   for(const colors of [null,['red'],['#fff'],[4],Array(65).fill('#ffffff')])await assert.rejects(projects.updateFolder(alice,folder.id,{colors}),{status:400});await assert.rejects(projects.updateFolder(bob,folder.id,{colors:['#000000']}),{status:404});
-  assert.deepEqual((await projects.updateFolder(alice,folder.id,{colors:['#FFFFFF','#ffffff','#0011aa']})).colors,['#ffffff','#0011aa']);assert.equal((await projects.get(alice,project.id)).updatedAt,project.updatedAt);assert.equal((await projects.get(alice,project.id)).version,project.version);assert.equal((await workspace.sharedDetail(entry.token)).approvals[0].versionId,version.id);
+  assert.deepEqual((await projects.updateFolder(alice,folder.id,{colors:['#FFFFFF','#ffffff','#0011aa']})).colors,['#ffffff','#0011aa']);assert.equal((await projects.get(alice,project.id)).updatedAt,project.updatedAt);assert.equal((await projects.get(alice,project.id)).version,project.version);assert.deepEqual((await workspace.sharedDetail(entry.token)).approvals,[]);
 });

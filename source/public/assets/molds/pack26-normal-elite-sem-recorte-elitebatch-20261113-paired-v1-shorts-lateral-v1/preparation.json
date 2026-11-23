@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-normal-elite-sem-recorte-elitebatch-20261113-paired-v1-shorts-lateral-v1",
+  "name": "KIT · NORMAL · ELITE · SEM RECORTE · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "7ed10cfad1d7bbbe7cab54c0d66776549465ff748320f43cc9a6f82d999cd1f7",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 117606,
+  "vertices": 60002,
+  "panelCount": 12,
+  "texelsPerUvUnit": 5683.694334650056,
+  "artBleedPixels": 16,
+  "sourceName": "Variante aprovada — KIT · NORMAL · ELITE · SEM RECORTE · CALÇÃO 2 PARTES.glb",
+  "originalSourceSha256": "303608ad145d9a6f78c057c3800bfd5db4ea1ca28a56171dddfb9740961b2821",
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Manga direita",
+    "Manga esquerda",
+    "Filete manga direita",
+    "Filete manga esquerda",
+    "Gola frente direita",
+    "Gola frente esquerda",
+    "Frente",
+    "Costas"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "decorativeMeshes": [],
+  "modeling": "NORMAL",
+  "collar": "ELITE",
+  "sideCut": false,
+  "bottomParts": 6,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "cutType": "SEM RECORTE",
+  "variantSource": "GOLA ELITE -  SEM RECORTE - NORMAL.glb",
+  "uploadedSourceSha256": "1328a3486e8f4bb9bab5c97426331af2430b59edc2568fef768934fe12dccabb",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "pairNormalization": "intrinsic-paired-v1",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "NORMAL",
+    "ELITE",
+    "SEM RECORTE",
+    "CALÇÃO 2 PARTES"
+  ],
+  "preparedFrom": "pack26-normal-elite-sem-recorte-elitebatch-20261113-paired-v1",
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 11,
+      "text": "Frente · P11",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 12,
+      "text": "Costas · P12",
+      "x": 1188.221253578217,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Gola frente direita ·",
+      "x": 2900,
+      "y": 385,
+      "w": 195.59199999999998,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "P09",
+      "x": 2900,
+      "y": 413,
+      "w": 40.917,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "Gola frente esquerda",
+      "x": 3211,
+      "y": 385,
+      "w": 216.06199999999998,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "· P10",
+      "x": 3211,
+      "y": 413,
+      "w": 53.705,
+      "h": 29
+    },
+    {
+      "panel": 5,
+      "text": "Manga direita · P05",
+      "x": 100,
+      "y": 2077.9716935124034,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Manga esquerda · P06",
+      "x": 950.5069509251111,
+      "y": 2077.9716935124034,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Filete manga direita · P07",
+      "x": 1801.0139018502223,
+      "y": 2077.9716935124034,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Filete manga esquerda · P08",
+      "x": 2559.1336053425866,
+      "y": 2077.9716935124034,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2710.459407280837,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1537.805403032307,
+      "y": 2710.459407280837,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2975.610806064614,
+      "y": 2710.459407280837,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3750.271891326868,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "intermediateOnly": true,
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-normal-elite-sem-recorte-elitebatch-20261113-paired-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1",
+  "uvCanonicalMeshes": []
+}

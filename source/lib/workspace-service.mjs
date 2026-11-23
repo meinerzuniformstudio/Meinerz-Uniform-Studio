@@ -16,7 +16,7 @@ export class WorkspaceService {
       this.db.prepare('SELECT o.proposal_id,v.id,v.project_id,v.project_version,v.name,v.created_at FROM proposal_options o JOIN proposal_versions v ON v.id=o.version_id WHERE v.owner_id = ? ORDER BY o.created_at').bind(owner).all(),
     ]);
     // Keep the clients alias for editor tabs opened before folders became canonical.
-    return {folders,clients:folders,presets:presets.results.map(p=>({id:p.id,name:p.name,settings:cleanPreset(parse(p.settings_json))})),assets:assets.results.map(a=>this.assetSummary(a)),proposals:proposals.results.map(p=>({...this.proposalSummary(p),options:options.results.filter(o=>o.proposal_id===p.id).map(o=>({id:o.id,projectId:o.project_id,version:o.project_version,name:o.name,createdAt:o.created_at}))}))};
+    return {folders,clients:folders,presets:presets.results.map(p=>({id:p.id,name:p.name,settings:cleanPreset(parse(p.settings_json))})),assets:assets.results.map(a=>this.assetSummary(a)),proposals:proposals.results.map(p=>({...this.proposalSummary(p),options:[...new Map(options.results.filter(o=>o.proposal_id===p.id).map(o=>[o.project_id,o])).values()].map(o=>({id:o.id,projectId:o.project_id,version:o.project_version,name:o.name,createdAt:o.created_at}))}))};
   }
   assetSummary(a){return {id:a.id,folderId:a.folder_id??null,clientId:a.folder_id||'',name:a.name,kind:a.kind,fileName:a.file_name,contentType:a.content_type,size:a.size,url:`/api/workspace/assets/${a.id}`,createdAt:a.created_at};}
   proposalSummary(p){return {id:p.id,name:p.name,clientName:p.client_name,enabled:!!p.enabled,path:`/proposta/${p.token}`,pending:Number(p.pending||0),createdAt:p.created_at,updatedAt:p.updated_at};}
@@ -89,6 +89,8 @@ export class WorkspaceService {
   }
   async addOption(user,input){
     const proposal=await this.ownProposal(user,input.proposalId);if(!proposal.enabled)throw new AppError(400,'Esta proposta está desativada.');
+    const linked=await this.db.prepare('SELECT v.id FROM proposal_versions v JOIN proposal_options o ON o.version_id=v.id WHERE o.proposal_id=? AND v.project_id=? AND v.owner_id=?').bind(proposal.id,input.projectId,this.user(user)).first();
+    if(linked)return {...this.proposalSummary(proposal),alreadyIncluded:true};
     const version=await this.freeze(user,input.projectId,input.version),date=now();
     const existing=await this.db.prepare('SELECT id FROM proposal_options WHERE proposal_id=? AND version_id=?').bind(proposal.id,version.id).first();
     if(existing)return {...this.proposalSummary(proposal),alreadyIncluded:true};
@@ -98,7 +100,13 @@ export class WorkspaceService {
   }
   async disableProposal(user,id){await this.ownProposal(user,id);await this.db.prepare('UPDATE proposals SET enabled=0,updated_at=? WHERE id=? AND owner_id=?').bind(now(),id,user.userId).run();}
   async shared(token){if(!validToken(token))throw new AppError(404,'Proposta indisponível.');const row=await this.db.prepare('SELECT * FROM proposals WHERE token=? AND enabled=1').bind(token).first();if(!row)throw new AppError(404,'Proposta indisponível.');return row;}
-  async option(proposalId,versionId){const row=await this.db.prepare('SELECT v.* FROM proposal_versions v JOIN proposal_options o ON o.version_id=v.id WHERE o.proposal_id=? AND v.id=?').bind(proposalId,versionId).first();if(!row)throw new AppError(404,'Esta versão não pertence à proposta.');return row;}
+  async liveVersion(version){
+    const row=await this.db.prepare('SELECT * FROM projects WHERE id=? AND owner_id=?').bind(version.project_id,version.owner_id).first();
+    if(!row)return version;
+    const template=await this.projects.template({userId:version.owner_id},row.id);
+    return {...version,...row,id:version.id,project_id:row.id,project_version:row.version,created_at:row.updated_at,template_json:JSON.stringify(template)};
+  }
+  async option(proposalId,versionId){const row=await this.db.prepare('SELECT v.* FROM proposal_versions v JOIN proposal_options o ON o.version_id=v.id WHERE o.proposal_id=? AND v.id=?').bind(proposalId,versionId).first();if(!row)throw new AppError(404,'Apresentação indisponível.');return this.liveVersion(row);}
   versionSummary(v,token){return {id:v.id,name:v.name,version:v.project_version,clientName:v.client_name,designerName:v.designer_name,templateId:v.template_id,createdAt:v.created_at,visuals:parse(v.visual_json),presentation:cleanPresentation(parse(v.presentation_json)),mapName:v.map_name,mapUrl:`/api/proposals/${token}/versions/${v.id}/map`,thumbnailUrl:v.thumbnail_key?`/api/proposals/${token}/versions/${v.id}/thumbnail`:null,template:{...parse(v.template_json),modelUrl:`/api/proposals/${token}/versions/${v.id}/model`,templateUrl:null,proofUrl:null}};}
   async detail(proposal,owner=false){
     const [versions,comments,approvals]=await Promise.all([
@@ -106,7 +114,12 @@ export class WorkspaceService {
       this.db.prepare('SELECT * FROM piece_comments WHERE proposal_id=? ORDER BY created_at DESC').bind(proposal.id).all(),
       this.db.prepare('SELECT * FROM proposal_approvals WHERE proposal_id=? ORDER BY created_at').bind(proposal.id).all(),
     ]);
-    return {...this.proposalSummary(proposal),versions:versions.results.map(v=>({...this.versionSummary(v,proposal.token),...(owner?{projectId:v.project_id}:{})})),comments:comments.results.map(c=>({id:c.id,versionId:c.version_id,authorName:c.author_name,body:c.body,anchor:parse(c.anchor_json),status:c.status,changedAt:c.changed_at,createdAt:c.created_at})),approvals:approvals.results.map(a=>({id:a.id,versionId:a.version_id,authorName:a.author_name,statement:a.statement,createdAt:a.created_at,identity:'Nome informado pelo cliente'}))};
+    const canonical=new Map(),aliases=new Map();
+    for(const v of versions.results){if(!canonical.has(v.project_id))canonical.set(v.project_id,v);aliases.set(v.id,canonical.get(v.project_id).id);}
+    const current=await Promise.all([...canonical.values()].map(v=>this.liveVersion(v)));
+    const changes=[];
+    for(const v of current){const rows=await this.db.prepare('SELECT name,created_at FROM presentation_changes WHERE project_id=? AND owner_id=? ORDER BY id DESC').bind(v.project_id,v.owner_id).all();changes.push(...rows.results.map(r=>({name:r.name,createdAt:r.created_at,versionId:v.id})));}
+    return {...this.proposalSummary(proposal),changes:changes.sort((a,b)=>b.createdAt.localeCompare(a.createdAt)),versions:current.map(v=>({...this.versionSummary(v,proposal.token),...(owner?{projectId:v.project_id}:{})})),comments:comments.results.map(c=>({id:c.id,versionId:aliases.get(c.version_id)||c.version_id,authorName:c.author_name,body:c.body,anchor:parse(c.anchor_json),status:c.status,changedAt:c.changed_at,createdAt:c.created_at})),approvals:[]};
   }
   async sharedDetail(token){return this.detail(await this.shared(token));}
   async ownerDetail(user,id){return this.detail(await this.ownProposal(user,id),true);}
@@ -124,11 +137,7 @@ export class WorkspaceService {
     const proposal=await this.ownProposal(user,input.proposalId);if(!['open','changed'].includes(input.status))throw new AppError(400,'Situação inválida.');
     await this.db.prepare('UPDATE piece_comments SET status=?,changed_by=?,changed_at=? WHERE id=? AND proposal_id=?').bind(input.status,user.userId,input.status==='changed'?now():null,input.commentId,proposal.id).run();return this.ownerDetail(user,proposal.id);
   }
-  async approve(token,input){
-    const proposal=await this.shared(token),version=await this.option(proposal.id,input.versionId),author=field(input.authorName,80);
-    if(input.confirmed!==true||input.statement!==APPROVAL_STATEMENT)throw new AppError(400,'Confirme a aprovação da versão selecionada.');
-    await this.db.prepare('INSERT INTO proposal_approvals (id,proposal_id,version_id,author_name,statement,created_at) SELECT ?,?,?,?,?,? WHERE EXISTS (SELECT 1 FROM proposals WHERE id=? AND enabled=1) ON CONFLICT(proposal_id,version_id) DO NOTHING').bind(uid(),proposal.id,version.id,author,APPROVAL_STATEMENT,now(),proposal.id).run();return this.sharedDetail(token);
-  }
+  async approve(token,input){await this.shared(token);throw new AppError(400,'As apresentações são atualizadas diretamente, sem aprovação por versão.');}
   async versionAsset(token,versionId,kind){
     const proposal=await this.shared(token),version=await this.option(proposal.id,versionId);
     if(kind==='model')return this.templates.asset(version.template_id,'model');

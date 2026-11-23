@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-calcao-5-partes-referencia",
+  "name": "CALÇÃO 5 PARTES",
+  "category": "calcao",
+  "pageSize": 4096,
+  "sourceSha256": "1a8ec5637805a223d5212ba1cdde307df46774c2ea06e2f6c7e6808f3af5e4be",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 47226,
+  "vertices": 24325,
+  "panelCount": 9,
+  "primitives": [
+    {
+      "key": "m0p0",
+      "mesh": 0,
+      "primitive": 0,
+      "label": "Cós frente direito",
+      "islandCount": 1,
+      "displayName": "Cós frente direito"
+    },
+    {
+      "key": "m1p0",
+      "mesh": 1,
+      "primitive": 0,
+      "label": "Cós frente esquerdo",
+      "islandCount": 1,
+      "displayName": "Cós frente esquerdo"
+    },
+    {
+      "key": "m2p0",
+      "mesh": 2,
+      "primitive": 0,
+      "label": "Cós costas esquerdo",
+      "islandCount": 1,
+      "displayName": "Cós costas esquerdo"
+    },
+    {
+      "key": "m3p0",
+      "mesh": 3,
+      "primitive": 0,
+      "label": "Cós costas direito",
+      "islandCount": 1,
+      "displayName": "Cós costas direito"
+    },
+    {
+      "key": "m4p0",
+      "mesh": 4,
+      "primitive": 0,
+      "label": "Calção frente esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção frente esquerdo"
+    },
+    {
+      "key": "m5p0",
+      "mesh": 5,
+      "primitive": 0,
+      "label": "Calção frente direito",
+      "islandCount": 1,
+      "displayName": "Calção frente direito"
+    },
+    {
+      "key": "m6p0",
+      "mesh": 6,
+      "primitive": 0,
+      "label": "Calção costas direito",
+      "islandCount": 1,
+      "displayName": "Calção costas direito"
+    },
+    {
+      "key": "m7p0",
+      "mesh": 7,
+      "primitive": 0,
+      "label": "Calção costas esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção costas esquerdo"
+    },
+    {
+      "key": "m8p0",
+      "mesh": 8,
+      "primitive": 0,
+      "label": "Calção pala traseira",
+      "islandCount": 1,
+      "displayName": "Calção pala traseira"
+    }
+  ],
+  "panels": [
+    {
+      "number": 1,
+      "mesh": 0,
+      "primitive": 0,
+      "rect": {
+        "x": 2762.858615849204,
+        "y": 2164.5097548508484,
+        "w": 818.5518081350922,
+        "h": 230.41596811060356
+      },
+      "uvBounds": [
+        -0.10383818298578262,
+        0.9707703590393066,
+        0.10383818298578262,
+        1.0292296409606934
+      ],
+      "contourVertices": 90,
+      "label": "Cós frente direito",
+      "displayName": "Cós frente direito"
+    },
+    {
+      "number": 2,
+      "mesh": 1,
+      "primitive": 0,
+      "rect": {
+        "x": 2726.6688225781004,
+        "y": 268,
+        "w": 818.5518668676898,
+        "h": 230.41596811060356
+      },
+      "uvBounds": [
+        -0.10383819788694382,
+        0.9707703590393066,
+        0.10383818298578262,
+        1.0292296409606934
+      ],
+      "contourVertices": 90,
+      "label": "Cós frente esquerdo",
+      "displayName": "Cós frente esquerdo"
+    },
+    {
+      "number": 3,
+      "mesh": 2,
+      "primitive": 0,
+      "rect": {
+        "x": 2114.545302353543,
+        "y": 3161.6989269776377,
+        "w": 818.5518081350922,
+        "h": 230.41596811060356
+      },
+      "uvBounds": [
+        -0.10383818298578262,
+        0.9707703590393066,
+        0.10383818298578262,
+        1.0292296409606934
+      ],
+      "contourVertices": 91,
+      "label": "Cós costas esquerdo",
+      "displayName": "Cós costas esquerdo"
+    },
+    {
+      "number": 4,
+      "mesh": 3,
+      "primitive": 0,
+      "rect": {
+        "x": 2989.097110488635,
+        "y": 3161.6989269776377,
+        "w": 818.5518081350922,
+        "h": 230.41596811060356
+      },
+      "uvBounds": [
+        -0.10383818298578262,
+        0.9707703590393066,
+        0.10383818298578262,
+        1.0292296409606934
+      ],
+      "contourVertices": 91,
+      "label": "Cós costas direito",
+      "displayName": "Cós costas direito"
+    },
+    {
+      "number": 5,
+      "mesh": 4,
+      "primitive": 0,
+      "rect": {
+        "x": 1413.3344700216478,
+        "y": 268,
+        "w": 1257.3343525564526,
+        "h": 1840.5097548508486
+      },
+      "uvBounds": [
+        -0.1544903665781021,
+        0.7720810770988464,
+        0.16451036930084229,
+        1.2390403747558594
+      ],
+      "contourVertices": 231,
+      "label": "Calção frente esquerdo",
+      "displayName": "Calção frente esquerdo"
+    },
+    {
+      "number": 6,
+      "mesh": 5,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 268,
+        "w": 1257.3344700216478,
+        "h": 1840.5097548508486
+      },
+      "uvBounds": [
+        -0.1544903963804245,
+        0.7720810770988464,
+        0.16451036930084229,
+        1.2390403747558594
+      ],
+      "contourVertices": 231,
+      "label": "Calção frente direito",
+      "displayName": "Calção frente direito"
+    },
+    {
+      "number": 7,
+      "mesh": 6,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 2164.5097548508484,
+        "w": 1275.4292785583032,
+        "h": 941.1891721267893
+      },
+      "uvBounds": [
+        -0.1672709435224533,
+        0.9775270819664001,
+        0.1563206911087036,
+        1.2163180112838745
+      ],
+      "contourVertices": 171,
+      "label": "Calção costas direito",
+      "displayName": "Calção costas direito"
+    },
+    {
+      "number": 8,
+      "mesh": 7,
+      "primitive": 0,
+      "rect": {
+        "x": 1431.4292785583032,
+        "y": 2164.5097548508484,
+        "w": 1275.4293372909008,
+        "h": 809.6429540645586
+      },
+      "uvBounds": [
+        0.34700238704681396,
+        0.3911268711090088,
+        0.6705940365791321,
+        0.5965429544448853
+      ],
+      "contourVertices": 171,
+      "label": "Calção costas esquerdo",
+      "displayName": "Calção costas esquerdo"
+    },
+    {
+      "number": 9,
+      "mesh": 8,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 3161.6989269776377,
+        "w": 1958.5453023535426,
+        "h": 778.4110730218501
+      },
+      "uvBounds": [
+        -0.2484530508518219,
+        0.905291736125946,
+        0.2484532743692398,
+        1.1027839183807373
+      ],
+      "contourVertices": 240,
+      "label": "Calção pala traseira",
+      "displayName": "Calção pala traseira"
+    }
+  ],
+  "texelsPerUvUnit": 3941.477906287936,
+  "artBleedPixels": 16,
+  "bottomParts": 5,
+  "line": "jogo",
+  "referenceSourceSha256": "101701a4276cc69bf20a3e4a83f2f09032d801d0bfece4e0648344f1e89c7cf7"
+}

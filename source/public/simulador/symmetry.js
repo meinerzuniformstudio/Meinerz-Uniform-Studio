@@ -1,6 +1,9 @@
 import {clone,uid,visiblePanels,normalizeText,personalizationRole} from './core.js';
 import {paletteColor} from './catalog.js';
 export const SIDE_PAIRS=Object.freeze([
+ {id:'short-sides',label:'Recortes laterais do calção',panels:['short-side-right','short-side-left']},
+ {id:'short-fronts',label:'Frentes do calção',panels:['short-front-right','short-front-left']},
+ {id:'short-backs',label:'Costas do calção',panels:['short-back-right','short-back-left']},
  {id:'sleeves',label:'Mangas',panels:['sleeve-right','sleeve-left']},
  {id:'strips',label:'Filetes das mangas',panels:['sleeve-strip-7','sleeve-strip-8']},
  {id:'shorts',label:'Lados do calção',panels:['short-panel-5','short-panel-6']},
@@ -50,7 +53,7 @@ export function copySideDetails(state,{pairId,sourceId,mirror=true,colorPolicy='
 
 export function normalizeSymmetry(value){
  if(value==null)return {};
- if(typeof value!=='object'||Array.isArray(value)||Object.keys(value).length>4)throw Error('Confira os pares de simetria em tempo real.');
+ if(typeof value!=='object'||Array.isArray(value)||Object.keys(value).length>SIDE_PAIRS.length)throw Error('Confira os pares de simetria em tempo real.');
  const out={};for(const [id,config]of Object.entries(value)){
   if(!SIDE_PAIRS.some(p=>p.id===id)||!config||typeof config!=='object'||Array.isArray(config)||!['mirror','same'].includes(config.mode)||!['patterns','all'].includes(config.scope)||typeof config.colors!=='boolean'||typeof config.base!=='boolean')throw Error('Confira as opções de atualização simétrica.');
   out[id]={mode:config.mode,scope:config.scope,colors:config.colors,base:config.base};

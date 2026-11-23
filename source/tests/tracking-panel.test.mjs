@@ -42,14 +42,14 @@ test('the tracking row offers deletion for sent orders, names the target and can
  await click(findButton('Excluir pedido',row('0000-MNZ')));assert.equal(dialog().props.ref.current.open,true);assert.match(text(dialog()),/0000-MNZ.*Cliente 0/);assert.match(text(dialog()),/removido da fila de recebimento/);assert.equal(screen.all('textarea',dialog()).length,0);
  await click(findButton('Cancelar',dialog()));assert.equal(dialog().props.ref.current.open,false);assert.equal(calls.some(call=>call.options.method==='DELETE'),false);assert.equal(screen.records.size,3);
  assert.equal(findButton('Excluir pedido',row('0002-MNZ')).props.disabled,true);
- await click(findButton('Fila da fábrica'));assert.equal(screen.all('button').filter(button=>text(button)==='Excluir pedido').length,0,'factory permission cannot delete other designers’ orders');assert.match(screen.all('img')[0].props.src,/factory=1/);
+ await click(findButton('Central de produção'));assert.equal(screen.all('button').filter(button=>text(button)==='Excluir pedido').length,0,'factory permission cannot delete other designers’ orders');assert.match(screen.all('img')[0].props.src,/factory=1/);
 });
 
 test('confirmation deletes precisely one sent order, blocks duplicate clicks and updates the rows and counters',async()=>{
  const {context,records,calls,findButton,row,click,dialog,flush,all,text}=await trackingScreen();await click(findButton('Excluir pedido',row('0000-MNZ')));
  const fetch=context.fetch;let complete;context.fetch=async(path,options)=>{if(options?.method==='DELETE')await new Promise(resolve=>{complete=resolve;});return fetch(path,options);};
  const confirm=findButton('Confirmar exclusão',dialog()),removing=confirm.props.onClick();await confirm.props.onClick();await flush();assert.equal(findButton('Excluindo…',dialog()).props.disabled,true);assert.equal(findButton('Cancelar',dialog()).props.disabled,true);let prevented=false;dialog().props.onCancel({preventDefault(){prevented=true;}});assert.equal(prevented,true);complete();await removing;await flush();
- const deleted=calls.filter(call=>call.options.method==='DELETE');assert.equal(deleted.length,1);assert.equal(deleted[0].path,'/api/production-orders/ORDER-0');assert.deepEqual(JSON.parse(deleted[0].options.body),{version:1});assert.equal(records.has('ORDER-0'),false);assert.equal(records.size,2);assert.ok(!all('tr').some(node=>text(node).includes('0000-MNZ')));assert.match(text(all('button').find(button=>text(button).includes('Aguardando aceite'))),/^0/);assert.equal(dialog().props.ref.current.open,false);assert.ok(all('p').some(node=>node.props.role==='status'&&text(node).includes('0000-MNZ excluído')));
+ const deleted=calls.filter(call=>call.options.method==='DELETE');assert.equal(deleted.length,1);assert.equal(deleted[0].path,'/api/production-orders/ORDER-0');assert.deepEqual(JSON.parse(deleted[0].options.body),{version:1});assert.equal(records.has('ORDER-0'),false);assert.equal(records.size,2);assert.ok(!all('tr').some(node=>text(node).includes('0000-MNZ')));assert.match(text(all('button').find(button=>text(button).includes('Disponíveis para produção'))),/^0/);assert.equal(dialog().props.ref.current.open,false);assert.ok(all('p').some(node=>node.props.role==='status'&&text(node).includes('0000-MNZ excluído')));
 });
 
 test('a stale confirmation cannot delete a newly accepted order and refresh requires a new selection',async()=>{
@@ -74,4 +74,10 @@ test('the approved-orders view includes checked, sent and accepted revisions and
  records.get('ORDER-1').tracking.stage='returned';await click(findButton('Atualizar'));assert.ok(!rows().includes('0001-MNZ'),'a returned order needs another review before it appears again');
  await click(findButton('Meus pedidos'));assert.ok(rows().includes('0000-MNZ'));assert.ok(rows().includes('0004-MNZ'));
  const invalid=await trackingScreen({search:'?status=unknown'});assert.equal(invalid.all('tr').length,4,'unknown filters fall back to the complete list');
+});
+
+test('switching to a factory queue cannot display the previous personal orders after a failed load',async()=>{
+ const {context,all,text,findButton,click}=await trackingScreen();assert.ok(all('tr').some(node=>text(node).includes('0000-MNZ')));const original=context.fetch;
+ context.fetch=async(path,options)=>path.startsWith('/api/order-tracking?factory=1')?{ok:false,status:503,json:async()=>({error:'Fila indisponível.'})}:original(path,options);
+ await click(findButton('Central de produção'));assert.ok(!all('tr').some(node=>text(node).includes('0000-MNZ')));assert.ok(all('p').some(node=>node.props.role==='alert'&&text(node).includes('Fila indisponível')));
 });

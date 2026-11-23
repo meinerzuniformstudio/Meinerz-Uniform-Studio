@@ -1,13 +1,13 @@
 import {videoSettings,smoothVideoAvailable,readVideoBackground} from './video-settings.js?v=1';
 const $=selector=>document.querySelector(selector),$$=selector=>[...document.querySelectorAll(selector)];
 export const EXPORT_FORMATS=Object.freeze({
-  production:{title:'Quatro vistas para o pedido.',description:'Frente, costas e duas laterais próximas, em PNG transparente. Somente o uniforme, sem fundo, sombra de chão ou textos.',badge:'PNG TRANSPARENTE',action:'Baixar PNG para pedido'},
-  four:{title:'Quatro vistas em uma imagem.',description:'Seu uniforme de frente, de costas e das duas laterais. Fundo, luz e marca Atlas já aplicados.',badge:'4 VISTAS',action:'Baixar imagem'},
-  whatsapp:{title:'Pronta para enviar no WhatsApp.',description:'Frente e costas em uma imagem vertical de 1080 × 1440, com a marca Atlas.',badge:'WHATSAPP',action:'Baixar imagem'},
-  instagram:{title:'Quatro vistas para o Instagram.',description:'Apresentação quadrada de 1080 × 1080 com as quatro vistas e a marca Atlas.',badge:'INSTAGRAM',action:'Baixar imagem'},
-  current:{title:'O ângulo que você escolheu.',description:'Uma imagem do enquadramento atual, com o fundo e a luz do seu projeto.',badge:'ÂNGULO ATUAL',action:'Baixar imagem'},
-  pdf:{title:'PDF para aprovação.',description:'Quatro vistas e uma ficha para aprovação, identificadas com a versão salva.',badge:'PDF',action:'Baixar PDF'},
-  package:{title:'A apresentação completa.',description:'ZIP com quatro vistas, imagens separadas, WhatsApp, Instagram, detalhes ampliados e PDF para aprovação.',badge:'PACOTE COMPLETO',action:'Baixar pacote'},
+  production:{title:'PNG para o pedido',description:'Frente, costas e duas laterais próximas, em PNG transparente. Somente o uniforme, sem fundo, sombra de chão ou textos.',badge:'PNG TRANSPARENTE',action:'Baixar PNG para pedido'},
+  four:{title:'Imagem com quatro vistas',description:'Seu uniforme de frente, de costas e das duas laterais. Fundo, luz e marca Meinerz já aplicados.',badge:'4 VISTAS',action:'Baixar imagem'},
+  whatsapp:{title:'Imagem para WhatsApp',description:'Frente e costas em uma imagem vertical de 1080 × 1440, com a marca Meinerz.',badge:'WHATSAPP',action:'Baixar imagem'},
+  instagram:{title:'Imagem para Instagram',description:'Apresentação quadrada de 1080 × 1080 com as quatro vistas e a marca Meinerz.',badge:'INSTAGRAM',action:'Baixar imagem'},
+  current:{title:'Enquadramento atual',description:'Uma imagem do enquadramento atual, com o fundo e a luz do seu projeto.',badge:'ÂNGULO ATUAL',action:'Baixar imagem'},
+  pdf:{title:'PDF de apresentação',description:'Quatro vistas e uma ficha para aprovação, identificadas com a versão salva.',badge:'PDF',action:'Baixar PDF'},
+  package:{title:'Pacote de apresentação',description:'ZIP com quatro vistas, imagens separadas, WhatsApp, Instagram, detalhes ampliados e PDF de apresentação',badge:'PACOTE COMPLETO',action:'Baixar pacote'},
 });
 export function exportRequest(mode,format,options={}){
   const {fileType='png',resolution='high',seconds=10}=options,safeMode=['image','video','link'].includes(mode)?mode:'image';
@@ -26,7 +26,7 @@ export function createExportMenu(viewer,session,{onExport,onCreateLink,onManage}
     $('#exportFormatTitle').textContent=format.title;$('#exportFormatDescription').textContent=format.description;$('#exportFormatKicker').textContent=['four','production'].includes(request.format)?'A OPÇÃO MAIS USADA':'OUTROS FORMATOS';
     $('#exportPreviewBadge').textContent=mode==='image'?format.badge:mode==='video'?'VÍDEO 360°':'LINK INTERATIVO';
     $('#exportProjectTitle').textContent=project?.name||'Seu uniforme';
-    $('#exportPreviewCaption').textContent=mode==='image'?format.description:mode==='video'?`${request.width} × ${request.height} · ${request.seconds} segundos · ${request.fps} fps. Prévia estática do enquadramento e do fundo.`:'O cliente abre esta versão para girar, comentar e aprovar.';
+    $('#exportPreviewCaption').textContent=mode==='image'?format.description:mode==='video'?`${request.width} × ${request.height} · ${request.seconds} segundos · ${request.fps} fps. Prévia estática do enquadramento e do fundo.`:'O cliente acompanha a arte atual e registra observações.';
     $('#exportPreviewFrame').classList.toggle('video-preview',mode==='video');$('#exportPreviewFrame').style.setProperty('--video-aspect',mode==='video'?request.aspect.replace(':',' / '):'16 / 9');
     const video=videoSettings(request);$('#exportVideoDimensions').textContent=`Saída: ${video.width} × ${video.height} pixels (${video.aspect}). Fundo recomendado nas mesmas dimensões.`;
     $('#exportVideoBackgroundInfo').textContent=background?`${background.name} · ${background.width} × ${background.height} px`:'PNG, JPG ou WebP · até 20 MB.';$('#removeVideoBackground').hidden=!background;$('#exportVideoBackgroundFit').disabled=busy||!background;
@@ -38,7 +38,7 @@ export function createExportMenu(viewer,session,{onExport,onCreateLink,onManage}
     $('#exportPrimaryBtn').textContent=busy?'Preparando…':mode==='video'?'Gerar vídeo':mode==='link'?(linkedVersion!==null?'Copiar link':'Criar link'):format.action;
     const hasArt=viewer.hasMap?.()??project?.hasMap;
     $('#exportPrimaryBtn').disabled=busy||backgroundLoading||session.readOnly||!project||!hasArt||(mode!=='link'&&!viewer.isReady());
-    $('#exportActionStatus').textContent=!project?'Abra um projeto para exportar.':!hasArt?'Carregue uma arte no projeto para continuar.':mode!=='link'&&!viewer.isReady()?'Aguarde o modelo 3D carregar para gerar os arquivos.':mode==='link'?'O link preserva esta versão. Novas alterações podem ser adicionadas à proposta.':'Suas alterações serão salvas antes de gerar o arquivo.';
+    $('#exportActionStatus').textContent=!project?'Abra um projeto para exportar.':!hasArt?'Carregue uma arte no projeto para continuar.':mode!=='link'&&!viewer.isReady()?'Aguarde o modelo 3D carregar para gerar os arquivos.':mode==='link'?'O mesmo link acompanha as alterações salvas no projeto.':'Suas alterações serão salvas antes de gerar o arquivo.';
   }
   async function preview(){
     if(!dialog.open||busy)return;
@@ -80,5 +80,5 @@ export function createExportMenu(viewer,session,{onExport,onCreateLink,onManage}
   $('#manageProposalsBtn').addEventListener('click',()=>{close();onManage();});
   dialog.addEventListener('cancel',event=>{event.preventDefault();close();});dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)close();}});
   $('#exportPrimaryBtn').addEventListener('click',async()=>{if(busy||$('#exportPrimaryBtn').disabled)return;if(mode==='link'&&linkedVersion!==null){$('#copyProposalBtn').click();return;}const request=options();setBusy(true);try{if(mode==='link')await onCreateLink();else await onExport(request);}finally{setBusy(false);}});
-  return {open,close,refreshPreview,update,linkCreated(version){linkedVersion=version;$('#proposalCreatedLabel').textContent=`Link criado · versão ${version}`;},isOpen:()=>dialog.open};
+  return {open,close,refreshPreview,update,linkCreated(version){linkedVersion=version;$('#proposalCreatedLabel').textContent='Link da apresentação atual';},isOpen:()=>dialog.open};
 }

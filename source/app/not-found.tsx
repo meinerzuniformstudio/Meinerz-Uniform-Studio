@@ -1,1 +1,1 @@
-export default function NotFound() { return <main className="unavailable"><p className="eyebrow">ATLAS UNIFORM STUDIO</p><h1>Projeto não encontrado.</h1><p>Confira o endereço ou volte à sua biblioteca.</p><a className="gold-button" href="/projects">Meus projetos ↗</a></main>; }
+export default function NotFound() { return <main className="unavailable"><p className="eyebrow">MEINERZ UNIFORM STUDIO</p><h1>Página não encontrada</h1><p>Confira o endereço ou volte aos seus projetos.</p><a className="gold-button" href="/projects">Meus projetos ↗</a></main>; }

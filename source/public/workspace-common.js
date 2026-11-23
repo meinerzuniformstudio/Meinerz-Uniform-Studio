@@ -6,9 +6,9 @@ export const mutate=input=>api('/api/workspace',{method:'POST',headers:{'Content
 export const date=value=>new Date(value).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'});
 export function renderComments(host,proposal,{owner=false,versionId,onJump,onStatus}={}){
   host.replaceChildren();const comments=proposal.comments.filter(c=>!versionId||c.versionId===versionId);
-  if(!comments.length)host.append(el('p','empty-copy','Nenhuma observação nesta versão.'));
+  if(!comments.length)host.append(el('p','empty-copy','Nenhuma observação nesta apresentação.'));
   comments.forEach((comment,index)=>{const card=el('article',`comment-card ${comment.status==='changed'?'changed':''}`),version=proposal.versions.find(v=>v.id===comment.versionId);
-    const top=el('div','comment-top');top.append(el('span','status-tag',comment.status==='changed'?'ALTERADO':'PENDENTE'),el('span','',`V${version?.version??'?'} · ${comment.anchor.panel||'Peça'}`));card.append(top,el('p','comment-body',comment.body),el('small','',`${comment.authorName} · ${date(comment.createdAt)}`));
+    const top=el('div','comment-top');top.append(el('span','status-tag',comment.status==='changed'?'ALTERADO':'PENDENTE'),el('span','',`${version?.name||'Uniforme'} · ${comment.anchor.panel||'Peça'}`));card.append(top,el('p','comment-body',comment.body),el('small','',`${comment.authorName} · ${date(comment.createdAt)}`));
     if(comment.changedAt)card.append(el('small','','Marcado como alterado em '+date(comment.changedAt)));
     const actions=el('div','card-actions');if(onJump)actions.append(button('Ver ponto na peça ↗',()=>onJump(comment),'text-link'));
     if(owner&&onStatus)actions.append(button(comment.status==='changed'?'Reabrir pedido':'Marcar ALTERADO',()=>onStatus(comment),'outline-button'));
@@ -16,3 +16,5 @@ export function renderComments(host,proposal,{owner=false,versionId,onJump,onSta
   });
 }
 export function showError(host,error){host.textContent=error?.message||String(error);host.hidden=false;}
+
+export function renderChanges(host,proposal){host.replaceChildren();host.append(el("h3","","Registro de alterações"));if(!proposal.changes?.length)host.append(el("p","helper","As próximas alterações salvas aparecerão aqui."));for(const change of proposal.changes||[])host.append(el("p","helper",`${change.name} · arte atualizada em ${date(change.createdAt)}`));}

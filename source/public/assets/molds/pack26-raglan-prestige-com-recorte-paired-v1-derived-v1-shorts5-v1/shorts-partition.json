@@ -1,0 +1,42 @@
+{
+  "base": "pack26-raglan-prestige-com-recorte-paired-v1-derived-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06838533910922706,
+  "areaAfter": 0.06838533710595006,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        -0.018640538899864834,
+        -0.330509588305889
+      ],
+      "pala": [
+        0.007152307016773034,
+        0.3943680613595385
+      ]
+    },
+    "1": {
+      "side": [
+        0.020289303844299736,
+        0.3687545435634684
+      ],
+      "pala": [
+        -0.0033433608785819486,
+        0.39396691196019235
+      ]
+    },
+    "2": {
+      "side": [
+        -0.01298681327231839,
+        0.41266839349061074
+      ]
+    },
+    "3": {
+      "side": [
+        0.05476824244431481,
+        -0.2784909431218447
+      ]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "base": "pack26-normal-brasil-com-recorte-paired-v1-derived-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06908476795069873,
+  "areaAfter": 0.06908476463750914,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        -0.010006875752413154,
+        -0.3377655508831058
+      ],
+      "pala": [
+        0.016148176606207956,
+        0.39927557086942694
+      ]
+    },
+    "1": {
+      "side": [
+        0.008374730345712785,
+        0.3690283166337328
+      ],
+      "pala": [
+        -0.01802487765683288,
+        0.401504280994305
+      ]
+    },
+    "2": {
+      "side": [
+        -0.04719145775938647,
+        0.41282837833247427
+      ]
+    },
+    "3": {
+      "side": [
+        -0.028101189993244687,
+        -0.27431956094372406
+      ]
+    }
+  }
+}

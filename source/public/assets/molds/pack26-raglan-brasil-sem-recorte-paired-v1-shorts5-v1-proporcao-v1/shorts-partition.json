@@ -1,0 +1,42 @@
+{
+  "base": "pack26-raglan-brasil-sem-recorte-paired-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.0690939580090344,
+  "areaAfter": 0.06909395874706903,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        -0.00565261125521588,
+        -0.32072132026710615
+      ],
+      "pala": [
+        0.008626555896591729,
+        0.40696116891691236
+      ]
+    },
+    "1": {
+      "side": [
+        0.007548968240443256,
+        0.38485569193434915
+      ],
+      "pala": [
+        -0.016660117006107814,
+        0.41281403417172935
+      ]
+    },
+    "2": {
+      "side": [
+        -0.04075951500628277,
+        0.4218622133059928
+      ]
+    },
+    "3": {
+      "side": [
+        -0.008111429660019681,
+        -0.2675106959212066
+      ]
+    }
+  }
+}

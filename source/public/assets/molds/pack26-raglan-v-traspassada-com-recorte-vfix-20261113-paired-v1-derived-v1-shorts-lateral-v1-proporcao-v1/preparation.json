@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-raglan-v-traspassada-com-recorte-vfix-20261113-paired-v1-derived-v1-shorts-lateral-v1",
+  "name": "KIT · RAGLAN · V TRASPASSADA · COM RECORTE · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "e522291a0e493e4126a46bccaf094f01dc6bfdb4a5fb854f320ba06864bdf405",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 127822,
+  "vertices": 66302,
+  "panelCount": 13,
+  "texelsPerUvUnit": 5069.826056520128,
+  "artBleedPixels": 16,
+  "sourceName": "Variante aprovada — KIT · RAGLAN · V TRASPASSADA · COM RECORTE · CALÇÃO 2 PARTES.glb",
+  "originalSourceSha256": "668768256eef983ec50c51f294caddfc3dd31ff59891d675d376662f93250e67",
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Costas",
+    "Filete manga direita",
+    "Filete manga esquerda",
+    "Manga esquerda",
+    "Manga direita",
+    "Frente",
+    "Gola inteira",
+    "Recorte lateral esquerdo",
+    "Recorte lateral direito"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "decorativeMeshes": [],
+  "modeling": "RAGLAN",
+  "collar": "V TRASPASSADA",
+  "sideCut": true,
+  "bottomParts": 6,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "cutType": "LATERAL",
+  "variantSource": "KIT GOLA V RAGLAN TRASPASSADA - CALÇÃO BASICO(1).glb",
+  "uploadedSourceSha256": "105bacc736b9b51e2c0c4d0ea15e85fa780f0739ee74dcad9d3a416b03f45ed0",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "pairNormalization": "intrinsic-paired-v1",
+  "derivedFrom": "pack26-raglan-v-traspassada-sem-recorte-vfix-20261113-paired-v1-proporcao-v1",
+  "cutReference": "pack26-normal-redonda-com-recorte-v2",
+  "cutVersion": "armhole-through-shared-seam-v1",
+  "uvCanonicalMeshes": [
+    15,
+    16
+  ],
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "RAGLAN",
+    "V TRASPASSADA",
+    "RECORTE LATERAL",
+    "CALÇÃO 2 PARTES"
+  ],
+  "preparedFrom": "pack26-raglan-v-traspassada-com-recorte-vfix-20261113-paired-v1-derived-v1",
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 10,
+      "text": "Frente · P10",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 5,
+      "text": "Costas · P05",
+      "x": 1003.0180606406237,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 12,
+      "text": "Recorte lateral",
+      "x": 1747.7846068863055,
+      "y": 385,
+      "w": 150.236,
+      "h": 29
+    },
+    {
+      "panel": 12,
+      "text": "esquerdo · P12",
+      "x": 1747.7846068863055,
+      "y": 413,
+      "w": 155.986,
+      "h": 29
+    },
+    {
+      "panel": 13,
+      "text": "Recorte lateral direito",
+      "x": 2058.7846068863055,
+      "y": 385,
+      "w": 219.259,
+      "h": 29
+    },
+    {
+      "panel": 13,
+      "text": "· P13",
+      "x": 2058.7846068863055,
+      "y": 413,
+      "w": 53.705,
+      "h": 29
+    },
+    {
+      "panel": 11,
+      "text": "Gola inteira · P11",
+      "x": 2900,
+      "y": 385,
+      "w": 177.468,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Manga esquerda · P08",
+      "x": 100,
+      "y": 1952.0699789222767,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Manga direita · P09",
+      "x": 852.9639554957632,
+      "y": 1952.0699789222767,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Filete manga direita · P06",
+      "x": 1605.9279109915265,
+      "y": 1952.0699789222767,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Filete manga esquerda · P07",
+      "x": 2277.0643565394416,
+      "y": 1952.0699789222767,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2813.1169509173155,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1395.194053844078,
+      "y": 2813.1169509173155,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2690.388107688156,
+      "y": 2813.1169509173155,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3750.9086825344493,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "intermediateOnly": true,
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-raglan-v-traspassada-com-recorte-vfix-20261113-paired-v1-derived-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1"
+}

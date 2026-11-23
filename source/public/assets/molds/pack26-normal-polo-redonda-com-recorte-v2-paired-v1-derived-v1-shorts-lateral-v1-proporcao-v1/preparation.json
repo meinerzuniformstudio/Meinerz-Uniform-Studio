@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-normal-polo-redonda-com-recorte-v2-paired-v1-derived-v1-shorts-lateral-v1",
+  "name": "KIT · NORMAL · POLO REDONDA · COM RECORTE · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "f55d8368fdc4976491ef777850d4a4d5fc01c45604fc511fac69cdda1004a6f4",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 127143,
+  "vertices": 66010,
+  "panelCount": 14,
+  "texelsPerUvUnit": 5445.515165053848,
+  "artBleedPixels": 16,
+  "originalSourceSha256": "d9e605b177aac12fa1d86fd1bcc3f523bc7f17e5aee76055e3a5e5c173043fb1",
+  "preparation": "outer-surfaces-v1",
+  "packId": "kits-2026-11",
+  "uvCanonicalMeshes": [
+    16,
+    17
+  ],
+  "cutVersion": "armhole-through-shared-seam-v1",
+  "pairNormalization": "intrinsic-paired-v1",
+  "derivedFrom": "pack26-normal-polo-redonda-sem-recorte-v2-paired-v1-proporcao-v1",
+  "cutReference": "pack26-normal-redonda-com-recorte-v2",
+  "modeling": "NORMAL",
+  "collar": "POLO REDONDA",
+  "sideCut": true,
+  "bottomParts": 6,
+  "variant": "",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "NORMAL",
+    "POLO REDONDA",
+    "COM RECORTE",
+    "CALÇÃO 2 PARTES"
+  ],
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 8,
+      "text": "Frente · P08",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Costas · P09",
+      "x": 1044.600181630427,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 13,
+      "text": "Recorte lateral",
+      "x": 1882.3818973911348,
+      "y": 385,
+      "w": 150.236,
+      "h": 29
+    },
+    {
+      "panel": 13,
+      "text": "esquerdo · P13",
+      "x": 1882.3818973911348,
+      "y": 413,
+      "w": 155.986,
+      "h": 29
+    },
+    {
+      "panel": 14,
+      "text": "Recorte lateral direito",
+      "x": 2193.3818973911348,
+      "y": 385,
+      "w": 219.259,
+      "h": 29
+    },
+    {
+      "panel": 14,
+      "text": "· P14",
+      "x": 2193.3818973911348,
+      "y": 413,
+      "w": 53.705,
+      "h": 29
+    },
+    {
+      "panel": 5,
+      "text": "Gola frente · P05",
+      "x": 2900,
+      "y": 385,
+      "w": 173.88,
+      "h": 29
+    },
+    {
+      "panel": 12,
+      "text": "Gola inteira · P12",
+      "x": 2900,
+      "y": 604.4746887709391,
+      "w": 177.468,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Manga direita · P06",
+      "x": 100,
+      "y": 2126.91574667896,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Manga esquerda · P07",
+      "x": 950.4932426749566,
+      "y": 2126.91574667896,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "Filete manga esquerda · P10",
+      "x": 1800.9864853499132,
+      "y": 2126.91574667896,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 11,
+      "text": "Filete manga direita · P11",
+      "x": 2535.847156646819,
+      "y": 2126.91574667896,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2751.998379031847,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1483.5709215549998,
+      "y": 2751.998379031847,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2867.1418431099996,
+      "y": 2751.998379031847,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3751.7175954775043,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Gola frente",
+    "Manga direita",
+    "Manga esquerda",
+    "Frente",
+    "Costas",
+    "Filete manga esquerda",
+    "Filete manga direita",
+    "Gola inteira",
+    "Recorte lateral esquerdo",
+    "Recorte lateral direito"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-normal-polo-redonda-com-recorte-v2-paired-v1-derived-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "decorativeMeshes": [
+    18,
+    19,
+    20,
+    21
+  ],
+  "sourceName": "Variante aprovada — KIT · NORMAL · POLO REDONDA · COM RECORTE · CALÇÃO 2 PARTES.glb",
+  "intermediateOnly": true
+}

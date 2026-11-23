@@ -1,0 +1,117 @@
+{
+  "previousId": "pack26-raglan-max-com-recorte-maxbatch-20261113",
+  "bodyUvUnitsPerModelUnit": 2.7159193413211913,
+  "method": "intrinsic axis units, sewn cuff alignment, shared pair bounds, outside-readable UV winding",
+  "pairs": [
+    {
+      "kind": "Manga",
+      "leftMesh": 12,
+      "rightMesh": 11,
+      "before": {
+        "11": [
+          0.39702433347702026,
+          0.33696144819259644
+        ],
+        "12": [
+          0.39698827266693115,
+          0.33720558881759644
+        ]
+      },
+      "targetWidth": 0.39670070355179277,
+      "targetHeight": 0.3524637382394886,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.7994194729450146,
+      "leftFrontCorrelationAfter": -0.7983310324047967,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Filete manga",
+      "leftMesh": 4,
+      "rightMesh": 5,
+      "before": {
+        "4": [
+          0.19744694232940674,
+          0.010397076606750488
+        ],
+        "5": [
+          0.3332400918006897,
+          0.017547607421875
+        ]
+      },
+      "targetWidth": 0.33526314002019253,
+      "targetHeight": 0.024441056030081544,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.7776822591301842,
+      "leftFrontCorrelationAfter": -0.7751001238889765,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Recorte lateral",
+      "leftMesh": 15,
+      "rightMesh": 16,
+      "before": {
+        "15": [
+          0.09365187585353851,
+          0.5103710889816284
+        ],
+        "16": [
+          0.09195911884307861,
+          0.5128268003463745
+        ]
+      },
+      "targetWidth": 0.08677513389952776,
+      "targetHeight": 0.5076934234161922,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.8619454927404626,
+      "leftFrontCorrelationAfter": -0.880194718676328,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Cal\u00e7\u00e3o",
+      "leftMesh": 1,
+      "rightMesh": 0,
+      "before": {
+        "0": [
+          0.6401803493499756,
+          0.4113668203353882
+        ],
+        "1": [
+          0.6401804089546204,
+          0.41136687994003296
+        ]
+      },
+      "targetWidth": 0.6524000375215868,
+      "targetHeight": 0.4359577054529031,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.8463069688254202,
+      "leftFrontCorrelationAfter": -0.8460570144873308,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "C\u00f3s",
+      "leftMesh": 2,
+      "rightMesh": 3,
+      "before": {
+        "2": [
+          0.3438285291194916,
+          0.05845922231674194
+        ],
+        "3": [
+          0.34382855892181396,
+          0.05845928192138672
+        ]
+      },
+      "targetWidth": 0.4197669593230536,
+      "targetHeight": 0.04902980855777476,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.9817614835716824,
+      "leftFrontCorrelationAfter": -0.9832351612732331,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    }
+  ]
+}

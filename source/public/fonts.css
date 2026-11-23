@@ -1,4 +1,21 @@
-@font-face{font-family:'Chakra Petch';src:url('/fonts/ChakraPetch-Regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
-@font-face{font-family:'Chakra Petch';src:url('/fonts/ChakraPetch-Medium.ttf') format('truetype');font-style:normal;font-weight:500;font-display:swap}
-@font-face{font-family:'Chakra Petch';src:url('/fonts/ChakraPetch-SemiBold.ttf') format('truetype');font-style:normal;font-weight:600;font-display:swap}
-@font-face{font-family:'Chakra Petch';src:url('/fonts/ChakraPetch-Bold.ttf') format('truetype');font-style:normal;font-weight:700;font-display:swap}
+/* Original owner-supplied RBNo3.1 family. Explicit weights: source metadata uses 450 for every face. */
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-Thin.otf') format('opentype');font-style:normal;font-weight:100;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-ThinItalic.otf') format('opentype');font-style:italic;font-weight:100;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-ExtraLight.otf') format('opentype');font-style:normal;font-weight:200;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-ExtraLightItalic.otf') format('opentype');font-style:italic;font-weight:200;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-Light.otf') format('opentype');font-style:normal;font-weight:300;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-LightItalic.otf') format('opentype');font-style:italic;font-weight:300;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-Book.otf') format('opentype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-BookItalic.otf') format('opentype');font-style:italic;font-weight:400;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-Medium.otf') format('opentype');font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-MediumItalic.otf') format('opentype');font-style:italic;font-weight:500;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-Bold.otf') format('opentype');font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-BoldItalic.otf') format('opentype');font-style:italic;font-weight:600;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-Extrabold.otf') format('opentype');font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-ExtraboldItalic.otf') format('opentype');font-style:italic;font-weight:700;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-Black.otf') format('opentype');font-style:normal;font-weight:800;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-BlackItalic.otf') format('opentype');font-style:italic;font-weight:800;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-Ultra.otf') format('opentype');font-style:normal;font-weight:900;font-display:swap}
+@font-face{font-family:'RBNo3.1';src:url('/fonts/RBNo3.1-UltraItalic.otf') format('opentype');font-style:italic;font-weight:900;font-display:swap}
+@font-face{font-family:'Meinerz UI Symbols';src:url('/fonts/AtlasUISymbols.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap;unicode-range:U+2190-21FF,U+2500-27FF,U+2022,U+2026,U+203A}
+:root{--font-ui:'RBNo3.1','Meinerz UI Symbols',Arial,sans-serif}

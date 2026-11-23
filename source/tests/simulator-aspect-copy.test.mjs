@@ -7,9 +7,9 @@ import {naturalGraphicSize,promoteGraphicSize,editGraphicDimension,graphicCm} fr
 import {validateSimulatorState} from '../lib/simulator-validation.mjs';
 
 test('os quatro grafismos pedidos saem da lista, mas permanecem legíveis em projetos antigos',()=>{
- assert.equal(GRAPHICS.length,26);assert.equal(AVAILABLE_GRAPHICS.length,22);
+ assert.equal(GRAPHICS.length,56);assert.equal(AVAILABLE_GRAPHICS.length,52);
  for(const position of [2,5,10,17])assert.ok(REMOVED_GRAPHIC_IDS.has(GRAPHICS[position-1].id));
- const saved=eliteState();saved.panels[0].layers[0].pattern='shoulders';
+ const saved=eliteState();saved.panels[0].layers[0]={...saved.panels[0].layers[0],type:'pattern',pattern:'shoulders'};
  assert.equal(validateSimulatorState(saved).panels[0].layers[0].pattern,'shoulders');
  assert.throws(()=>applyGraphic(saved,'shoulders',{createNew:true}));
 });
@@ -44,7 +44,7 @@ test('cópia mantém centímetros em múltiplos painéis com tamanhos diferentes
   assert.ok(Math.abs(size.width-cm.width)<1e-10);assert.ok(Math.abs(size.height-cm.height)<1e-10);
   assert.equal(copy.rotation,45);assert.notEqual(copy.id,original.id);
  }
- assert.equal(validateSimulatorState(output.state).panels.length,19);
+ assert.equal(validateSimulatorState(output.state).panels.length,s.panels.length);
 });
 test('cópia impossível não modifica nem reduz a imagem',()=>{
  const s=eliteState();s.active='front';const g=applyGraphic(s,'wave',{createNew:true}).layer;

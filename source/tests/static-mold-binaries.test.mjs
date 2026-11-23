@@ -10,6 +10,16 @@ test('packing does not intercept uploads, unrelated paths, mutations, traversal 
  let count=0;const assets={async fetch(){count++;return new Response(null,{status:404});}};
  for(const path of ['/api/projects/a/assets/model','/assets/camiseta.glb','/assets/molds/UPPER/model.glb','/assets/molds/a/../../file/model.glb','/assets/molds/a/proof.svg'])assert.equal(await serveCompressedMold(new Request('https://atlas.example'+path),assets),null);
  assert.equal(count,0);assert.equal(await serveCompressedMold(new Request('https://atlas.example/assets/molds/a/model.glb',{method:'POST'}),assets),null);assert.equal(count,0);
- assert.equal(await serveCompressedMold(new Request('https://atlas.example/assets/molds/a/model.glb'),assets),null);assert.equal(count,1);
+ assert.equal(await serveCompressedMold(new Request('https://atlas.example/assets/molds/a/model.glb'),assets),null);assert.equal(count,4);
  assert.equal(await serveCompressedMold(new Request('https://atlas.example/assets/molds/a/model.glb'),null),null);
+});
+
+test('Brotli transport restores original model bytes, caching and HEAD',async()=>{
+ const {brotliCompressSync,constants}=await import('node:zlib');
+ const bytes=await readFile(new URL('../public/assets/molds/kit-edge-2027-mapa-v3/model.glb',import.meta.url));
+ const packed=brotliCompressSync(bytes,{params:{[constants.BROTLI_PARAM_QUALITY]:4}});
+ const assets={async fetch(req){return new URL(req.url).pathname.endsWith('.br')?new Response(packed,{headers:{ETag:'"original"'}}):new Response(null,{status:404});}};
+ const request=new Request('https://atlas.test/assets/molds/test/model.glb');const res=await serveCompressedMold(request,assets);assert.equal(res.status,200);assert.deepEqual(Buffer.from(await res.arrayBuffer()),bytes);assert.equal(res.headers.get('content-type'),'model/gltf-binary');
+ assert.equal((await serveCompressedMold(new Request(request,{method:'HEAD'}),assets)).status,200);
+ assert.equal((await serveCompressedMold(new Request(request,{headers:{'If-None-Match':'"original"'}}),assets)).status,304);
 });

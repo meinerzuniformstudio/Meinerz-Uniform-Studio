@@ -1,0 +1,6 @@
+import{readdir,readFile,unlink}from'node:fs/promises';import{gunzipSync}from'node:zlib';import{unpackMoldBytes}from'../lib/packed-mold-bytes.mjs';import{readModelDelta}from'../public/model-delta.js';
+const root='dist/client/assets/molds',dependencies=new Map(),files=[];
+for(const d of await readdir(root,{withFileTypes:true})){if(!d.isDirectory())continue;for(const n of await readdir(root+'/'+d.name)){const path='/assets/molds/'+d.name+'/'+n;files.push(path);if(n.endsWith('.delta.gz')){const raw=await unpackMoldBytes(gunzipSync(await readFile('dist/client'+path)));dependencies.set(path.replace('.delta.gz','.glb'),readModelDelta(raw).meta.basePath);}}}
+const needed=new Set();function retain(p){if(needed.has(p))return;needed.add(p);const base=dependencies.get(p);if(base)retain(new URL(base,'https://atlas.test'+p).pathname);}
+for(const p of files)if(!p.includes('normal-gola-27-')&&/\.(?:glb|delta)\.gz$/.test(p))retain(p.replace(/\.(?:glb|delta)\.gz$/,'.glb'));
+let removed=0;for(const p of files)if(p.includes('normal-gola-27-')&&!needed.has(p.replace(/\.(?:glb|delta)\.gz$/,'.glb'))){await unlink('dist/client'+p);removed++;}await unlink(root+'/pack26-mapas.zip').catch(e=>{if(e.code!=='ENOENT')throw e;});console.log({retiredMaxFilesRemoved:removed});

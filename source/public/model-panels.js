@@ -1,8 +1,16 @@
 // Registered GLBs already contain their generated atlas in UV0 and source UVs
 // in UV1. Never normalize each panel independently during the art transfer.
-export function prepareBakedGeometry(geometry) {
+export function prepareBakedGeometry(geometry, panel) {
   if (!geometry.attributes.uv || !geometry.attributes.uv1) throw new Error('Este molde está sem o mapa UV registrado.');
   const atlasUv = geometry.attributes.uv.clone(), originalUv = geometry.attributes.uv1.clone(), normalizedUv = originalUv.clone();
+  if(panel?.sourceMapRect){
+    const old=panel.sourceMapRect,r=panel.rect;
+    for(let i=0;i<atlasUv.count;i++){
+      const x=r.x+(atlasUv.getX(i)*4096-old.x)*r.w/old.w;
+      const y=r.y+(atlasUv.getY(i)*4096-old.y)*r.h/old.h;
+      atlasUv.setXY(i,x/4096,y/4096);
+    }
+  }
   let minU=Infinity,minV=Infinity,maxU=-Infinity,maxV=-Infinity;
   for(let i=0;i<originalUv.count;i++){minU=Math.min(minU,originalUv.getX(i));maxU=Math.max(maxU,originalUv.getX(i));minV=Math.min(minV,originalUv.getY(i));maxV=Math.max(maxV,originalUv.getY(i));}
   for(let i=0;i<originalUv.count;i++)normalizedUv.setXY(i,(originalUv.getX(i)-minU)/Math.max(maxU-minU,1e-8),(originalUv.getY(i)-minV)/Math.max(maxV-minV,1e-8));

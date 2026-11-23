@@ -1,6 +1,7 @@
-export const GRAPHICS=[
+import{SPORT_GRAPHICS,drawSportGraphic}from'./sport-graphics.js';
+export const GRAPHICS=[...[
  ['horizontal-line','Linha reta','Linhas',.8,.035],['straight-line','Linha vertical','Linhas',.04,.8],['pinstripes','Listras finas','Clássicos'],['stripes','Listras verticais','Clássicos'],['h-stripes','Listras horizontais','Clássicos'],['center-stripe','Faixa central','Clássicos'],['chest-band','Faixa no peito','Clássicos'],['double-band','Faixa dupla','Clássicos'],['sash','Faixa transversal','Clássicos'],['double-sash','Transversal dupla','Clássicos'],['side-stripes','Faixas laterais','Clássicos'],['half','Duas metades','Recortes'],['quarter','Quadriculado clássico','Clássicos'],['diagonal','Diagonais','Recortes'],['chevron','Chevron','Recortes'],['v-chest','V no peito','Clássicos'],['shoulders','Recortes nos ombros','Recortes'],['sleeve-bands','Faixas de manga','Clássicos'],['wave','Onda','Grafismos Avançados'],['zigzag','Zigue-zague','Grafismos Avançados'],['fade','Degradê','Texturas'],['blocks','Xadrez','Texturas'],['halftone','Pontilhado','Grafismos Avançados'],['grid','Grade fina','Texturas'],['speed','Linhas de movimento','Grafismos Avançados'],['cut','Recorte diagonal','Recortes']
-].map(([id,name,group,w=.9,h=.9])=>({id,name,group,w,h}));
+].map(([id,name,group,w=.9,h=.9])=>({id,name,group,w,h})),...SPORT_GRAPHICS];
 // Catalog positions 02, 05, 10 and 17 are withdrawn from NEW selections.
 // Keep the drawing IDs and renderer for compatibility with saved uniforms.
 export const REMOVED_GRAPHIC_IDS=new Set(['straight-line','h-stripes','double-sash','shoulders']);
@@ -8,6 +9,7 @@ export const AVAILABLE_GRAPHICS=GRAPHICS.filter(g=>!REMOVED_GRAPHIC_IDS.has(g.id
 export const GRAPHIC_IDS=new Set(GRAPHICS.map(g=>g.id));
 export function drawGraphic(ctx,id,w,h){
  ctx.beginPath();ctx.rect(-w/2,-h/2,w,h);ctx.clip();
+ if(drawSportGraphic(ctx,id,w,h))return;
  const rect=(x,y,a,b)=>ctx.fillRect(x*w-w/2,y*h-h/2,a*w,b*h);
  const poly=points=>{ctx.beginPath();points.forEach(([x,y],i)=>(i?ctx.lineTo(x*w-w/2,y*h-h/2):ctx.moveTo(x*w-w/2,y*h-h/2)));ctx.closePath();ctx.fill();};
  if(id==='horizontal-line')rect(0,0,1,1);

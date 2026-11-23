@@ -1,0 +1,1249 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-normal-redonda-com-recorte-v2-paired-v1-shorts4-v1-proporcao-v1",
+  "name": "KIT · NORMAL · REDONDA · COM RECORTE · CALÇÃO 4 PARTES",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "813d32d4586076e5239c2a05f5ebf200c841c7a52cb7de2e723fccdcc5634fd1",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 231799,
+  "vertices": 119556,
+  "panelCount": 17,
+  "primitives": [
+    {
+      "key": "m0p0",
+      "mesh": 0,
+      "primitive": 0,
+      "label": "Calção frente direito",
+      "islandCount": 1,
+      "displayName": "Calção frente direito"
+    },
+    {
+      "key": "m1p0",
+      "mesh": 1,
+      "primitive": 0,
+      "label": "Calção costas direito",
+      "islandCount": 1,
+      "displayName": "Calção costas direito"
+    },
+    {
+      "key": "m2p0",
+      "mesh": 2,
+      "primitive": 0,
+      "label": "Calção frente esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção frente esquerdo"
+    },
+    {
+      "key": "m3p0",
+      "mesh": 3,
+      "primitive": 0,
+      "label": "Calção costas esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção costas esquerdo"
+    },
+    {
+      "key": "m4p0",
+      "mesh": 4,
+      "primitive": 0,
+      "label": "Cós frente esquerdo",
+      "islandCount": 1,
+      "displayName": "Cós frente esquerdo"
+    },
+    {
+      "key": "m5p0",
+      "mesh": 5,
+      "primitive": 0,
+      "label": "Cós costas esquerdo",
+      "islandCount": 1,
+      "displayName": "Cós costas esquerdo"
+    },
+    {
+      "key": "m6p0",
+      "mesh": 6,
+      "primitive": 0,
+      "label": "Cós frente direito",
+      "islandCount": 1,
+      "displayName": "Cós frente direito"
+    },
+    {
+      "key": "m7p0",
+      "mesh": 7,
+      "primitive": 0,
+      "label": "Cós costas direito",
+      "islandCount": 1,
+      "displayName": "Cós costas direito"
+    },
+    {
+      "key": "m8p0",
+      "mesh": 8,
+      "primitive": 0,
+      "label": "Gola inteira",
+      "islandCount": 1,
+      "displayName": "Gola inteira"
+    },
+    {
+      "key": "m9p0",
+      "mesh": 9,
+      "primitive": 0,
+      "label": "Manga esquerda",
+      "islandCount": 1,
+      "displayName": "Manga esquerda"
+    },
+    {
+      "key": "m10p0",
+      "mesh": 10,
+      "primitive": 0,
+      "label": "Filete manga esquerda",
+      "islandCount": 1,
+      "displayName": "Filete manga esquerda"
+    },
+    {
+      "key": "m11p0",
+      "mesh": 11,
+      "primitive": 0,
+      "label": "Filete manga direita",
+      "islandCount": 1,
+      "displayName": "Filete manga direita"
+    },
+    {
+      "key": "m12p0",
+      "mesh": 12,
+      "primitive": 0,
+      "label": "Manga direita",
+      "islandCount": 1,
+      "displayName": "Manga direita"
+    },
+    {
+      "key": "m13p0",
+      "mesh": 13,
+      "primitive": 0,
+      "label": "Costas",
+      "islandCount": 1,
+      "displayName": "Costas"
+    },
+    {
+      "key": "m14p0",
+      "mesh": 14,
+      "primitive": 0,
+      "label": "Frente",
+      "islandCount": 1,
+      "displayName": "Frente"
+    },
+    {
+      "key": "m15p0",
+      "mesh": 15,
+      "primitive": 0,
+      "label": "Recorte lateral esquerdo",
+      "islandCount": 1,
+      "displayName": "Recorte lateral esquerdo"
+    },
+    {
+      "key": "m16p0",
+      "mesh": 16,
+      "primitive": 0,
+      "label": "Recorte lateral direito",
+      "islandCount": 1,
+      "displayName": "Recorte lateral direito"
+    }
+  ],
+  "panels": [
+    {
+      "number": 1,
+      "mesh": 0,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 2818.1551937008194,
+        "w": 663.5780713287717,
+        "h": 861.655722268057,
+        "labelWidth": 663.5780713287717
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.3242829740047455,
+        0.4231877028942108
+      ],
+      "contourVertices": 356,
+      "label": "Calção frente direito",
+      "displayName": "Calção frente direito · P01",
+      "group": "CALCAO_E_COS",
+      "physicalMatrix": [
+        [
+          0.37146028795237956,
+          0.00009180004593636667
+        ],
+        [
+          0.00009202632157617472,
+          0.3695015989111087
+        ]
+      ],
+      "physicalBounds": [
+        0.00003887470176021999,
+        3.8890651404663654e-7,
+        0.1204802578286334,
+        0.15639345168711352
+      ],
+      "physicalSize": [
+        0.12044138312687319,
+        0.15639306278059947
+      ],
+      "atlasTransform": [
+        2046.5797972032094,
+        0.5057771328163616,
+        0.5070238102353211,
+        2035.7882979477567,
+        99.78581780657272,
+        2818.153051000131
+      ]
+    },
+    {
+      "number": 2,
+      "mesh": 1,
+      "primitive": 0,
+      "rect": {
+        "x": 839.5780713287717,
+        "y": 2818.1551937008194,
+        "w": 671.1504893394499,
+        "h": 884.1044216106051,
+        "labelWidth": 671.1504893394499
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.3292296528816223,
+        0.43185219168663025
+      ],
+      "contourVertices": 362,
+      "label": "Calção costas direito",
+      "displayName": "Calção costas direito · P02",
+      "group": "CALCAO_E_COS",
+      "physicalMatrix": [
+        [
+          0.3698983735562265,
+          -0.00015936924399079512
+        ],
+        [
+          -0.00015887902858092163,
+          0.37156854933122313
+        ]
+      ],
+      "physicalBounds": [
+        -0.00003576199721321588,
+        -0.000012024349403597215,
+        0.12178003740142533,
+        0.16045554377583712
+      ],
+      "physicalSize": [
+        0.12181579939863854,
+        0.1604675681252407
+      ],
+      "atlasTransform": [
+        2037.9743485137994,
+        -0.8780531476057101,
+        -0.8753522802810894,
+        2047.1762689067662,
+        839.7751039144288,
+        2818.221442479927
+      ]
+    },
+    {
+      "number": 3,
+      "mesh": 2,
+      "primitive": 0,
+      "rect": {
+        "x": 1586.7285606682217,
+        "y": 2818.1551937008194,
+        "w": 663.5780713287717,
+        "h": 861.655722268057,
+        "labelWidth": 663.5780713287717
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.3242829740047455,
+        0.4231877028942108
+      ],
+      "contourVertices": 365,
+      "label": "Calção frente esquerdo",
+      "displayName": "Calção frente esquerdo · P03",
+      "group": "CALCAO_E_COS",
+      "physicalMatrix": [
+        [
+          0.37143503925258625,
+          -0.000047475334759173685
+        ],
+        [
+          -0.00004735886403122896,
+          0.36952947979556944
+        ]
+      ],
+      "physicalBounds": [
+        -0.000011329825799121545,
+        -0.000015227852191225678,
+        0.12043005330107406,
+        0.15637783492840826
+      ],
+      "physicalSize": [
+        0.12044138312687319,
+        0.15639306278059947
+      ],
+      "atlasTransform": [
+        2046.4406881770806,
+        -0.26156782874200574,
+        -0.26092612720214214,
+        2035.9419091323605,
+        1586.7909829333692,
+        2818.2390923453318
+      ]
+    },
+    {
+      "number": 4,
+      "mesh": 3,
+      "primitive": 0,
+      "rect": {
+        "x": 2326.3066319969935,
+        "y": 2818.1551937008194,
+        "w": 671.1504893394499,
+        "h": 884.1044216106053,
+        "labelWidth": 671.1504893394499
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.3292296528816223,
+        0.43185219168663025
+      ],
+      "contourVertices": 371,
+      "label": "Calção costas esquerdo",
+      "displayName": "Calção costas esquerdo · P04",
+      "group": "CALCAO_E_COS",
+      "physicalMatrix": [
+        [
+          0.3698612038232317,
+          0.00021479963937117268
+        ],
+        [
+          0.00021546452965075078,
+          0.37156452061655637
+        ]
+      ],
+      "physicalBounds": [
+        0.000001975161276316528,
+        0.00005440341857654178,
+        0.12181777455991485,
+        0.1605219715438173
+      ],
+      "physicalSize": [
+        0.12181579939863854,
+        0.16046756812524077
+      ],
+      "atlasTransform": [
+        2037.7695599345573,
+        1.1834497970343831,
+        1.187113044648394,
+        2047.1540724935476,
+        2326.295749743101,
+        2817.8554552335627
+      ]
+    },
+    {
+      "number": 5,
+      "mesh": 4,
+      "primitive": 0,
+      "rect": {
+        "x": 3073.4571213364434,
+        "y": 2818.1551937008194,
+        "w": 434.75228956399945,
+        "h": 92.4403846881882,
+        "labelWidth": 434.75228956399945
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.21371537446975708,
+        0.04448997974395752
+      ],
+      "contourVertices": 109,
+      "label": "Cós frente esquerdo",
+      "displayName": "Cós frente esquerdo · P05",
+      "group": "CALCAO_E_COS",
+      "physicalMatrix": [
+        [
+          0.36911366302029325,
+          -0.0005360343868577219
+        ],
+        [
+          -0.0005296034415396472,
+          0.3745482603021126
+        ]
+      ],
+      "physicalBounds": [
+        -0.000023562046386429094,
+        -0.00011455878971596467,
+        0.0788852647142857,
+        0.016663644513975517
+      ],
+      "physicalSize": [
+        0.07890882676067212,
+        0.01677820330369148
+      ],
+      "atlasTransform": [
+        2033.6509449587486,
+        -2.9533093639604915,
+        -2.9178777358921435,
+        2063.5931416447447,
+        3073.5869376578084,
+        2818.786361317463
+      ]
+    },
+    {
+      "number": 6,
+      "mesh": 5,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 3827.2596153114246,
+        "w": 450.4356621974631,
+        "h": 89.31999617405793,
+        "labelWidth": 450.4356621974631
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.21845273673534393,
+        0.04448997974395752
+      ],
+      "contourVertices": 112,
+      "label": "Cós costas esquerdo",
+      "displayName": "Cós costas esquerdo · P06",
+      "group": "CALCAO_E_COS",
+      "physicalMatrix": [
+        [
+          0.3742475672968819,
+          0.0000287987307587318
+        ],
+        [
+          0.00002873100340075378,
+          0.36425309824889646
+        ]
+      ],
+      "physicalBounds": [
+        0.0000012782417593231103,
+        6.056753785602198e-8,
+        0.08175668353430798,
+        0.016211904124315918
+      ],
+      "physicalSize": [
+        0.08175540529254866,
+        0.01621184355677806
+      ],
+      "atlasTransform": [
+        2061.9364578763193,
+        0.15866810657151864,
+        0.15829495916639538,
+        2006.871410276932,
+        99.99295746047312,
+        3827.259281611421
+      ]
+    },
+    {
+      "number": 7,
+      "mesh": 6,
+      "primitive": 0,
+      "rect": {
+        "x": 626.4356621974631,
+        "y": 3827.2596153114246,
+        "w": 434.75228956399945,
+        "h": 92.4403846881882,
+        "labelWidth": 434.75228956399945
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.21371537446975708,
+        0.04448997974395752
+      ],
+      "contourVertices": 107,
+      "label": "Cós frente direito",
+      "displayName": "Cós frente direito · P07",
+      "group": "CALCAO_E_COS",
+      "physicalMatrix": [
+        [
+          0.36922391267568133,
+          0.0004434448404999496
+        ],
+        [
+          0.00044883198507906163,
+          0.3750055381167627
+        ]
+      ],
+      "physicalBounds": [
+        0.000019968525924607696,
+        5.564711393092126e-7,
+        0.07892879528659673,
+        0.01677875977483079
+      ],
+      "physicalSize": [
+        0.07890882676067212,
+        0.01677820330369148
+      ],
+      "atlasTransform": [
+        2034.2583711754503,
+        2.443182437465676,
+        2.472863191015398,
+        2066.1125375735287,
+        626.3256445641853,
+        3827.256549404709
+      ]
+    },
+    {
+      "number": 8,
+      "mesh": 7,
+      "primitive": 0,
+      "rect": {
+        "x": 1137.1879517614625,
+        "y": 3827.2596153114246,
+        "w": 450.4356621974631,
+        "h": 89.31999617405796,
+        "labelWidth": 450.4356621974631
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.21845273673534393,
+        0.04448997974395752
+      ],
+      "contourVertices": 110,
+      "label": "Cós costas direito",
+      "displayName": "Cós costas direito · P08",
+      "group": "CALCAO_E_COS",
+      "physicalMatrix": [
+        [
+          0.3742475672968819,
+          0.00007473859548457491
+        ],
+        [
+          0.00007491411284783818,
+          0.3640282615914127
+        ]
+      ],
+      "physicalBounds": [
+        0,
+        0,
+        0.08175540529254866,
+        0.016211843556778065
+      ],
+      "physicalSize": [
+        0.08175540529254866,
+        0.016211843556778065
+      ],
+      "atlasTransform": [
+        2061.9364578763193,
+        0.4117761832179568,
+        0.4127432052694742,
+        2005.6326610060116,
+        1137.1879517614625,
+        3827.2596153114246
+      ]
+    },
+    {
+      "number": 9,
+      "mesh": 8,
+      "primitive": 0,
+      "rect": {
+        "x": 2900,
+        "y": 460,
+        "w": 1069.0866164966853,
+        "h": 43.396711440814315,
+        "labelWidth": 1069.0866164966853
+      },
+      "uvBounds": [
+        0.1903839260339737,
+        0.1916733980178833,
+        0.48391270637512207,
+        0.20412826538085938
+      ],
+      "contourVertices": 271,
+      "label": "Gola inteira",
+      "displayName": "Gola inteira · P09",
+      "group": "GOLAS",
+      "physicalMatrix": [
+        [
+          0.6610638369185871,
+          -0.0000900840060871306
+        ],
+        [
+          -0.0000900840060871307,
+          0.6302908764485905
+        ]
+      ],
+      "physicalBounds": [
+        0.125837539939742,
+        0.12076640123338446,
+        0.319879923702442,
+        0.1286430327480806
+      ],
+      "physicalSize": [
+        0.1940423837627,
+        0.007876631514696128
+      ],
+      "atlasTransform": [
+        3642.1656289478215,
+        -0.4963225219183794,
+        -0.49632252191838,
+        3472.6204009903668,
+        2206.691521750385,
+        -205.36877550923168
+      ]
+    },
+    {
+      "number": 10,
+      "mesh": 9,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 2156.675663132458,
+        "w": 846.8802219300933,
+        "h": 471.4795305683616,
+        "labelWidth": 846.8802219300933
+      },
+      "uvBounds": [
+        0.4899907410144806,
+        0.00888758897781372,
+        0.9058598875999451,
+        0.23973391950130463
+      ],
+      "contourVertices": 279,
+      "label": "Manga esquerda",
+      "displayName": "Manga esquerda · P10",
+      "group": "MANGAS_E_FILETES",
+      "physicalMatrix": [
+        [
+          0.36961449777733607,
+          0.0009775963341621945
+        ],
+        [
+          0.0009793074583814476,
+          0.3699453452460583
+        ]
+      ],
+      "physicalBounds": [
+        0.1812124002158576,
+        0.003959506649778103,
+        0.3349236659721334,
+        0.089534436309453
+      ],
+      "physicalSize": [
+        0.1537112657562758,
+        0.08557492965967489
+      ],
+      "atlasTransform": [
+        2036.4103201295136,
+        5.386117903329559,
+        5.39554543130821,
+        2038.233141484591,
+        -898.3991541298242,
+        2134.8605550868665
+      ]
+    },
+    {
+      "number": 11,
+      "mesh": 10,
+      "primitive": 0,
+      "rect": {
+        "x": 1945.7604438601866,
+        "y": 2156.675663132458,
+        "w": 674.6244217998235,
+        "h": 50.450847139213884,
+        "labelWidth": 674.6244217998235
+      },
+      "uvBounds": [
+        0.5124251842498779,
+        0.1409766674041748,
+        0.8432472348213196,
+        0.16540029644966125
+      ],
+      "contourVertices": 169,
+      "label": "Filete manga esquerda",
+      "displayName": "Filete manga esquerda · P11",
+      "group": "MANGAS_E_FILETES",
+      "physicalMatrix": [
+        [
+          0.37012746942029123,
+          -0.00008479566201775335
+        ],
+        [
+          -0.0000843155682420295,
+          0.3739776834136778
+        ]
+      ],
+      "physicalBounds": [
+        0.18965075017450517,
+        0.05265062378367253,
+        0.31209707859225205,
+        0.06180760179712894
+      ],
+      "physicalSize": [
+        0.12244632841774689,
+        0.009156978013456413
+      ],
+      "atlasTransform": [
+        2039.2365641051408,
+        -0.4671861149212622,
+        -0.46454101326698954,
+        2060.4495185698297,
+        900.8697612757444,
+        1866.594310049501
+      ]
+    },
+    {
+      "number": 12,
+      "mesh": 11,
+      "primitive": 0,
+      "rect": {
+        "x": 2696.3848656600103,
+        "y": 2156.675663132458,
+        "w": 674.6244217998235,
+        "h": 50.450847139213884,
+        "labelWidth": 674.6244217998235
+      },
+      "uvBounds": [
+        -0.882204532623291,
+        0.3074684739112854,
+        -0.5513824820518494,
+        0.33189210295677185
+      ],
+      "contourVertices": 169,
+      "label": "Filete manga direita",
+      "displayName": "Filete manga direita · P12",
+      "group": "MANGAS_E_FILETES",
+      "physicalMatrix": [
+        [
+          0.37012746931067064,
+          0.0005291066395713106
+        ],
+        [
+          0.0005320885493233664,
+          0.36805328937767967
+        ]
+      ],
+      "physicalBounds": [
+        -0.32636453062001564,
+        0.112698002927313,
+        -0.20391820220226875,
+        0.12185498094076941
+      ],
+      "physicalSize": [
+        0.12244632841774689,
+        0.009156978013456413
+      ],
+      "atlasTransform": [
+        2039.2365635011804,
+        2.9151405795807297,
+        2.9315695666180277,
+        2027.8087611645608,
+        4494.507239851083,
+        1535.7601481857964
+      ]
+    },
+    {
+      "number": 13,
+      "mesh": 12,
+      "primitive": 0,
+      "rect": {
+        "x": 1022.8802219300933,
+        "y": 2156.675663132458,
+        "w": 846.8802219300932,
+        "h": 471.4795305683616,
+        "labelWidth": 846.8802219300932
+      },
+      "uvBounds": [
+        -0.9200693964958191,
+        0.07401859760284424,
+        -0.504200279712677,
+        0.30486494302749634
+      ],
+      "contourVertices": 279,
+      "label": "Manga direita",
+      "displayName": "Manga direita · P13",
+      "group": "MANGAS_E_FILETES",
+      "physicalMatrix": [
+        [
+          0.3696145242649254,
+          -0.0005712697861420092
+        ],
+        [
+          -0.0005702746028715291,
+          0.37025952685281166
+        ]
+      ],
+      "physicalBounds": [
+        -0.3401691349811685,
+        0.027806656588689662,
+        -0.18645786922489274,
+        0.11338158624836456
+      ],
+      "physicalSize": [
+        0.15371126575627578,
+        0.08557492965967489
+      ],
+      "atlasTransform": [
+        2036.4104660642663,
+        -3.147440630909963,
+        -3.1419576168652954,
+        2039.9641414054133,
+        2897.0597826098083,
+        2003.4734408548632
+      ]
+    },
+    {
+      "number": 14,
+      "mesh": 13,
+      "primitive": 0,
+      "rect": {
+        "x": 1055.964579506566,
+        "y": 460,
+        "w": 866.7683001248172,
+        "h": 1506.675663132458,
+        "labelWidth": 866.7683001248172
+      },
+      "uvBounds": [
+        0.4375702440738678,
+        -0.7939187288284302,
+        0.8613459467887878,
+        -0.034879397600889206
+      ],
+      "contourVertices": 1082,
+      "label": "Costas",
+      "displayName": "Costas · P14",
+      "group": "CORPO_E_RECORTES",
+      "physicalMatrix": [
+        [
+          0.37121960799835513,
+          0.000013576419438574583
+        ],
+        [
+          0.000013576419438574559,
+          0.360273787790866
+        ]
+      ],
+      "physicalBounds": [
+        0.16242702039352705,
+        -0.28602052902006125,
+        0.3197480311805743,
+        -0.012554438695680677
+      ],
+      "physicalSize": [
+        0.15732101078704727,
+        0.2734660903243806
+      ],
+      "atlasTransform": [
+        2045.253758465089,
+        0.07479998977684982,
+        0.07479998977684969,
+        1984.9471921186544,
+        161.06445360152793,
+        2035.8449967951192
+      ]
+    },
+    {
+      "number": 15,
+      "mesh": 14,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 460,
+        "w": 879.964579506566,
+        "h": 1496.1241997504,
+        "labelWidth": 879.964579506566
+      },
+      "uvBounds": [
+        -0.4610925614833832,
+        -0.7565306425094604,
+        -0.03722885251045227,
+        -0.03427910804748535
+      ],
+      "contourVertices": 1068,
+      "label": "Frente",
+      "displayName": "Frente · P15",
+      "group": "CORPO_E_RECORTES",
+      "physicalMatrix": [
+        [
+          0.37680338881000397,
+          0.00000565960142529702
+        ],
+        [
+          0.000005659601425296962,
+          0.37598066645342093
+        ]
+      ],
+      "physicalBounds": [
+        -0.1737443263965836,
+        -0.28444185515388476,
+        -0.014028151860855124,
+        -0.012890886649613275
+      ],
+      "physicalSize": [
+        0.15971617453572848,
+        0.27155096850427146
+      ],
+      "atlasTransform": [
+        2076.0178895761824,
+        0.031181868729720754,
+        0.03118186872972043,
+        2071.48505791611,
+        1057.253412584209,
+        2027.1472109330039
+      ]
+    },
+    {
+      "number": 16,
+      "mesh": 15,
+      "primitive": 0,
+      "rect": {
+        "x": 1998.7328796313832,
+        "y": 460,
+        "w": 194.1277083813649,
+        "h": 1024.19323079082,
+        "labelWidth": 235
+      },
+      "uvBounds": [
+        -0.04645918682217598,
+        -0.038267165422439575,
+        0.04852035269141197,
+        0.4636547863483429
+      ],
+      "contourVertices": 778,
+      "label": "Recorte lateral esquerdo",
+      "displayName": "Recorte lateral esquerdo · P16",
+      "group": "CORPO_E_RECORTES",
+      "physicalMatrix": [
+        [
+          0.37103914681372496,
+          0.0004111851122553611
+        ],
+        [
+          0.00041043902682094994,
+          0.3703708297134597
+        ]
+      ],
+      "physicalBounds": [
+        -0.01724750946606073,
+        -0.014153090961623071,
+        0.017987243927587344,
+        0.17174101047939713
+      ],
+      "physicalSize": [
+        0.03523475339364807,
+        0.1858941014410202
+      ],
+      "atlasTransform": [
+        2044.259498172342,
+        2.265445785042942,
+        2.261335188495811,
+        2040.5773703113318,
+        2093.758931056391,
+        537.9771915584969
+      ]
+    },
+    {
+      "number": 17,
+      "mesh": 16,
+      "primitive": 0,
+      "rect": {
+        "x": 2309.732879631383,
+        "y": 460,
+        "w": 194.12770838136484,
+        "h": 1024.1932307908203,
+        "labelWidth": 235
+      },
+      "uvBounds": [
+        -0.04646275192499161,
+        -0.038272906094789505,
+        0.048516787588596344,
+        0.46364903450012207
+      ],
+      "contourVertices": 796,
+      "label": "Recorte lateral direito",
+      "displayName": "Recorte lateral direito · P17",
+      "group": "CORPO_E_RECORTES",
+      "physicalMatrix": [
+        [
+          0.37104542564801807,
+          -0.00044804604332188353
+        ],
+        [
+          -0.0004488602144519068,
+          0.3703724019620868
+        ]
+      ],
+      "physicalBounds": [
+        -0.017222612379949372,
+        -0.014154410708234743,
+        0.018012141013698694,
+        0.17173969073278547
+      ],
+      "physicalSize": [
+        0.035234753393648066,
+        0.18589410144102023
+      ],
+      "atlasTransform": [
+        2044.2940917367982,
+        -2.468533003982793,
+        -2.4730187222149,
+        2040.5860326970048,
+        2404.62175926415,
+        537.9844627711689
+      ]
+    }
+  ],
+  "texelsPerUvUnit": 5509.552066748995,
+  "artBleedPixels": 16,
+  "layoutGroups": [
+    {
+      "id": "CORPO_E_RECORTES",
+      "title": "CORPO E RECORTES",
+      "panels": [
+        15,
+        14,
+        16,
+        17
+      ],
+      "heading": {
+        "x": 100,
+        "y": 375
+      }
+    },
+    {
+      "id": "GOLAS",
+      "title": "GOLAS",
+      "panels": [
+        9
+      ],
+      "heading": {
+        "x": 2900,
+        "y": 375
+      }
+    },
+    {
+      "id": "MANGAS_E_FILETES",
+      "title": "MANGAS E FILETES",
+      "panels": [
+        10,
+        13,
+        11,
+        12
+      ],
+      "heading": {
+        "x": 100,
+        "y": 2071.675663132458
+      }
+    },
+    {
+      "id": "CALCAO_E_COS",
+      "title": "CALÇÃO E CÓS",
+      "panels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "heading": {
+        "x": 100,
+        "y": 2733.1551937008194
+      }
+    }
+  ],
+  "originalSourceSha256": "813d32d4586076e5239c2a05f5ebf200c841c7a52cb7de2e723fccdcc5634fd1",
+  "preparation": "outer-surfaces-v1",
+  "packId": "kits-2026-11",
+  "uvCanonicalMeshes": [],
+  "cutVersion": "armhole-through-v2",
+  "pairNormalization": "intrinsic-paired-v1",
+  "derivedFrom": "pack26-normal-redonda-sem-recorte",
+  "cutReference": "pack26-normal-gola-27-com-recorte",
+  "modeling": "NORMAL",
+  "collar": "REDONDA",
+  "sideCut": true,
+  "bottomParts": 4,
+  "bottomDerivedFrom": "pack26-normal-redonda-com-recorte-v2-paired-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-4-partes-referencia",
+  "bottomCutVersion": "reference-native-uv-v1",
+  "variant": "",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "NORMAL",
+    "REDONDA",
+    "COM RECORTE",
+    "CALÇÃO 4 PARTES"
+  ],
+  "replaces": "pack26-normal-redonda-com-recorte-v2-paired-v1-shorts4-v1",
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 15,
+      "text": "Frente · P15",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 14,
+      "text": "Costas · P14",
+      "x": 1055.964579506566,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 16,
+      "text": "Recorte lateral",
+      "x": 1998.7328796313832,
+      "y": 385,
+      "w": 150.236,
+      "h": 29
+    },
+    {
+      "panel": 16,
+      "text": "esquerdo · P16",
+      "x": 1998.7328796313832,
+      "y": 413,
+      "w": 155.986,
+      "h": 29
+    },
+    {
+      "panel": 17,
+      "text": "Recorte lateral direito",
+      "x": 2309.732879631383,
+      "y": 385,
+      "w": 219.259,
+      "h": 29
+    },
+    {
+      "panel": 17,
+      "text": "· P17",
+      "x": 2309.732879631383,
+      "y": 413,
+      "w": 53.705,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Gola inteira · P09",
+      "x": 2900,
+      "y": 385,
+      "w": 177.468,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "Manga esquerda · P10",
+      "x": 100,
+      "y": 2081.675663132458,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 13,
+      "text": "Manga direita · P13",
+      "x": 1022.8802219300933,
+      "y": 2081.675663132458,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 11,
+      "text": "Filete manga esquerda · P11",
+      "x": 1945.7604438601866,
+      "y": 2081.675663132458,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 12,
+      "text": "Filete manga direita · P12",
+      "x": 2696.3848656600103,
+      "y": 2081.675663132458,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção frente direito · P01",
+      "x": 100,
+      "y": 2743.1551937008194,
+      "w": 265.903,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção costas direito · P02",
+      "x": 839.5780713287717,
+      "y": 2743.1551937008194,
+      "w": 273.562,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Calção frente esquerdo · P03",
+      "x": 1586.7285606682217,
+      "y": 2743.1551937008194,
+      "w": 299.161,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Calção costas esquerdo · P04",
+      "x": 2326.3066319969935,
+      "y": 2743.1551937008194,
+      "w": 306.82,
+      "h": 29
+    },
+    {
+      "panel": 5,
+      "text": "Cós frente esquerdo · P05",
+      "x": 3073.4571213364434,
+      "y": 2743.1551937008194,
+      "w": 268.479,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Cós costas esquerdo · P06",
+      "x": 100,
+      "y": 3752.2596153114246,
+      "w": 276.138,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Cós frente direito · P07",
+      "x": 626.4356621974631,
+      "y": 3752.2596153114246,
+      "w": 235.221,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Cós costas direito · P08",
+      "x": 1137.1879517614625,
+      "y": 3752.2596153114246,
+      "w": 242.88,
+      "h": 29
+    }
+  ]
+}

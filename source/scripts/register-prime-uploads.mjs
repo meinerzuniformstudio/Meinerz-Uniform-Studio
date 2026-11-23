@@ -1,0 +1,20 @@
+import{moldCut}from'../public/mold-filters.js';
+import{readFile,writeFile}from'node:fs/promises';
+import{PRESENTATION_PACK_TEMPLATES as previous}from'../lib/presentation-pack-templates.mjs';
+const incoming=JSON.parse(await readFile('work/prime-final-entries.json','utf8'));
+if(incoming.length!==64)throw Error('Expected all 64 PRIME combinations');
+const find=(d,parts=2)=>incoming.find(e=>e.descriptor.modeling===d.modeling&&e.descriptor.collar===d.collar&&e.descriptor.cutType===d.cutType&&e.descriptor.bottomParts===parts);
+for(const e of incoming){const d=e.descriptor;delete d.replaces;d.createdAt='2026-11-16T18:00:00.000Z';d.refreshBatch='prime-2026-11-16';d.intermediateOnly=false;
+ d.catalogPath=['KIT',d.modeling,d.collar,d.cutType==='SEM RECORTE'?'SEM RECORTE':'RECORTE '+d.cutType,d.bottomParts===6?'CALÇÃO RECORTE LATERAL':'CALÇÃO '+d.bottomParts+' PARTES'];
+ if(d.bottomParts!==2)e.deltaBaseId=find(d,d.bottomParts===5?4:2).descriptor.id;
+ else if(d.cutType!=='SEM RECORTE')e.deltaBaseId=incoming.find(x=>x.descriptor.modeling===d.modeling&&x.descriptor.collar===d.collar&&x.descriptor.cutType==='SEM RECORTE'&&x.descriptor.bottomParts===2).descriptor.id;
+ else if(d.collar==='PRIME V')e.deltaBaseId=incoming.find(x=>x.descriptor.modeling===d.modeling&&x.descriptor.collar==='PRIME'&&x.descriptor.cutType==='SEM RECORTE'&&x.descriptor.bottomParts===2).descriptor.id;
+ else e.deltaBaseId=previous.find(x=>x.descriptor.modeling===d.modeling&&x.descriptor.collar==='REDONDA'&&!x.descriptor.sideCut&&x.descriptor.bottomParts===2).descriptor.id;
+ await writeFile('public/assets/molds/'+d.id+'/descriptor.json',JSON.stringify(d,null,2)+'\n');
+}
+const key=d=>[d.modeling,d.collar,moldCut(d),d.bottomParts,d.variant||''].join('|'),active=[...previous,...incoming];if(new Set(active.map(e=>key(e.descriptor))).size!==active.length)throw Error('Duplicate kit combination');
+await writeFile('lib/presentation-pack-templates.mjs','export const PRESENTATION_PACK_TEMPLATES=Object.freeze('+JSON.stringify(active)+');\n');
+const manifest=JSON.parse(await readFile('scripts/presentation-pack-manifest.json','utf8'));manifest.push(...incoming.map(e=>e.descriptor));await writeFile('scripts/presentation-pack-manifest.json',JSON.stringify(manifest,null,2)+'\n');
+await writeFile('work/prime-transport-jobs.json',JSON.stringify(incoming));
+await writeFile('scripts/prime-upload-audit.json',JSON.stringify({batch:'prime-2026-11-16',uploadedFiles:4,newModels:64,originalTrianglePolicy:'retained without decimation, refitting or node scaling',maps:'vector SVG, 4096 square atlas, shared scale, original pair shapes preserved',intermediateIds:JSON.parse(await readFile('scripts/prime-upload-manifest.json','utf8')).map(m=>m.id),entries:incoming.map(e=>({id:e.descriptor.id,modeling:e.descriptor.modeling,collar:e.descriptor.collar,cutType:e.descriptor.cutType,bottomParts:e.descriptor.bottomParts,source:e.descriptor.variantSource}))},null,2)+'\n');
+console.log({added:incoming.length,total:active.length});

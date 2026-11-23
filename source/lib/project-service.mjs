@@ -1,7 +1,7 @@
 import {compatibleTemplateArt} from '../public/template-family.js';
 import {profileDetails,readProfileDetails} from './designer-profile.mjs';
 import { BUILTIN_TEMPLATE } from '../public/template-catalog.js';
-import {RETAINED_MOLD_ID} from './removed-molds.mjs';
+import {CURRENT_DEFAULT_MOLD_ID} from './removed-molds.mjs';
 import { DEFAULT_VISUALS, sanitizeVisuals } from '../public/presentation.js';
 import { cleanPresentation } from '../public/presentation-contract.js';
 
@@ -213,10 +213,19 @@ export class ProjectService {
   async create(user, input) {
     const owner = this.requireUser(user), fields = projectFields(input), id = crypto.randomUUID(), date = now();
     const folderId=folderReference(input.folderId);if(folderId)await this.ownFolder(user,folderId);
-    const templateId = typeof input.templateId === 'string' ? input.templateId : this.templates ? RETAINED_MOLD_ID : TEMPLATE_ID;
+    const templateId = typeof input.templateId === 'string' ? input.templateId : this.templates ? CURRENT_DEFAULT_MOLD_ID+'-ord1' : TEMPLATE_ID;
     if (this.templates) await this.templates.available(user, templateId);
     else if(templateId !== TEMPLATE_ID) throw new AppError(404, 'Molde não encontrado.');
     await this.db.prepare('INSERT INTO profiles (user_id, display_name, created_at, updated_at) VALUES (?, ?, ?, ?) ON CONFLICT(user_id) DO NOTHING').bind(owner, user.fullName || 'Designer', date, date).run();
+    if(input.newFolderName!==undefined){
+      const folder=folderFields({name:input.newFolderName}),newId=crypto.randomUUID();
+      if(folderId)throw new AppError(400,'Escolha uma pasta existente ou crie uma nova.');
+      const insertFolder=this.db.prepare('INSERT INTO project_folders (id,owner_id,name,name_key,created_at,updated_at) VALUES (?,?,?,?,?,?) ON CONFLICT(owner_id,name_key) DO NOTHING').bind(newId,owner,folder.name,folder.key,date,date);
+      const insertProject=this.db.prepare('INSERT INTO projects (id,owner_id,name,client_name,folder_id,template_id,visual_json,presentation_json,version,created_at,updated_at) SELECT ?,?,?,?,id,?,?,?,1,?,? FROM project_folders WHERE id=? AND owner_id=?').bind(id,owner,fields.name,fields.clientName,templateId,JSON.stringify(fields.visuals),JSON.stringify(fields.presentation),date,date,newId,owner);
+      const [,created]=await this.db.batch([insertFolder,insertProject]);
+      if(!created.meta.changes)throw new AppError(409,'Você já tem uma pasta com esse nome. Selecione-a na lista.');
+      return this.serialize(await this.own(user,id));
+    }
     const created=await this.db.prepare('INSERT INTO projects (id, owner_id, name, client_name, folder_id, template_id, visual_json, presentation_json, version, created_at, updated_at) SELECT ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ? WHERE ? IS NULL OR EXISTS (SELECT 1 FROM project_folders WHERE id=? AND owner_id=?) RETURNING id').bind(id, owner, fields.name, fields.clientName, folderId, templateId, JSON.stringify(fields.visuals), JSON.stringify(fields.presentation), date, date,folderId,folderId,owner).first();
     if(!created)throw new AppError(409,'A pasta foi removida. Atualize a lista e escolha outro destino.');
     return this.serialize(await this.own(user, id));
@@ -224,10 +233,13 @@ export class ProjectService {
   async get(user, id) { return this.serialize(await this.own(user, id)); }
   // Internal, atomic creation with art: retries cannot duplicate a simulator
   // version, expose an empty project or replace a presentation edited later.
-  async createWithArt(user,id,input,mapFile,thumbnailFile) {
+  async createWithArt(user,id,input,mapFile,thumbnailFile,{frozenSimulatorAtlas=false}={}) {
     const owner=this.requireUser(user),fields=projectFields(input),templateId=input.templateId;
     if(!this.templates)throw new AppError(503,'A base da apresentação está indisponível.');
-    await this.templates.available(user,templateId);
+    // The trusted simulator bridge paints the immutable original EDGE atlas.
+    // Never reinterpret that existing artwork using a revised drawing map.
+    if(frozenSimulatorAtlas&&templateId==='kit-edge-2027-mapa-v3')await this.templates.readable(user,templateId);
+    else await this.templates.available(user,templateId);
     const map=await imageUpload(mapFile),thumbnail=await imageUpload(thumbnailFile,true),date=now();
     const prefix=`projects/${id}/${crypto.randomUUID()}`,mapKey=prefix+'/map',thumbnailKey=prefix+'/thumbnail',written=[];
     try {

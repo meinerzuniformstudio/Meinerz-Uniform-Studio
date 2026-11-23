@@ -1,0 +1,95 @@
+{
+  "previousId": "pack26-normal-max-sem-recorte-maxbatch-20261113",
+  "bodyUvUnitsPerModelUnit": 2.7192644732623554,
+  "method": "intrinsic axis units, sewn cuff alignment, shared pair bounds, outside-readable UV winding",
+  "pairs": [
+    {
+      "kind": "Manga",
+      "leftMesh": 11,
+      "rightMesh": 12,
+      "before": {
+        "11": [
+          0.38490432500839233,
+          0.20593446493148804
+        ],
+        "12": [
+          0.38537847995758057,
+          0.20990049839019775
+        ]
+      },
+      "targetWidth": 0.41148680494858525,
+      "targetHeight": 0.20432209293247475,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.7888979201091096,
+      "leftFrontCorrelationAfter": -0.7895032002374693,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Filete manga",
+      "leftMesh": 4,
+      "rightMesh": 5,
+      "before": {
+        "4": [
+          0.18559682369232178,
+          0.010397076606750488
+        ],
+        "5": [
+          0.313240110874176,
+          0.017547607421875
+        ]
+      },
+      "targetWidth": 0.3317973355765471,
+      "targetHeight": 0.023409567230114812,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.7681533103922583,
+      "leftFrontCorrelationAfter": -0.7632493553388198,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Cal\u00e7\u00e3o",
+      "leftMesh": 1,
+      "rightMesh": 0,
+      "before": {
+        "0": [
+          0.6401803493499756,
+          0.4113668203353882
+        ],
+        "1": [
+          0.6401804089546204,
+          0.41136687994003296
+        ]
+      },
+      "targetWidth": 0.6532035804235804,
+      "targetHeight": 0.43649465791946207,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.8463069688354842,
+      "leftFrontCorrelationAfter": -0.8460570146776619,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "C\u00f3s",
+      "leftMesh": 2,
+      "rightMesh": 3,
+      "before": {
+        "2": [
+          0.3438285291194916,
+          0.05845922231674194
+        ],
+        "3": [
+          0.34382855892181396,
+          0.05845928192138672
+        ]
+      },
+      "targetWidth": 0.42028397013077173,
+      "targetHeight": 0.049090209842898413,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.9817614848174571,
+      "leftFrontCorrelationAfter": -0.983235160757559,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    }
+  ]
+}

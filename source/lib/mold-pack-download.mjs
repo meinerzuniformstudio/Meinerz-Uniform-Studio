@@ -1,0 +1,19 @@
+import {orderedDescriptor,orderedDrawing} from './ordered-drawing.mjs';
+import {SIMULATOR_KITS} from '../public/simulador/kit-catalog.js';
+import{deflateRawSync}from'node:zlib';
+import{INSTALLED_TEMPLATES}from'./installed-templates.mjs';
+import{fetchPackedSvg}from'./static-mold-drawings.mjs';
+import{drawingMapPdf}from'./drawing-map-pdf.mjs';
+const encoder=new TextEncoder(),table=Uint32Array.from({length:256},(_,n)=>{for(let k=0;k<8;k++)n=n&1?0xedb88320^(n>>>1):n>>>1;return n>>>0;});
+const crc32=bytes=>{let crc=0xffffffff;for(const b of bytes)crc=table[(crc^b)&255]^(crc>>>8);return(crc^0xffffffff)>>>0;};
+// Produce one entry at a time: the complete vector map collection never sits in
+// Worker memory, and each source contour stays identical to its canonical SVG.
+export async function* moldPackChunks(assets,origin,entries=INSTALLED_TEMPLATES.filter(e=>!e.descriptor.packId||SIMULATOR_KITS.some(k=>k.id===e.descriptor.id))){
+ let offset=0;const directory=[];
+ async function* entry(name,raw){const filename=encoder.encode(name),packed=deflateRawSync(raw,{level:9}),crc=crc32(raw),local=new Uint8Array(30+filename.length),v=new DataView(local.buffer);v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint16(6,0x800,true);v.setUint16(8,8,true);v.setUint32(14,crc,true);v.setUint32(18,packed.length,true);v.setUint32(22,raw.length,true);v.setUint16(26,filename.length,true);local.set(filename,30);
+ const central=new Uint8Array(46+filename.length),c=new DataView(central.buffer);c.setUint32(0,0x02014b50,true);c.setUint16(4,20,true);c.setUint16(6,20,true);c.setUint16(8,0x800,true);c.setUint16(10,8,true);c.setUint32(16,crc,true);c.setUint32(20,packed.length,true);c.setUint32(24,raw.length,true);c.setUint16(28,filename.length,true);c.setUint32(42,offset,true);central.set(filename,46);directory.push(central);offset+=local.length+packed.length;yield local;yield packed;}
+ yield*entry('LEIA-ME.txt',encoder.encode('MEINERZ — Mapas vetoriais revisados. PDF e SVG editáveis. Sangria de 10,67 pixels. Oculte guias e textos e exporte a página inteira em PNG 4096 x 4096. Use o mesmo molde na apresentação. Mapas de arte, sem graduação de produção.'));
+ for(const e of entries){const d=e.descriptor,folder=d.packId?['KIT',d.modeling,d.collar,(d.cutType&&d.cutType!=='SEM RECORTE'?'RECORTE '+d.cutType:d.sideCut?'COM RECORTE':'SEM RECORTE')+(d.variant?' - '+d.variant:''),'CALCAO '+(d.bottomParts||2)+' PARTES'].join('/'):'OUTROS/'+d.name;const response=await fetchPackedSvg(assets,new URL('/assets/molds/'+d.id+'/template.svg',origin));if(!response.ok)throw Error('Mapa indisponível: '+d.id);const source=await response.text(),svg=d.id.startsWith('pack26-')?orderedDrawing(source,orderedDescriptor(d)):source;yield*entry(folder+'/MAPA - '+d.id+'.svg',encoder.encode(svg));yield*entry(folder+'/MAPA - '+d.id+'.pdf',await drawingMapPdf(svg));}
+ const start=offset;for(const chunk of directory){offset+=chunk.length;yield chunk;}const end=new Uint8Array(22),v=new DataView(end.buffer);v.setUint32(0,0x06054b50,true);v.setUint16(8,directory.length,true);v.setUint16(10,directory.length,true);v.setUint32(12,offset-start,true);v.setUint32(16,start,true);yield end;
+}
+export function serveMoldPack(request,assets){const url=new URL(request.url);if(!assets||url.pathname!=='/assets/molds/pack26-mapas.zip'||!['GET','HEAD'].includes(request.method))return null;const iterator=moldPackChunks(assets,url.origin);return new Response(request.method==='HEAD'?null:new ReadableStream({async pull(controller){try{const next=await iterator.next();if(next.done)controller.close();else controller.enqueue(next.value);}catch(error){controller.error(error);}},async cancel(){await iterator.return();}}),{headers:{'Content-Type':'application/zip','Content-Disposition':'attachment; filename="Meinerz-Mapas.zip"','Cache-Control':'public, max-age=0, must-revalidate'}});}

@@ -51,6 +51,17 @@ export function createFourViewCameras(bounds, { aspect, fov = 32, padding = 1.12
 // Only export cameras are moved. Controls, artwork, lights and live camera stay intact.
 export function captureFourViews({ renderer, scene, liveCamera, bounds, onCapture,
   width = FOUR_VIEW_SHEET.frameWidth, height = FOUR_VIEW_SHEET.frameHeight, transparent=false, hideObjects=[] }) {
+  const separated=scene.userData?.separatedKit;
+  if(separated){
+    const saved=separated.snapshot();
+    try{
+      // Rotate each piece around its own centre. Their positions stay fixed.
+      const union=bounds.clone().makeEmpty();
+      for(const view of FOUR_VIEWS){separated.setView(view.id);union.union(separated.bounds());}
+      const front=createFourViewCameras(union,{aspect:width/height,fov:liveCamera.fov})[0];
+      return captureCameras({renderer,scene,liveCamera,width,height,cameras:FOUR_VIEWS.map(view=>({id:view.id,camera:front,beforeRender:()=>separated.setView(view.id)})),onCapture,transparent,hideObjects});
+    }finally{separated.restore(saved);renderer.render(scene,liveCamera);}
+  }
   const cameras = createFourViewCameras(bounds, { aspect: width / height, fov: liveCamera.fov });
   return captureCameras({renderer,scene,liveCamera,width,height,cameras:cameras.map((camera,index)=>({id:FOUR_VIEWS[index].id,camera})),onCapture,transparent,hideObjects});
 }
@@ -69,6 +80,7 @@ export function captureCameras({renderer,scene,liveCamera,width,height,cameras,o
     renderer.setPixelRatio(1); renderer.setSize(width, height, false);
     renderer.setRenderTarget(null); renderer.setScissorTest(false);
     for (const entry of cameras) {
+      entry.beforeRender?.();
       renderer.render(scene, entry.camera);
       // Copy each frame before the same WebGL drawing buffer is rendered again.
       onCapture(entry.id, renderer.domElement);
@@ -94,7 +106,7 @@ export function alphaBounds(canvas){
   return {x:left,y:top,width:right-left+1,height:bottom-top+1};
 }
 
-export function composeTransparentFourViews(target,{captureViews,settings={},maxWidth=4096,makeCanvas=()=>document.createElement('canvas')}){
+export function composeTransparentFourViews(target,{captureViews,settings={},maxWidth=4096,columns=4,makeCanvas=()=>document.createElement('canvas')}){
   const frames=new Map(),visuals=sanitizeVisuals(settings);
   try{
     captureViews((id,frame)=>{
@@ -105,6 +117,13 @@ export function composeTransparentFourViews(target,{captureViews,settings={},max
     if(frames.size!==4)throw new Error('A captura das quatro vistas ficou incompleta.');
     const entries=FOUR_VIEWS.map(view=>frames.get(view.id)),top=Math.min(...entries.map(frame=>frame.bounds.y)),bottom=Math.max(...entries.map(frame=>frame.bounds.y+frame.bounds.height));
     const height=bottom-top,padding=Math.max(2,Math.round(height*.012)),gap=Math.max(4,Math.round(height*.018));
+    if(columns===2){
+      const cellWidth=Math.max(...entries.map(e=>e.bounds.width)),width=cellWidth*2+gap+padding*2,totalHeight=height*2+gap+padding*2,scale=Math.min(1,maxWidth/width);
+      target.width=Math.ceil(width*scale);target.height=Math.ceil(totalHeight*scale);
+      const ctx=target.getContext('2d');ctx.scale(scale,scale);ctx.filter=`contrast(${visuals.contrast/100})`;
+      entries.forEach(({canvas,bounds},i)=>ctx.drawImage(canvas,bounds.x,top,bounds.width,height,padding+(i%2)*(cellWidth+gap)+(cellWidth-bounds.width)/2,padding+Math.floor(i/2)*(height+gap),bounds.width,height));
+      ctx.filter='none';return target;
+    }
     const width=entries.reduce((sum,frame)=>sum+frame.bounds.width,0)+gap*3+padding*2;
     const scale=Math.min(1,maxWidth/width);
     target.width=Math.ceil(width*scale);target.height=Math.ceil((height+padding*2)*scale);
@@ -119,7 +138,7 @@ function fitText(ctx, text, x, y, maxWidth, size, weight = 500) {
   const clean = String(text || '').replace(/\s+/g, ' ').trim();
   let fitted = clean;
   for (; size > 30; size -= 2) {
-    ctx.font = `${weight} ${size}px "Chakra Petch", Arial, sans-serif`;
+    ctx.font = `${weight} ${size}px "RBNo3.1", Arial, sans-serif`;
     if (ctx.measureText(fitted).width <= maxWidth) break;
   }
   while (ctx.measureText(fitted).width > maxWidth && fitted.length > 1) fitted = fitted.slice(0, -2).trimEnd() + '…';
@@ -158,24 +177,24 @@ export function composeFourViewSheet(target, { logo, settings, projectName, desi
 
   ctx.fillStyle = '#16181a'; ctx.fillRect(0, 0, layout.width, 300); ctx.fillRect(0, 2160, layout.width, 144);
   ctx.fillStyle = '#bba77d'; ctx.fillRect(layout.margin, 299, layout.width - layout.margin * 2, 2);
-  // Keep the complete Atlas lockup, including UNIFORM STUDIO, in its native ratio.
+  // Keep the complete Meinerz lockup, including UNIFORM STUDIO, in its native ratio.
   drawBrandLogo(ctx,logo,layout.margin,70,440,160);
-  ctx.fillStyle = '#c4ad7d'; ctx.font = '500 23px "Chakra Petch", Arial, sans-serif';
+  ctx.fillStyle = '#c4ad7d'; ctx.font = '500 23px "RBNo3.1", Arial, sans-serif';
   ctx.textAlign = 'right'; ctx.fillStyle = '#f2f2ed';
   fitText(ctx, projectName || 'Seu uniforme', layout.width - layout.margin, 153, 3060, 64, 700);
-  ctx.fillStyle = '#bba77d'; ctx.font = '400 23px "Chakra Petch", Arial, sans-serif';
+  ctx.fillStyle = '#bba77d'; ctx.font = '400 23px "RBNo3.1", Arial, sans-serif';
   trackedText(ctx, 'APRESENTAÇÃO DO UNIFORME · QUATRO VISTAS', layout.width - layout.margin, 218, 3);
   ctx.textAlign = 'center';
   for (const [index, view] of FOUR_VIEWS.entries()) {
     const x = layout.margin + index * (layout.frameWidth + layout.gap) + layout.frameWidth / 2;
     ctx.fillStyle = gold; ctx.fillRect(x - 30, 1978, 60, 3);
-    ctx.fillStyle = ink; ctx.font = '500 32px "Chakra Petch", Arial, sans-serif';
+    ctx.fillStyle = ink; ctx.font = '500 32px "RBNo3.1", Arial, sans-serif';
     trackedText(ctx, view.label, x, 2047, 3);
   }
   ctx.textAlign = 'left'; ctx.fillStyle = '#c4ad7d';
-  fitText(ctx, designerName && designerName !== '—' ? `Design por ${designerName}` : 'Atlas Uniform Studio', layout.margin, 2245, 2100, 30);
+  fitText(ctx, designerName && designerName !== '—' ? `Design por ${designerName}` : 'Meinerz Uniform Studio', layout.margin, 2245, 2100, 30);
   ctx.textAlign = 'right'; ctx.fillStyle = '#a6aaa6';
-  ctx.font = '400 24px "Chakra Petch", Arial, sans-serif';
+  ctx.font = '400 24px "RBNo3.1", Arial, sans-serif';
   ctx.fillText('Laterais identificadas pela vista de frente', layout.width - layout.margin, 2245);
   ctx.textAlign = 'left';
   return target;

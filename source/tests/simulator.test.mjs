@@ -7,7 +7,7 @@ import {migrations} from './migrations.mjs';
 import {SimulatorService} from '../lib/simulator-service.mjs';
 import {ProductionService,validateDocument} from '../lib/production-service.mjs';
 import {validateSimulatorState,simulatorPNG} from '../lib/simulator-validation.mjs';
-import {eliteState} from '../public/simulador/elite.js';
+import {eliteState,ELITE_MODEL,ELITE_PANELS} from '../public/simulador/elite.js';
 import {COLORS,UNIFORM_FONTS,DEFAULT_BASE} from '../public/simulador/catalog.js';
 import {layer,quality,resize,normalizeTextState,personalizationRole} from '../public/simulador/core.js';
 import {drawLayer} from '../public/simulador/paint.js';
@@ -15,8 +15,8 @@ import {GRAPHICS} from '../public/simulador/graphics.js';
 import {requireAdminUser} from '../lib/admin-auth.mjs';
 const owner={userId:'alice'},other={userId:'bob'};
 const bytes=await readFile(new URL('./fixtures/simulator-logo.png',import.meta.url)),preview='data:image/png;base64,'+bytes.toString('base64');
-const manifest=JSON.parse(await readFile(new URL('../public/simulador/models/kit-edge-2027.json',import.meta.url),'utf8'));
-const creation=()=>eliteState(manifest.panels);
+const manifest=JSON.parse(await readFile(new URL('../public/simulador/models/max.json',import.meta.url),'utf8'));
+const creation=()=>eliteState();
 function setup(){
  const sql=new DatabaseSync(':memory:');sql.exec('PRAGMA foreign_keys=ON');for(const m of migrations)sql.exec(m);
  const db={prepare(query){const statement=sql.prepare(query);let args=[];return {bind(...v){args=v;return this;},async first(){return statement.get(...args)||null;},async all(){return {results:statement.all(...args)};},async run(){return {meta:{changes:statement.run(...args).changes}};}};}};
@@ -27,10 +27,10 @@ test('the supplied palette has all 103 original entries and the three unchanged 
  assert.equal(COLORS.length,103);assert.equal(UNIFORM_FONTS.length,3);assert.deepEqual(UNIFORM_FONTS.map(f=>f.id),['mnz-autumn-26','mnz-revoke-26','mnz-bilbao-26']);assert.equal(COLORS.filter(c=>c.approximate).length,2);
  assert.equal(COLORS.find(c=>c.space==='PANTONE P 118-4 U').definition.space,'CMYK');assert.deepEqual(COLORS.find(c=>c.space==='PANTONE P 118-4 U').definition.values,[.49,0,.07,0]);
  for(const font of UNIFORM_FONTS){const bytes=await readFile(new URL('../public/simulador/'+font.file.replace('./',''),import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),font.sha256);assert.ok(font.characters.includes(48));}
- assert.equal(new Set(GRAPHICS.map(g=>g.id)).size,26);assert.ok(GRAPHICS.some(g=>g.id==='horizontal-line'));assert.ok(GRAPHICS.some(g=>g.id==='pinstripes'));
+ assert.equal(new Set(GRAPHICS.map(g=>g.id)).size,56);assert.ok(GRAPHICS.some(g=>g.id==='horizontal-line'));assert.ok(GRAPHICS.some(g=>g.id==='pinstripes'));
 });
 test('server validation pins the approved mold, named palette colors, fonts and graphics',()=>{
- const state=creation(),clean=validateSimulatorState(state);assert.equal(clean.panels.length,19);assert.equal(clean.panels[0].colorId,DEFAULT_BASE.id);assert.equal(clean.order,null);
+ const state=creation(),clean=validateSimulatorState(state);assert.equal(clean.panels.length,17);assert.equal(clean.panels[0].colorId,COLORS.find(c=>c.hex==='#ffffff').id);assert.equal(clean.order,null);
  const bad=structuredClone(state);bad.model='user-glb';assert.throws(()=>validateSimulatorState(bad),{status:400});bad.model=state.model;bad.panels[0].color='#123456';assert.throws(()=>validateSimulatorState(bad),{status:400});bad.panels[0].color=state.panels[0].color;bad.panels[0].layers.find(l=>l.type==='text').font='Arial';assert.throws(()=>validateSimulatorState(bad),{status:400});
  const duplicated=creation();duplicated.panels[1].id=duplicated.panels[0].id;assert.throws(()=>validateSimulatorState(duplicated),{status:400});const line=creation();line.panels[0].layers.push(layer('pattern',{pattern:'javascript'}));assert.throws(()=>validateSimulatorState(line),{status:400});
  const edge=creation();edge.panels[0].layers[0].x=NaN;assert.throws(()=>validateSimulatorState(edge),{status:400});
@@ -40,7 +40,7 @@ test('player placeholders stay upright and fixed after legacy reopen, save and o
  delete name.personalization;delete number.personalization;name.text='ATLETA';name.rotation=70;number.text='10';number.rotation=-45;
  const source=structuredClone(s);assert.equal(normalizeTextState(s),true);assert.equal(normalizeTextState(s),false);assert.equal(name.text,'JOGADOR');assert.equal(number.text,'00');assert.equal(name.rotation,0);assert.equal(number.rotation,0);assert.equal(personalizationRole(name),'player-name');
  const clean=validateSimulatorState(source),cleanBack=clean.panels.find(p=>p.id==='back');assert.deepEqual(cleanBack.layers.map(l=>[l.text,l.rotation]),[['JOGADOR',0],['00',0]]);
- const front=clean.panels.find(p=>p.id==='front');assert.equal(front.layers.find(l=>l.name==='Nome do time').text,'SEU TIME');const graphic=front.layers.find(l=>l.type==='pattern');graphic.rotation=35;assert.equal(validateSimulatorState(clean).panels[0].layers.find(l=>l.type==='pattern').rotation,35);
+ const front=clean.panels.find(p=>p.id==='front');assert.equal(front.layers.find(l=>l.name==='Nome do time').text,'SEU TIME');const graphic=layer('pattern',{pattern:'diagonal',rotation:35});front.layers.push(graphic);assert.equal(validateSimulatorState(clean).panels[0].layers.find(l=>l.type==='pattern').rotation,35);
  const {simulator}=setup(),saved=await simulator.save(owner,null,{state:source,preview}),opened=await simulator.get(owner,saved.id);assert.equal(opened.state.panels.find(p=>p.id==='back').layers[1].text,'00');const order=await simulator.createOrder(owner,saved.id,{version:1,customer:'Time',quantity:2});assert.equal(order.document.simulatorDesign.state.panels.find(p=>p.id==='back').layers[0].text,'JOGADOR');
 });
 test('resizing preserves width to height ratio at both size limits',()=>{
@@ -70,9 +70,9 @@ test('concurrent saves cannot overwrite another version or delete its objects',a
 test('a reviewed kit starts one real draft order with a transparent image and an independent editable snapshot',async()=>{
  const {simulator,production}=setup();const saved=await simulator.save(owner,null,{state:creation(),preview});const input={version:saved.version,customer:'Equipe A',quantity:24,notes:'Conferir nomes na lista'};
  await assert.rejects(simulator.createOrder(other,saved.id,input),{status:404});await assert.rejects(simulator.createOrder(owner,saved.id,{...input,version:2}),{status:409});await assert.rejects(simulator.createOrder(owner,saved.id,{...input,quantity:0}),{status:400});
- const results=await Promise.all([simulator.createOrder(owner,saved.id,input),simulator.createOrder(owner,saved.id,input)]);assert.equal(results[0].id,results[1].id);assert.equal((await production.list(owner)).length,1);const order=results[0],doc=order.document;assert.equal(doc.workflow.status,'draft');assert.equal(doc.client,'Equipe A');assert.match(doc.number,/^\d{4}-\d{2}-MNZ$/);assert.equal(doc.pages[0].mode,'conjunto');assert.deepEqual(doc.pages[0].products.map(p=>p.type),['Camiseta','Calção']);assert.ok(doc.pages[0].products.every(p=>p.quantity===24));assert.equal(doc.pages[0].visual.image,preview);assert.equal(doc.simulatorDesign.version,1);assert.equal(doc.simulatorDesign.state.panels.length,19);
- const next=creation();next.title='Outro desenho';await simulator.save(owner,saved.id,{state:next,preview,version:1});assert.equal((await production.get(owner,order.id)).document.simulatorDesign.state.title,'Meu KIT EDGE 2027');assert.equal((await simulator.fromOrder(owner,order.id)).state.title,'Meu KIT EDGE 2027');await assert.rejects(simulator.fromOrder(other,order.id),{status:404});
- const roundtrip=await production.save(owner,order.id,{document:doc,version:order.version});assert.equal((await production.get(owner,roundtrip.id)).document.simulatorDesign.state.model,'kit-edge-2027-mapa-v3');assert.equal(validateDocument(doc).simulatorDesign.id,saved.id);
+ const results=await Promise.all([simulator.createOrder(owner,saved.id,input),simulator.createOrder(owner,saved.id,input)]);assert.equal(results[0].id,results[1].id);assert.equal((await production.list(owner)).length,1);const order=results[0],doc=order.document;assert.equal(doc.workflow.status,'draft');assert.equal(doc.client,'Equipe A');assert.match(doc.number,/^\d{4}-\d{2}-MNZ$/);assert.equal(doc.pages[0].mode,'conjunto');assert.deepEqual(doc.pages[0].products.map(p=>p.type),['Camiseta','Calção']);assert.ok(doc.pages[0].products.every(p=>p.quantity===24));assert.equal(doc.pages[0].visual.image,preview);assert.equal(doc.simulatorDesign.version,1);assert.equal(doc.simulatorDesign.state.panels.length,17);
+ const next=creation();next.title='Outro desenho';await simulator.save(owner,saved.id,{state:next,preview,version:1});assert.equal((await production.get(owner,order.id)).document.simulatorDesign.state.title,'Meu uniforme');assert.equal((await simulator.fromOrder(owner,order.id)).state.title,'Meu uniforme');await assert.rejects(simulator.fromOrder(other,order.id),{status:404});
+ const roundtrip=await production.save(owner,order.id,{document:doc,version:order.version});assert.equal((await production.get(owner,roundtrip.id)).document.simulatorDesign.state.model,creation().model);assert.equal(validateDocument(doc).simulatorDesign.id,saved.id);
 });
 test('a failed order creation can be retried without discarding the saved drawing',async()=>{
  const {simulator,production}=setup();const saved=await simulator.save(owner,null,{state:creation(),preview}),save=production.save.bind(production);production.save=async()=>{throw Error('Storage unavailable');};await assert.rejects(simulator.createOrder(owner,saved.id,{version:1,customer:'Time',quantity:2}));assert.equal((await simulator.get(owner,saved.id)).orderId,null);production.save=save;const order=await simulator.createOrder(owner,saved.id,{version:1,customer:'Time',quantity:2});assert.equal(order.document.pages[0].products.length,2);
@@ -84,6 +84,6 @@ test('a legacy simulator preview must be refreshed before it can start a new Atl
  const reopened=await simulator.get(owner,saved.id);assert.equal(reopened.orderId,null);const refreshed=await simulator.save(owner,saved.id,{state:reopened.state,preview,version:1});assert.equal(refreshed.state.platformBrand,'atlas');const order=await simulator.createOrder(owner,saved.id,{version:2,customer:'Time',quantity:2});assert.equal(order.document.simulatorDesign.state.platformBrand,'atlas');
 });
 test('GLB management remains admin-only and the customer editor has no upload control or arbitrary model entry point',async()=>{
- const html=await readFile(new URL('../public/simulador/editor.html',import.meta.url),'utf8'),js=await readFile(new URL('../public/simulador/app.js',import.meta.url),'utf8');assert.doesNotMatch(html,/glb-upload|accept="\.glb"|type="color"/);assert.doesNotMatch(js,/importModel|modelBuffer|glb-upload/);assert.match(js,/session\.isAdmin!==true/);assert.match(html,/KIT EDGE 2027/);assert.match(html,/src="\.\/app\.js/);assert.throws(()=>requireAdminUser(other,'alice'),{status:403});assert.equal(requireAdminUser(owner,'alice'),owner);
+ const html=await readFile(new URL('../public/simulador/editor.html',import.meta.url),'utf8'),js=await readFile(new URL('../public/simulador/app.js',import.meta.url),'utf8');assert.doesNotMatch(html,/glb-upload|accept="\.glb"|type="color"/);assert.doesNotMatch(js,/importModel|modelBuffer|glb-upload/);assert.match(js,/session\.isAdmin!==true/);assert.match(html,/KIT MAX/);assert.match(html,/src="\.\/app\.js/);assert.throws(()=>requireAdminUser(other,'alice'),{status:403});assert.equal(requireAdminUser(owner,'alice'),owner);
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size);
 });

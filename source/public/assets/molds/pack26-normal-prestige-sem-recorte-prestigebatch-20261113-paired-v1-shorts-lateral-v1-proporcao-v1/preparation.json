@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-normal-prestige-sem-recorte-prestigebatch-20261113-paired-v1-shorts-lateral-v1",
+  "name": "KIT · NORMAL · PRESTIGE · SEM RECORTE · CALÇÃO RECORTE LATERAL",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "8f60b1498460d57c7533470dee48acb694a49ee8a2ca29a829d6b72316a67a9c",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 120656,
+  "vertices": 61539,
+  "panelCount": 12,
+  "texelsPerUvUnit": 5549.280830912608,
+  "artBleedPixels": 16,
+  "sourceName": "Variante aprovada — KIT · NORMAL · PRESTIGE · SEM RECORTE · CALÇÃO 2 PARTES.glb",
+  "originalSourceSha256": "56b063e70f20a045ddb104615f438d1759dc76b5b22528e2b0b1bb9bc54f3a5a",
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção lateral direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Calção lateral esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Gola frente direita",
+    "Gola frente esquerda",
+    "Filete manga direita",
+    "Filete manga esquerda",
+    "Manga esquerda",
+    "Manga direita",
+    "Frente",
+    "Costas"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body",
+    "body"
+  ],
+  "decorativeMeshes": [],
+  "modeling": "NORMAL",
+  "collar": "PRESTIGE",
+  "sideCut": false,
+  "bottomParts": 6,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "cutType": "SEM RECORTE",
+  "variantSource": "KIT NORMAL PRESTIGE - CALÇÃO BASICO.glb",
+  "uploadedSourceSha256": "9368cb48bd7c9495f42feca618999ad2c95664a88835d9f461db9d918da329ab",
+  "refreshBatch": "shorts-lateral-2026-11-13",
+  "pairNormalization": "intrinsic-paired-v1",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "NORMAL",
+    "PRESTIGE",
+    "SEM RECORTE",
+    "CALÇÃO 2 PARTES"
+  ],
+  "preparedFrom": "pack26-normal-prestige-sem-recorte-prestigebatch-20261113-paired-v1",
+  "mapRevision": "physical-v1",
+  "proportionMethod": "area-weighted intrinsic UV metric; full positive affine; shared paired bounds",
+  "atlasRevision": 1,
+  "guideLabelBoxes": [
+    {
+      "panel": 11,
+      "text": "Frente · P11",
+      "x": 100,
+      "y": 385,
+      "w": 125.53399999999999,
+      "h": 29
+    },
+    {
+      "panel": 12,
+      "text": "Costas · P12",
+      "x": 1231.73257261919,
+      "y": 385,
+      "w": 131.675,
+      "h": 29
+    },
+    {
+      "panel": 5,
+      "text": "Gola frente direita ·",
+      "x": 2900,
+      "y": 385,
+      "w": 195.59199999999998,
+      "h": 29
+    },
+    {
+      "panel": 5,
+      "text": "P05",
+      "x": 2900,
+      "y": 413,
+      "w": 40.917,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "Gola frente esquerda ·",
+      "x": 3211,
+      "y": 385,
+      "w": 228.85,
+      "h": 29
+    },
+    {
+      "panel": 6,
+      "text": "P06",
+      "x": 3211,
+      "y": 413,
+      "w": 40.917,
+      "h": 29
+    },
+    {
+      "panel": 9,
+      "text": "Manga esquerda · P09",
+      "x": 100,
+      "y": 2142.8731880932432,
+      "w": 232.691,
+      "h": 29
+    },
+    {
+      "panel": 10,
+      "text": "Manga direita · P10",
+      "x": 934.2129942802089,
+      "y": 2142.8731880932432,
+      "w": 199.433,
+      "h": 29
+    },
+    {
+      "panel": 7,
+      "text": "Filete manga direita · P07",
+      "x": 1768.4259885604179,
+      "y": 2142.8731880932432,
+      "w": 262.062,
+      "h": 29
+    },
+    {
+      "panel": 8,
+      "text": "Filete manga esquerda · P08",
+      "x": 2551.9492824867257,
+      "y": 2142.8731880932432,
+      "w": 295.32,
+      "h": 29
+    },
+    {
+      "panel": 1,
+      "text": "Calção direito · P01",
+      "x": 100,
+      "y": 2727.380735245736,
+      "w": 200.698,
+      "h": 29
+    },
+    {
+      "panel": 2,
+      "text": "Calção esquerdo · P02",
+      "x": 1510.4938834041584,
+      "y": 2727.380735245736,
+      "w": 233.956,
+      "h": 29
+    },
+    {
+      "panel": 3,
+      "text": "Cós esquerdo · P03",
+      "x": 2920.9877668083163,
+      "y": 2727.380735245736,
+      "w": 203.274,
+      "h": 29
+    },
+    {
+      "panel": 4,
+      "text": "Cós direito · P04",
+      "x": 100,
+      "y": 3742.0386726640677,
+      "w": 170.016,
+      "h": 29
+    }
+  ],
+  "intermediateOnly": true,
+  "bottomVariant": "lateral",
+  "baseShirtId": "pack26-normal-prestige-sem-recorte-prestigebatch-20261113-paired-v1-proporcao-v1",
+  "bottomReference": "pack26-calcao-recorte-lateral-aprovado-v1",
+  "uvCanonicalMeshes": []
+}

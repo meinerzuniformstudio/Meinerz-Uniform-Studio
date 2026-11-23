@@ -6,7 +6,7 @@ export default function HeroComposition(){return <div className="entry-compositi
  <img className="entry-product" src="/assets/entry/uniform-product.webp" alt="" width="1200" height="1300" decoding="async"/>
  <img className="entry-athlete entry-athlete-woman" src="/assets/entry/futsal-athlete.webp" alt="" width="1024" height="1536" decoding="async"/>
  <img className="entry-athlete entry-athlete-man" src="/assets/entry/football-athlete.webp" alt="" width="1024" height="1536" fetchPriority="high" decoding="async"/>
- <div className="entry-production-card"><div className="entry-production-head"><span>02 / PRODUÇÃO</span><svg viewBox="0 0 24 24" fill="none"><path d="M9 3H5v18h14V3h-4M9 2h6v5H9zM8 12h8M8 16h5"/></svg></div><strong>Do desenho<br/>ao próximo jogo.</strong><div className="entry-production-body"><ShirtOutline/><div><span>FICHA DO UNIFORME</span><i/><i/><i/><small>DESENHO + LISTA + PEDIDO</small></div></div><span className="entry-example-note">COMPOSIÇÃO ILUSTRATIVA</span></div>
- <div className="entry-material-tag"><span className="entry-fabric"/><div><span>CRIATIVIDADE QUE</span><strong>veste o jogo.</strong></div><svg viewBox="0 0 24 24" fill="none"><path d="M5 19 19 5M5 5h14v14"/></svg></div>
- <span className="entry-scene-caption">DO TRAÇO AO TECIDO. DO TECIDO À QUADRA.</span>
+ <div className="entry-production-card"><div className="entry-production-head"><span>02 / PRODUÇÃO</span><svg viewBox="0 0 24 24" fill="none"><path d="M9 3H5v18h14V3h-4M9 2h6v5H9zM8 12h8M8 16h5"/></svg></div><strong>Ficha de<br/>produção.</strong><div className="entry-production-body"><ShirtOutline/><div><span>FICHA DO UNIFORME</span><i/><i/><i/><small>DESENHO + LISTA + PEDIDO</small></div></div><span className="entry-example-note">COMPOSIÇÃO ILUSTRATIVA</span></div>
+ <div className="entry-material-tag"><span className="entry-fabric"/><div><span>APRESENTAÇÃO</span><strong>DO UNIFORME</strong></div><svg viewBox="0 0 24 24" fill="none"><path d="M5 19 19 5M5 5h14v14"/></svg></div>
+ <span className="entry-scene-caption">SIMULADOR · APRESENTAÇÃO · PEDIDO</span>
  </div></div>;}

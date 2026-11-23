@@ -13,18 +13,18 @@ export default async function Login() {
     <section className="login-art">
       <Brand />
       <span className="entry-brand-note">DESIGN / ESPORTE / PRODUÇÃO</span>
-      <div className="login-statement"><p className="eyebrow">ATLAS · IDEIAS EM MOVIMENTO</p><h1><span>Liberdade</span><span>para criar.</span><span className="entry-headline-accent">Poder para</span><span className="entry-headline-accent">produzir.</span></h1><p>Do primeiro traço ao uniforme em quadra.<br/>As ferramentas para dar vida às suas ideias,<br/>com a liberdade de fazer do seu jeito.</p></div>
+      <div className="login-statement"><p className="eyebrow">MEINERZ UNIFORM STUDIO</p><h1><span>Uniformes.</span><span>Apresentações.</span><span className="entry-headline-accent">Pedidos.</span></h1><p>Crie o uniforme, organize a lista<br/>e prepare o pedido para produção.</p></div>
       <HeroComposition/>
-      <footer className="login-art-footer"><span>CRIE. VISUALIZE. TRANSFORME.</span><span>CRIADO POR ANDREI RAIMUNDI</span></footer>
+      <footer className="login-art-footer"><span>UNIFORMES · APRESENTAÇÕES · PEDIDOS</span><span>CRIADO POR ANDREI RAIMUNDI</span></footer>
       <a className="entry-mobile-jump" href="#studio-access">Entrar no estúdio ↓</a>
     </section>
     <section className="login-form-section" id="studio-access">
-      <div className="login-form"><ThemeSelector/><span className="tiny-line" /><p className="eyebrow">SUA PRÓXIMA CRIAÇÃO COMEÇA AQUI</p><h2>{user ? `Olá, ${displayName.split(' ')[0]}.` : 'Entre no seu estúdio.'}</h2><p className="body-copy">Desenhe uniformes, apresente suas ideias e conecte cada detalhe ao pedido. Tudo no seu ritmo, em um só lugar.</p>
+      <div className="login-form"><ThemeSelector/><span className="tiny-line" /><p className="eyebrow">ACESSO AO MEINERZ UNIFORM STUDIO</p><h2>{user ? `Olá, ${displayName.split(' ')[0]}.` : 'Entrar no Meinerz'}</h2><p className="body-copy">Acesse seus projetos, listas, orçamentos e pedidos.</p>
         {user ? <a className="gold-button login-cta" href="/pedidos">Acessar meus pedidos <span>↗</span></a> : <a className="gold-button login-cta" href={chatGPTSignInPath('/pedidos')} target="_top">Entrar com ChatGPT <span>↗</span></a>}
         <p className="signin-explanation">Use o e-mail da sua conta ChatGPT.<br />Seus projetos ficam vinculados à sua conta.</p>
-        <a className="outline-button simulator-entry-cta" href="/simulador" target="_top">CRIE SEU UNIFORME COM NOSSO SIMULADOR <span>↗</span></a>
-        <div className="login-features"><p><span>01</span><span><strong>Criação com liberdade</strong>Seu uniforme, suas cores, sua identidade.</span></p><p><span>02</span><span><strong>Ideias que ganham forma</strong>Apresentações em 3D para ver cada detalhe.</span></p><p><span>03</span><span><strong>Produção conectada</strong>Desenho, lista e pedido no mesmo fluxo.</span></p></div>
-      </div><p className="login-bottom">ATLAS UNIFORM STUDIO · POR ANDREI RAIMUNDI</p>
+        <a className="outline-button simulator-entry-cta" href="/simulador" target="_top">Abrir simulador <span>↗</span></a>
+        <div className="login-features"><p><span>01</span><span><strong>Simulador</strong>Cores, grafismos e personalização.</span></p><p><span>02</span><span><strong>Apresentações 3D</strong>Visualização e aprovação do uniforme.</span></p><p><span>03</span><span><strong>Pedidos</strong>Arquivos e listas para cada indústria.</span></p></div>
+      </div><p className="login-bottom">MEINERZ UNIFORM STUDIO · POR ANDREI RAIMUNDI</p>
     </section>
   </main>;
 }

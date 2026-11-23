@@ -1,0 +1,587 @@
+{
+  "batch": "prime-2026-11-16",
+  "uploadedFiles": 4,
+  "newModels": 64,
+  "originalTrianglePolicy": "retained without decimation, refitting or node scaling",
+  "maps": "vector SVG, 4096 square atlas, shared scale, original pair shapes preserved",
+  "intermediateIds": [
+    "pack26-normal-prime-sem-recorte-prime-20261116",
+    "pack26-normal-prime-v-sem-recorte-prime-20261116",
+    "pack26-raglan-prime-sem-recorte-prime-20261116",
+    "pack26-raglan-prime-v-sem-recorte-prime-20261116",
+    "pack26-normal-prime-lateral-prime-20261116-derived-v1",
+    "pack26-normal-prime-v-lateral-prime-20261116-derived-v1",
+    "pack26-raglan-prime-lateral-prime-20261116-derived-v1",
+    "pack26-raglan-prime-v-lateral-prime-20261116-derived-v1",
+    "pack26-normal-prime-faixa-prime-20261116-derived-v1",
+    "pack26-normal-prime-v-faixa-prime-20261116-derived-v1",
+    "pack26-raglan-prime-faixa-prime-20261116-derived-v1",
+    "pack26-raglan-prime-v-faixa-prime-20261116-derived-v1",
+    "pack26-normal-prime-axila-prime-20261116-derived-v1",
+    "pack26-normal-prime-v-axila-prime-20261116-derived-v1",
+    "pack26-raglan-prime-axila-prime-20261116-derived-v1",
+    "pack26-raglan-prime-v-axila-prime-20261116-derived-v1",
+    "pack26-normal-prime-v-sem-recorte-prime-20261116-shorts4-v1",
+    "pack26-normal-prime-sem-recorte-prime-20261116-shorts4-v1",
+    "pack26-normal-prime-v-sem-recorte-prime-20261116-shorts5-v1",
+    "pack26-normal-prime-sem-recorte-prime-20261116-shorts5-v1",
+    "pack26-raglan-prime-sem-recorte-prime-20261116-shorts4-v1",
+    "pack26-raglan-prime-v-sem-recorte-prime-20261116-shorts4-v1",
+    "pack26-raglan-prime-sem-recorte-prime-20261116-shorts5-v1",
+    "pack26-normal-prime-lateral-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-raglan-prime-v-sem-recorte-prime-20261116-shorts5-v1",
+    "pack26-normal-prime-v-lateral-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-raglan-prime-lateral-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-normal-prime-lateral-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-normal-prime-v-lateral-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-raglan-prime-lateral-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-raglan-prime-v-lateral-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-normal-prime-faixa-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-raglan-prime-v-lateral-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-normal-prime-v-faixa-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-normal-prime-faixa-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-raglan-prime-faixa-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-normal-prime-v-faixa-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-raglan-prime-v-faixa-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-raglan-prime-faixa-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-normal-prime-axila-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-raglan-prime-v-faixa-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-normal-prime-v-axila-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-normal-prime-axila-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-raglan-prime-axila-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-normal-prime-v-axila-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-raglan-prime-v-axila-prime-20261116-derived-v1-shorts4-v1",
+    "pack26-raglan-prime-axila-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-raglan-prime-v-axila-prime-20261116-derived-v1-shorts5-v1",
+    "pack26-normal-prime-sem-recorte-prime-20261116-shorts-lateral-v1",
+    "pack26-normal-prime-v-sem-recorte-prime-20261116-shorts-lateral-v1",
+    "pack26-raglan-prime-sem-recorte-prime-20261116-shorts-lateral-v1",
+    "pack26-raglan-prime-v-sem-recorte-prime-20261116-shorts-lateral-v1",
+    "pack26-normal-prime-lateral-prime-20261116-derived-v1-shorts-lateral-v1",
+    "pack26-normal-prime-v-lateral-prime-20261116-derived-v1-shorts-lateral-v1",
+    "pack26-raglan-prime-lateral-prime-20261116-derived-v1-shorts-lateral-v1",
+    "pack26-raglan-prime-v-lateral-prime-20261116-derived-v1-shorts-lateral-v1",
+    "pack26-normal-prime-faixa-prime-20261116-derived-v1-shorts-lateral-v1",
+    "pack26-normal-prime-v-faixa-prime-20261116-derived-v1-shorts-lateral-v1",
+    "pack26-raglan-prime-faixa-prime-20261116-derived-v1-shorts-lateral-v1",
+    "pack26-raglan-prime-v-faixa-prime-20261116-derived-v1-shorts-lateral-v1",
+    "pack26-normal-prime-axila-prime-20261116-derived-v1-shorts-lateral-v1",
+    "pack26-normal-prime-v-axila-prime-20261116-derived-v1-shorts-lateral-v1",
+    "pack26-raglan-prime-axila-prime-20261116-derived-v1-shorts-lateral-v1",
+    "pack26-raglan-prime-v-axila-prime-20261116-derived-v1-shorts-lateral-v1"
+  ],
+  "entries": [
+    {
+      "id": "pack26-normal-prime-sem-recorte-prime-20261116-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 2,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-sem-recorte-prime-20261116-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 2,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-sem-recorte-prime-20261116-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 2,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-sem-recorte-prime-20261116-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 2,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-lateral-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "LATERAL",
+      "bottomParts": 2,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-lateral-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "LATERAL",
+      "bottomParts": 2,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-lateral-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "LATERAL",
+      "bottomParts": 2,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-lateral-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "LATERAL",
+      "bottomParts": 2,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-faixa-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "FAIXA",
+      "bottomParts": 2,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-faixa-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "FAIXA",
+      "bottomParts": 2,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-faixa-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "FAIXA",
+      "bottomParts": 2,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-faixa-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "FAIXA",
+      "bottomParts": 2,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-axila-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "AXILA",
+      "bottomParts": 2,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-axila-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "AXILA",
+      "bottomParts": 2,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-axila-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "AXILA",
+      "bottomParts": 2,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-axila-prime-20261116-derived-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "AXILA",
+      "bottomParts": 2,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-sem-recorte-prime-20261116-shorts4-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 4,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-sem-recorte-prime-20261116-shorts4-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 4,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-sem-recorte-prime-20261116-shorts5-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 5,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-sem-recorte-prime-20261116-shorts5-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 5,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-sem-recorte-prime-20261116-shorts4-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 4,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-sem-recorte-prime-20261116-shorts4-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 4,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-sem-recorte-prime-20261116-shorts5-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 5,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-lateral-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "LATERAL",
+      "bottomParts": 4,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-sem-recorte-prime-20261116-shorts5-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 5,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-lateral-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "LATERAL",
+      "bottomParts": 4,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-lateral-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "LATERAL",
+      "bottomParts": 4,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-lateral-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "LATERAL",
+      "bottomParts": 5,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-lateral-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "LATERAL",
+      "bottomParts": 5,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-lateral-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "LATERAL",
+      "bottomParts": 5,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-lateral-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "LATERAL",
+      "bottomParts": 4,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-faixa-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "FAIXA",
+      "bottomParts": 4,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-lateral-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "LATERAL",
+      "bottomParts": 5,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-faixa-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "FAIXA",
+      "bottomParts": 4,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-faixa-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "FAIXA",
+      "bottomParts": 5,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-faixa-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "FAIXA",
+      "bottomParts": 4,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-faixa-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "FAIXA",
+      "bottomParts": 5,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-faixa-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "FAIXA",
+      "bottomParts": 4,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-faixa-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "FAIXA",
+      "bottomParts": 5,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-axila-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "AXILA",
+      "bottomParts": 4,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-faixa-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "FAIXA",
+      "bottomParts": 5,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-axila-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "AXILA",
+      "bottomParts": 4,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-axila-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "AXILA",
+      "bottomParts": 5,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-axila-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "AXILA",
+      "bottomParts": 4,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-axila-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "AXILA",
+      "bottomParts": 5,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-axila-prime-20261116-derived-v1-shorts4-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "AXILA",
+      "bottomParts": 4,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-axila-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "AXILA",
+      "bottomParts": 5,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-axila-prime-20261116-derived-v1-shorts5-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "AXILA",
+      "bottomParts": 5,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-sem-recorte-prime-20261116-shorts-lateral-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 6,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-sem-recorte-prime-20261116-shorts-lateral-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 6,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-sem-recorte-prime-20261116-shorts-lateral-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 6,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-sem-recorte-prime-20261116-shorts-lateral-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "SEM RECORTE",
+      "bottomParts": 6,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-lateral-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "LATERAL",
+      "bottomParts": 6,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-lateral-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "LATERAL",
+      "bottomParts": 6,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-lateral-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "LATERAL",
+      "bottomParts": 6,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-lateral-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "LATERAL",
+      "bottomParts": 6,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-faixa-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "FAIXA",
+      "bottomParts": 6,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-faixa-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "FAIXA",
+      "bottomParts": 6,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-faixa-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "FAIXA",
+      "bottomParts": 6,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-faixa-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "FAIXA",
+      "bottomParts": 6,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-normal-prime-axila-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME",
+      "cutType": "AXILA",
+      "bottomParts": 6,
+      "source": "GOLA PRIME REDONDA - NORMAL.glb"
+    },
+    {
+      "id": "pack26-normal-prime-v-axila-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "NORMAL",
+      "collar": "PRIME V",
+      "cutType": "AXILA",
+      "bottomParts": 6,
+      "source": "GOLA PRIME V - NORMAL.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-axila-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME",
+      "cutType": "AXILA",
+      "bottomParts": 6,
+      "source": "GOLA PRIME REDONDA - RAGLAN.glb"
+    },
+    {
+      "id": "pack26-raglan-prime-v-axila-prime-20261116-derived-v1-shorts-lateral-v1-mapa-v1",
+      "modeling": "RAGLAN",
+      "collar": "PRIME V",
+      "cutType": "AXILA",
+      "bottomParts": 6,
+      "source": "GOLA PRIME V - RAGLAN.glb"
+    }
+  ]
+}

@@ -1,0 +1,660 @@
+{
+  "version": 1,
+  "kind": "generated",
+  "id": "pack26-normal-prime-v-axila-prime-20261116-derived-v1-shorts5-v1",
+  "name": "KIT · NORMAL · PRIME V · RECORTE AXILA · CALÇÃO 5 PARTES",
+  "category": "conjunto",
+  "pageSize": 4096,
+  "sourceSha256": "196fc811a6a6c1b7c395c927703069b71a9b46bdb93b49f692f7d9a544bf5c5f",
+  "orientation": {
+    "up": "y",
+    "front": "+z"
+  },
+  "triangles": 128208,
+  "vertices": 66849,
+  "panelCount": 20,
+  "primitives": [
+    {
+      "key": "m0p0",
+      "mesh": 0,
+      "primitive": 0,
+      "label": "Calção frente direito",
+      "islandCount": 1,
+      "displayName": "Calção frente direito"
+    },
+    {
+      "key": "m1p0",
+      "mesh": 1,
+      "primitive": 0,
+      "label": "Calção costas direito",
+      "islandCount": 1,
+      "displayName": "Calção costas direito"
+    },
+    {
+      "key": "m2p0",
+      "mesh": 2,
+      "primitive": 0,
+      "label": "Calção frente esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção frente esquerdo"
+    },
+    {
+      "key": "m3p0",
+      "mesh": 3,
+      "primitive": 0,
+      "label": "Calção costas esquerdo",
+      "islandCount": 1,
+      "displayName": "Calção costas esquerdo"
+    },
+    {
+      "key": "m4p0",
+      "mesh": 4,
+      "primitive": 0,
+      "label": "Cós frente esquerdo",
+      "islandCount": 1,
+      "displayName": "Cós frente esquerdo"
+    },
+    {
+      "key": "m5p0",
+      "mesh": 5,
+      "primitive": 0,
+      "label": "Cós costas esquerdo",
+      "islandCount": 1,
+      "displayName": "Cós costas esquerdo"
+    },
+    {
+      "key": "m6p0",
+      "mesh": 6,
+      "primitive": 0,
+      "label": "Cós frente direito",
+      "islandCount": 1,
+      "displayName": "Cós frente direito"
+    },
+    {
+      "key": "m7p0",
+      "mesh": 7,
+      "primitive": 0,
+      "label": "Cós costas direito",
+      "islandCount": 1,
+      "displayName": "Cós costas direito"
+    },
+    {
+      "key": "m8p0",
+      "mesh": 8,
+      "primitive": 0,
+      "label": "Calção pala traseira",
+      "islandCount": 1,
+      "displayName": "Calção pala traseira"
+    },
+    {
+      "key": "m9p0",
+      "mesh": 9,
+      "primitive": 0,
+      "label": "Filete manga esquerda",
+      "islandCount": 1,
+      "displayName": "Filete manga esquerda"
+    },
+    {
+      "key": "m10p0",
+      "mesh": 10,
+      "primitive": 0,
+      "label": "Filete manga direita",
+      "islandCount": 1,
+      "displayName": "Filete manga direita"
+    },
+    {
+      "key": "m11p0",
+      "mesh": 11,
+      "primitive": 0,
+      "label": "Gola costas",
+      "islandCount": 1,
+      "displayName": "Gola costas"
+    },
+    {
+      "key": "m12p0",
+      "mesh": 12,
+      "primitive": 0,
+      "label": "Gola frente",
+      "islandCount": 1,
+      "displayName": "Gola frente"
+    },
+    {
+      "key": "m13p0",
+      "mesh": 13,
+      "primitive": 0,
+      "label": "Peitilho",
+      "islandCount": 1,
+      "displayName": "Peitilho"
+    },
+    {
+      "key": "m14p0",
+      "mesh": 14,
+      "primitive": 0,
+      "label": "Manga esquerda",
+      "islandCount": 1,
+      "displayName": "Manga esquerda"
+    },
+    {
+      "key": "m15p0",
+      "mesh": 15,
+      "primitive": 0,
+      "label": "Manga direita",
+      "islandCount": 1,
+      "displayName": "Manga direita"
+    },
+    {
+      "key": "m16p0",
+      "mesh": 16,
+      "primitive": 0,
+      "label": "Frente",
+      "islandCount": 1,
+      "displayName": "Frente"
+    },
+    {
+      "key": "m17p0",
+      "mesh": 17,
+      "primitive": 0,
+      "label": "Costas",
+      "islandCount": 1,
+      "displayName": "Costas"
+    },
+    {
+      "key": "m18p0",
+      "mesh": 18,
+      "primitive": 0,
+      "label": "Recorte axila esquerdo",
+      "islandCount": 1,
+      "displayName": "Recorte axila esquerdo"
+    },
+    {
+      "key": "m19p0",
+      "mesh": 19,
+      "primitive": 0,
+      "label": "Recorte axila direito",
+      "islandCount": 1,
+      "displayName": "Recorte axila direito"
+    }
+  ],
+  "panels": [
+    {
+      "number": 1,
+      "mesh": 0,
+      "primitive": 0,
+      "rect": {
+        "x": 2690.6817264496117,
+        "y": 280,
+        "w": 788.1211700905404,
+        "h": 949.4117898428353
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.3339868187904358,
+        0.402337908744812
+      ],
+      "contourVertices": 348,
+      "label": "Calção frente direito",
+      "displayName": "Calção frente direito"
+    },
+    {
+      "number": 2,
+      "mesh": 1,
+      "primitive": 0,
+      "rect": {
+        "x": 1253.286909989477,
+        "y": 2187.4074569072163,
+        "w": 748.7767098256512,
+        "h": 503.96196442064297
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.3173135817050934,
+        0.21356697380542755
+      ],
+      "contourVertices": 318,
+      "label": "Calção costas direito",
+      "displayName": "Calção costas direito"
+    },
+    {
+      "number": 3,
+      "mesh": 2,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 2187.4074569072163,
+        "w": 788.1211700905404,
+        "h": 949.4117898428353
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.3339868187904358,
+        0.402337908744812
+      ],
+      "contourVertices": 359,
+      "label": "Calção frente esquerdo",
+      "displayName": "Calção frente esquerdo"
+    },
+    {
+      "number": 4,
+      "mesh": 3,
+      "primitive": 0,
+      "rect": {
+        "x": 2082.0636198151283,
+        "y": 2187.4074569072163,
+        "w": 748.7767098256512,
+        "h": 503.96196442064297
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.3173135817050934,
+        0.21356697380542755
+      ],
+      "contourVertices": 302,
+      "label": "Calção costas esquerdo",
+      "displayName": "Calção costas esquerdo"
+    },
+    {
+      "number": 5,
+      "mesh": 4,
+      "primitive": 0,
+      "rect": {
+        "x": 3441.3980144257475,
+        "y": 3216.8192467500517,
+        "w": 393.91036945003515,
+        "h": 137.94848057043816
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.16692975163459778,
+        0.05845925211906433
+      ],
+      "contourVertices": 110,
+      "label": "Cós frente esquerdo",
+      "displayName": "Cós frente esquerdo"
+    },
+    {
+      "number": 6,
+      "mesh": 5,
+      "primitive": 0,
+      "rect": {
+        "x": 2442.510372780197,
+        "y": 3216.8192467500517,
+        "w": 419.44382082277514,
+        "h": 137.94848057043816
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.17775021493434906,
+        0.05845925211906433
+      ],
+      "contourVertices": 109,
+      "label": "Cós costas esquerdo",
+      "displayName": "Cós costas esquerdo"
+    },
+    {
+      "number": 7,
+      "mesh": 6,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 3790.9215194292374,
+        "w": 393.91036945003515,
+        "h": 137.94848057043816
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.16692975163459778,
+        0.05845925211906433
+      ],
+      "contourVertices": 99,
+      "label": "Cós frente direito",
+      "displayName": "Cós frente direito"
+    },
+    {
+      "number": 8,
+      "mesh": 7,
+      "primitive": 0,
+      "rect": {
+        "x": 2941.9541936029723,
+        "y": 3216.8192467500517,
+        "w": 419.44382082277514,
+        "h": 137.94848057043816
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.17775021493434906,
+        0.05845925211906433
+      ],
+      "contourVertices": 112,
+      "label": "Cós costas direito",
+      "displayName": "Cós costas direito"
+    },
+    {
+      "number": 9,
+      "mesh": 8,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 3216.8192467500517,
+        "w": 1247.8038528356014,
+        "h": 494.1022726791855
+      },
+      "uvBounds": [
+        -0.24933619797229767,
+        0,
+        0.2794530987739563,
+        0.20938867330551147
+      ],
+      "contourVertices": 517,
+      "label": "Calção pala traseira",
+      "displayName": "Calção pala traseira"
+    },
+    {
+      "number": 10,
+      "mesh": 9,
+      "primitive": 0,
+      "rect": {
+        "x": 1769.2423326943454,
+        "y": 3790.9215194292374,
+        "w": 749.7014570024037,
+        "h": 64.51900466652336
+      },
+      "uvBounds": [
+        -0.16374869644641876,
+        1.2202569246292114,
+        0.15395677089691162,
+        1.2475985288619995
+      ],
+      "contourVertices": 114,
+      "label": "Filete manga esquerda",
+      "displayName": "Filete manga esquerda"
+    },
+    {
+      "number": 11,
+      "mesh": 10,
+      "primitive": 0,
+      "rect": {
+        "x": 935.9034219314815,
+        "y": 3790.9215194292374,
+        "w": 753.338910762864,
+        "h": 64.8264684223135
+      },
+      "uvBounds": [
+        -0.16529013216495514,
+        1.2201266288757324,
+        0.153956800699234,
+        1.2475985288619995
+      ],
+      "contourVertices": 115,
+      "label": "Filete manga direita",
+      "displayName": "Filete manga direita"
+    },
+    {
+      "number": 12,
+      "mesh": 11,
+      "primitive": 0,
+      "rect": {
+        "x": 2598.9437896967493,
+        "y": 3790.9215194292374,
+        "w": 253.33484773219345,
+        "h": 45.75302606403973
+      },
+      "uvBounds": [
+        -0.052810732275247574,
+        0.9871834516525269,
+        0.05454649031162262,
+        1.0065724849700928
+      ],
+      "contourVertices": 115,
+      "label": "Gola costas",
+      "displayName": "Gola costas"
+    },
+    {
+      "number": 13,
+      "mesh": 12,
+      "primitive": 0,
+      "rect": {
+        "x": 2932.2786374289426,
+        "y": 3790.9215194292374,
+        "w": 253.62432570217766,
+        "h": 14.890472505941574
+      },
+      "uvBounds": [
+        -0.052933402359485626,
+        1.006506323814392,
+        0.05454649403691292,
+        1.0128165483474731
+      ],
+      "contourVertices": 126,
+      "label": "Gola frente",
+      "displayName": "Gola frente"
+    },
+    {
+      "number": 14,
+      "mesh": 13,
+      "primitive": 0,
+      "rect": {
+        "x": 573.9103694500352,
+        "y": 3790.9215194292374,
+        "w": 281.9930524814462,
+        "h": 99.07928106987413
+      },
+      "uvBounds": [
+        -0.08564728498458862,
+        -1.5383336544036865,
+        0.03385459631681442,
+        -1.4963462352752686
+      ],
+      "contourVertices": 49,
+      "label": "Peitilho",
+      "displayName": "Peitilho"
+    },
+    {
+      "number": 15,
+      "mesh": 14,
+      "primitive": 0,
+      "rect": {
+        "x": 1427.8038528356014,
+        "y": 3216.8192467500517,
+        "w": 934.7065199445956,
+        "h": 399.46546312195125
+      },
+      "uvBounds": [
+        -0.6181842684745789,
+        -1.6757228374481201,
+        -0.2220780998468399,
+        -1.506438970565796
+      ],
+      "contourVertices": 165,
+      "label": "Manga esquerda",
+      "displayName": "Manga esquerda"
+    },
+    {
+      "number": 16,
+      "mesh": 15,
+      "primitive": 0,
+      "rect": {
+        "x": 2910.8403296407796,
+        "y": 2187.4074569072163,
+        "w": 934.7191785621716,
+        "h": 408.42438873439744
+      },
+      "uvBounds": [
+        0.19156719744205475,
+        -1.6861441135406494,
+        0.5876787304878235,
+        -1.513063669204712
+      ],
+      "contourVertices": 170,
+      "label": "Manga direita",
+      "displayName": "Manga direita"
+    },
+    {
+      "number": 17,
+      "mesh": 16,
+      "primitive": 0,
+      "rect": {
+        "x": 1412.4910396193677,
+        "y": 280,
+        "w": 1198.190686830244,
+        "h": 1484.2953462074377
+      },
+      "uvBounds": [
+        -0.2541586756706238,
+        0.6538123488426208,
+        0.25360575318336487,
+        1.2828210592269897
+      ],
+      "contourVertices": 541,
+      "label": "Frente",
+      "displayName": "Frente"
+    },
+    {
+      "number": 18,
+      "mesh": 17,
+      "primitive": 0,
+      "rect": {
+        "x": 100,
+        "y": 280,
+        "w": 1232.4910396193677,
+        "h": 1827.4074569072166
+      },
+      "uvBounds": [
+        0.39695844054222107,
+        -0.7404348850250244,
+        0.9192585349082947,
+        0.03397649526596069
+      ],
+      "contourVertices": 699,
+      "label": "Costas",
+      "displayName": "Costas"
+    },
+    {
+      "number": 19,
+      "mesh": 18,
+      "primitive": 0,
+      "rect": {
+        "x": 3558.8028965401522,
+        "y": 280,
+        "w": 205.16573989893664,
+        "h": 741.1880795658058
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.08694431185722351,
+        0.31409770250320435
+      ],
+      "contourVertices": 301,
+      "label": "Recorte axila esquerdo",
+      "displayName": "Recorte axila esquerdo"
+    },
+    {
+      "number": 20,
+      "mesh": 19,
+      "primitive": 0,
+      "rect": {
+        "x": 968.1211700905404,
+        "y": 2187.4074569072163,
+        "w": 205.16573989893664,
+        "h": 741.1880795658058
+      },
+      "uvBounds": [
+        0,
+        0,
+        0.08694431185722351,
+        0.31409770250320435
+      ],
+      "contourVertices": 413,
+      "label": "Recorte axila direito",
+      "displayName": "Recorte axila direito"
+    }
+  ],
+  "texelsPerUvUnit": 2359.737348152823,
+  "artBleedPixels": 16,
+  "sourceName": "Variante Atlas — KIT · NORMAL · PRIME V · RECORTE AXILA · CALÇÃO 2 PARTES.glb",
+  "originalSourceSha256": "196fc811a6a6c1b7c395c927703069b71a9b46bdb93b49f692f7d9a544bf5c5f",
+  "labels": [
+    "Calção frente direito",
+    "Calção costas direito",
+    "Calção frente esquerdo",
+    "Calção costas esquerdo",
+    "Cós frente esquerdo",
+    "Cós costas esquerdo",
+    "Cós frente direito",
+    "Cós costas direito",
+    "Calção pala traseira",
+    "Filete manga esquerda",
+    "Filete manga direita",
+    "Gola costas",
+    "Gola frente",
+    "Peitilho",
+    "Manga esquerda",
+    "Manga direita",
+    "Frente",
+    "Costas",
+    "Recorte axila esquerdo",
+    "Recorte axila direito"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "waist",
+    "waist",
+    "shorts",
+    "filet",
+    "filet",
+    "collar",
+    "collar",
+    "collar",
+    "sleeve",
+    "sleeve",
+    "body",
+    "body",
+    "side-cut",
+    "side-cut"
+  ],
+  "decorativeMeshes": [],
+  "modeling": "NORMAL",
+  "collar": "PRIME V",
+  "sideCut": true,
+  "bottomParts": 5,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "cutType": "AXILA",
+  "variantSource": "GOLA PRIME V - NORMAL.glb",
+  "geometryPolicy": "original vertices, normals, UVs and node transforms unchanged; no decimation",
+  "uploadedSourceSha256": "9776bcb2a6f11367657979bcb9732810df733134da2851ad02aeb0a7c22d579b",
+  "refreshBatch": "prime-2026-11-16",
+  "intermediateOnly": true,
+  "derivedFrom": "pack26-normal-prime-v-sem-recorte-prime-20261116",
+  "cutReference": "pack26-normal-redonda-com-recorte-v2",
+  "cutVersion": "armhole-through-shared-seam-v1",
+  "uvCanonicalMeshes": [
+    18,
+    19,
+    8
+  ],
+  "bottomDerivedFrom": "pack26-normal-prime-v-axila-prime-20261116-derived-v1",
+  "bottomReference": "pack26-calcao-5-partes-referencia",
+  "bottomCutVersion": "reference-native-uv-v1",
+  "line": "jogo",
+  "catalogPath": [
+    "KIT",
+    "NORMAL",
+    "PRIME V",
+    "COM RECORTE",
+    "CALÇÃO 5 PARTES"
+  ]
+}

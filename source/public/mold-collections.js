@@ -6,6 +6,8 @@ export function moldCollection(mold={}) {
 export const collectionMolds=(templates,line)=>templates.filter(t=>moldCollection(t)===line);
 
 export function moldBottomLabel(mold={}){
+  if(mold.bottomVariant==='lateral')return 'calção recorte lateral';
+  if(mold.packId)return `calção ${mold.bottomParts||2} partes`;
   if(mold.category!=='conjunto'||moldCollection(mold)!=='jogo')return '';
   if(mold.bottomVariant==='5-partes')return 'calção 5 partes';
   return mold.bottomVariant==='com-recorte'?'calção com recorte':'calção sem recorte';

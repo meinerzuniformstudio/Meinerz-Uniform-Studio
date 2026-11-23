@@ -1,0 +1,101 @@
+{
+  "previousId": "pack26-raglan-polo-com-recorte-20261113-paired-v1-derived-v1",
+  "bodyUvUnitsPerModelUnit": 2.7211800316998076,
+  "method": "intrinsic axis units, sewn cuff alignment, shared pair bounds, outside-readable UV winding",
+  "pairs": [
+    {
+      "kind": "Manga",
+      "leftMesh": 16,
+      "rightMesh": 15,
+      "before": {
+        "11": [
+          0.38896846771240234,
+          0.350885272026062
+        ],
+        "12": [
+          0.3889685273170471,
+          0.3512369394302368
+        ]
+      },
+      "targetWidth": 0.4107082548126342,
+      "targetHeight": 0.35612078944184067,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.7907725247570663,
+      "leftFrontCorrelationAfter": -0.7860284079867536,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Filete manga",
+      "leftMesh": 8,
+      "rightMesh": 9,
+      "before": {
+        "4": [
+          0.18559682369232178,
+          0.010397076606750488
+        ],
+        "5": [
+          0.313240110874176,
+          0.017547607421875
+        ]
+      },
+      "targetWidth": 0.3329918360540976,
+      "targetHeight": 0.020624314212791574,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.7609878803219091,
+      "leftFrontCorrelationAfter": -0.7616588054715594,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Recorte lateral",
+      "leftMesh": 17,
+      "rightMesh": 18,
+      "targetWidth": 0.09212515295490106,
+      "targetHeight": 0.5277825687080622,
+      "leftMirrored": true,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Cal\u00e7\u00e3o frente",
+      "leftMesh": 0,
+      "rightMesh": 2,
+      "targetWidth": 0.3342662485537764,
+      "targetHeight": 0.427110877821883,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Cal\u00e7\u00e3o costas",
+      "leftMesh": 1,
+      "rightMesh": 3,
+      "targetWidth": 0.33242051196009514,
+      "targetHeight": 0.4358983635902405,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "C\u00f3s frente",
+      "leftMesh": 4,
+      "rightMesh": 6,
+      "targetWidth": 0.21798649950537155,
+      "targetHeight": 0.04445183277130127,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "C\u00f3s costas",
+      "leftMesh": 5,
+      "rightMesh": 7,
+      "targetWidth": 0.22239246025609904,
+      "targetHeight": 0.04445183277130127,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    }
+  ]
+}

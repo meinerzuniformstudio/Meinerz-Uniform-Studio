@@ -39,7 +39,9 @@ test('a removed CDR stays available on its released revision and factory downloa
  const {sql,production,tracking,technical,saved,release}=setup();let order=await saved();order=await technical.attach(alice,order.id,order.version,cdr());const ref=order.document.technicalFiles[0];order=await release(order);
  await assert.rejects(technical.delivery(bob,order.id),{status:404});await assert.rejects(technical.delivery(factory,order.id,{factory:true}),{status:403});
  sql.prepare('INSERT INTO profiles (user_id,display_name,factory_access,created_at,updated_at) VALUES (?,?,?,?,?)').run('factory','Fábrica',1,'now','now');
- await tracking.transition(alice,order.id,{action:'send',version:order.version});order=await production.get(alice,order.id);
+  await assert.rejects(technical.delivery(factory,order.id,{factory:true}),{status:403}); // legacy flag cannot grant cross-factory access
+  sql.prepare('INSERT INTO factory_memberships(user_id,factory_id,enabled,updated_at) VALUES (?,?,1,?)').run('factory','meinerz','now');
+ await tracking.transition(alice,order.id,{action:'send',version:order.version,factoryId:'meinerz'});order=await production.get(alice,order.id);
  const delivery=await technical.delivery(factory,order.id,{factory:true,version:String(order.version)});assert.equal(delivery.files[0].id,ref.id);assert.ok(delivery.files[0].url.includes('factory=1'));
  assert.deepEqual((await technical.download(factory,order.id,ref.id,{factory:true})).object.bytes,new Uint8Array(await cdr().arrayBuffer()));
  await assert.rejects(technical.delivery(factory,order.id,{factory:true,revision:1}),{status:403});
@@ -77,4 +79,18 @@ test('a failed attachment save cleans only the new file and failed complement co
 
 test('final release requires an owned CDR, while drafts remain editable before upload',async()=>{
  const {production,saved,technical,release}=setup();let order=await saved();await assert.rejects(release(order),/CDR original/);await assert.rejects(production.save(alice,order.id,{version:order.version,document:{...order.document,technicalFiles:[{id:'forged'}]},action:'release',checks:{art:true,list:true,technical:true}}),{status:404});order=await technical.attach(alice,order.id,order.version,cdr());assert.equal((await release(order)).document.workflow.status,'released');
+});
+
+test('manual complements can save incomplete drafts but cannot release without a prior order and change description',async()=>{
+ for(const type of ['COMPLEMENTO','COMPLEMENTO COM ALTERAÇÕES']){
+  const {production,technical,document}=setup();Object.assign(document,{type,previousOrder:'   ',complementChanges:''});
+  let order=await production.get(alice,(await production.save(alice,null,{document})).id);assert.equal(order.document.type,type);assert.equal(order.document.workflow.status,'draft');
+  order=await technical.attach(alice,order.id,order.version,cdr());
+  const approve=()=>production.save(alice,order.id,{version:order.version,document:order.document,action:'release',checks:{art:true,list:true,technical:true}});
+  await assert.rejects(approve(),error=>error.status===400&&/Pedido anterior/.test(error.message));
+  order.document.previousOrder=order.document.number;await assert.rejects(approve(),error=>error.status===400&&/diferente/.test(error.message));
+  order.document.previousOrder='1239-11-MNZ';
+  if(type==='COMPLEMENTO COM ALTERAÇÕES')await assert.rejects(approve(),error=>error.status===400&&/alterações deste complemento/.test(error.message));
+  order.document.complementChanges='Acrescentar oito camisetas';await approve();const released=await production.get(alice,order.id);assert.equal(released.document.workflow.status,'released');
+ }
 });

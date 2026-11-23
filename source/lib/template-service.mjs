@@ -1,3 +1,15 @@
+import {orderedDescriptor,orderedDrawing,MAP_REVISION} from './ordered-drawing.mjs';
+import {shirtDescriptor,shirtDrawing} from './shirt-presentation-templates.mjs';
+import{simulatorKit}from'../public/simulador/kit-catalog.js';
+import{femaleDescriptor}from'../public/simulador/female-kits.js';
+import{femaleModel,femaleDrawing}from'./female-template-assets.mjs';
+import {fetchPackedSvg} from './static-mold-drawings.mjs';
+import {currentCollarName,currentCollarDescriptor} from '../public/collar-names.js';
+import {SUPERSEDED_PRESENTATION_TEMPLATES} from './superseded-presentation-templates.mjs';
+const retiredAxila=INSTALLED_TEMPLATES.filter(e=>e.descriptor.cutType==='AXILA' && (e.descriptor.modeling!=='RAGLAN'||e.descriptor.collar!=='ELITE')).map(e=>e.descriptor.id);
+const supersededIds=new Set(SUPERSEDED_PRESENTATION_TEMPLATES.flatMap(e=>[e.descriptor.id,e.descriptor.replaces]).concat(retiredAxila,INSTALLED_TEMPLATES.map(e=>e.descriptor.replaces)).filter(Boolean));
+import {drawingMapPdf} from './drawing-map-pdf.mjs';
+import {editableTemplateSvg} from './editable-template-svg.mjs';
 import {isWithdrawnTemplate,WITHDRAWN_TEMPLATE_MESSAGE} from './withdrawn-templates.mjs';
 import {isRemovedMold,REMOVED_MOLD_MESSAGE} from './removed-molds.mjs';
 import {INSTALLED_TEMPLATES} from './installed-templates.mjs';
@@ -12,9 +24,27 @@ import { SIMULATOR_PRESENTATION_TEMPLATES } from './simulator-presentation-templ
 const date = () => new Date().toISOString();
 const categories = ['camiseta','calcao','conjunto','outro'];
 export class TemplateService {
-  /** @param {readonly any[]} installedTemplates */
-  constructor(db, bucket, adminId = '', installedTemplates = INSTALLED_TEMPLATES) { this.db = db; this.bucket = bucket; this.adminId = adminId; this.installedTemplates = [...installedTemplates,...SIMULATOR_PRESENTATION_TEMPLATES.filter(entry=>!installedTemplates.some(item=>item.descriptor.id===entry.descriptor.id))]; }
+  /** @param {readonly any[]} installedTemplates
+   * @param {any} staticAssets */
+  constructor(db, bucket, adminId = '', installedTemplates = INSTALLED_TEMPLATES, staticAssets = null) { this.staticAssets=staticAssets; this.db = db; this.bucket = bucket; this.adminId = adminId; this.installedTemplates = [...installedTemplates,...SUPERSEDED_PRESENTATION_TEMPLATES.filter(entry=>!installedTemplates.some(item=>item.descriptor.id===entry.descriptor.id)),...SIMULATOR_PRESENTATION_TEMPLATES.filter(entry=>!installedTemplates.some(item=>item.descriptor.id===entry.descriptor.id))].filter(entry=>!isRemovedMold(entry.descriptor.id)); }
+  orderedBase(id){
+    if(!String(id).endsWith(MAP_REVISION))return null;
+    const baseId=id.slice(0,-MAP_REVISION.length);
+    const entry=this.shirtBase(baseId)||this.installedTemplates.find(e=>e.descriptor.id===baseId);
+    return entry?.descriptor.id.startsWith('pack26-')?{entry,baseId}:null;
+  }
+  shirtBase(id) {
+    if (!String(id).endsWith('-camiseta')) return null;
+    return this.installedTemplates.find(e=>e.descriptor.id === id.slice(0,-'-camiseta'.length) && e.descriptor.bottomParts === 2);
+  }
   installedRow(id) {
+    const base=this.shirtBase(id);
+    if(base){
+      const descriptor=shirtDescriptor(base.descriptor);
+      if(descriptor)return {...this.installedRow(base.descriptor.id),id,name:descriptor.name,category:'camiseta',layout_json:JSON.stringify(descriptor)};
+    }
+    const kit=String(id).startsWith('female-')?simulatorKit(id):null;
+    if(kit?.gender==='FEMININA'){const descriptor=femaleDescriptor(kit),url='/api/templates/'+id+'/assets/';return{id,name:kit.name,category:descriptor.category,status:'published',model_key:url+'model',source_key:url+'source',svg_key:url+'template',proof_key:url+'proof',layout_json:JSON.stringify(descriptor),source_name:'Kit feminino modular',created_by:this.adminId,created_at:'2026-11-17T00:00:00Z',updated_at:'2026-11-17T00:00:00Z'};}
     const entry=this.installedTemplates.find(item=>item.descriptor.id===id);
     if(!entry)return null;
     const {descriptor,assets}=entry;
@@ -26,9 +56,10 @@ export class TemplateService {
       .bind(row.id,row.name,row.category,row.status,row.model_key,row.source_key,row.svg_key,row.proof_key,row.layout_json,row.source_name,row.created_by,row.created_at,row.updated_at).run();
   }
   summary(row) {
-    const layout = JSON.parse(row.layout_json);
+    row={...row,name:currentCollarName(row.name)};
+    const layout = currentCollarDescriptor(JSON.parse(row.layout_json));
     if(row.id===BUILTIN_TEMPLATE.id)return {...BUILTIN_TEMPLATE,name:row.name,line:moldCollection({...layout,id:row.id}),category:row.category,status:row.status,updatedAt:row.updated_at};
-    return { id:row.id, name:row.name, line:moldCollection({...layout,id:row.id}), bottomVariant:layout.bottomVariant, category:row.category, kind:'generated', status:row.status,
+    return { id:row.id, name:row.name, line:moldCollection({...layout,id:row.id}), gender:layout.gender,femaleShort:layout.femaleShort,bottomMoldId:layout.bottomMoldId,separated:layout.separated,bottomVariant:layout.bottomVariant,packId:layout.packId,modeling:layout.modeling,collar:layout.collar,sideCut:layout.sideCut,cutType:layout.cutType,variantSource:layout.variantSource,bottomParts:layout.bottomParts,variant:layout.variant,artBleedPixels:layout.artBleedPixels,pairNormalization:layout.pairNormalization,catalogPath:layout.catalogPath, category:row.category, kind:'generated', status:row.status,
       panelCount:layout.panelCount, triangles:layout.triangles, pageSize:4096, sourceName:row.source_name,
       createdAt:row.created_at, updatedAt:row.updated_at, orientation:layout.orientation, ...(layout.thumbnailUrl?{thumbnailUrl:layout.thumbnailUrl}:{}) };
   }
@@ -36,18 +67,34 @@ export class TemplateService {
     if(isRemovedMold(id))throw new AppError(404,REMOVED_MOLD_MESSAGE);
     const row = await this.db.prepare('SELECT * FROM templates WHERE id = ?').bind(id).first() || this.installedRow(id);
     if(!row)throw new AppError(404,'Molde não encontrado.');
+    if(supersededIds.has(id)||(/^pack26-/.test(id)&&!this.installedTemplates.some(e=>e.descriptor.id===id)&&!this.shirtBase(id)))return {...row,status:'archived',superseded:true};
     // Apply withdrawal to persisted published rows too; old project assets remain readable.
     if(isWithdrawnTemplate(id))return {...row,status:'deleted',withdrawn:true};
     // Clarify the original default label even when it was persisted before the second polo existed.
     if(id==='polo'&&row.name==='POLO')return {...row,name:'POLO COM RECORTE V'};
-    return row;
+    return {...row,name:currentCollarName(row.name),layout_json:JSON.stringify(currentCollarDescriptor(JSON.parse(row.layout_json)))};
   }
   async catalog(user) {
     if(!user?.userId)throw new AppError(401,'Entre na sua conta para continuar.');
     const rows=await this.db.prepare("SELECT * FROM templates WHERE status = 'published' ORDER BY created_at DESC").all();
     const builtin=await this.builtin();
-    const installed=await Promise.all(this.installedTemplates.filter(entry=>!entry.presentationOnly).map(entry=>this.row(entry.descriptor.id))),ids=new Set(this.installedTemplates.map(entry=>entry.descriptor.id));
-    return [...(builtin.status==='published'&&!isRemovedMold(builtin.id)?[builtin]:[]),...installed.filter(row=>row.status==='published').map(row=>this.summary(row)),...rows.results.filter(row=>row.id!==BUILTIN_TEMPLATE.id&&!ids.has(row.id)&&!isWithdrawnTemplate(row.id)&&!isRemovedMold(row.id)).map(row=>this.summary(row))];
+    const primeReady=!this.bucket?.head||!!(await this.bucket.head('prime-assets-20261116/READY'));
+    const saved = new Map(rows.results.map(r=>[r.id,r]));
+    const overrides = await this.db.prepare("SELECT id FROM templates WHERE status <> 'published'").all();
+    const hidden = new Set(overrides.results.map(r=>r.id));
+    const installedIds = new Set(this.installedTemplates.map(e=>e.descriptor.id));
+    const catalog = [];
+    for(const entry of this.installedTemplates){
+      const d=entry.descriptor;
+      if(entry.presentationOnly || entry.status!=='published' || supersededIds.has(d.id) || hidden.has(d.id) || isWithdrawnTemplate(d.id) || (!primeReady && ['PRIME','PRIME V'].includes(d.collar)))continue;
+      const row=saved.get(d.id)||this.installedRow(d.id);
+      catalog.push({...this.summary(row),id:d.id.startsWith('pack26-')?d.id+MAP_REVISION:d.id});
+      if(d.category==='conjunto' && d.bottomParts===2){
+        const shirt=this.installedRow(d.id+'-camiseta');
+        if(shirt)catalog.push({...this.summary(shirt),id:shirt.id+MAP_REVISION});
+      }
+    }
+    return [...(builtin.status==='published'&&!isRemovedMold(builtin.id)?[builtin]:[]),...catalog,...rows.results.filter(row=>row.id!==BUILTIN_TEMPLATE.id&&!installedIds.has(row.id)&&!row.id.startsWith('pack26-')&&!supersededIds.has(row.id)&&!isWithdrawnTemplate(row.id)&&!isRemovedMold(row.id)).map(row=>this.summary(row))];
   }
   async builtin() {
     const row=await this.db.prepare('SELECT * FROM templates WHERE id = ?').bind(BUILTIN_TEMPLATE.id).first();
@@ -61,27 +108,38 @@ export class TemplateService {
   async adminList(user) {
     requireAdminUser(user,this.adminId);
     const rows=await this.db.prepare('SELECT * FROM templates ORDER BY created_at DESC').all();
-    const installed=await Promise.all(this.installedTemplates.filter(entry=>!entry.presentationOnly).map(entry=>this.row(entry.descriptor.id))),ids=new Set(this.installedTemplates.map(entry=>entry.descriptor.id));
-    return [...installed.filter(row=>!row.withdrawn).map(row=>this.summary(row)),...(!isRemovedMold(BUILTIN_TEMPLATE.id)?[await this.builtin()]:[]),...rows.results.filter(row=>row.id!==BUILTIN_TEMPLATE.id&&!ids.has(row.id)&&!isWithdrawnTemplate(row.id)&&!isRemovedMold(row.id)).map(row=>this.summary(row))];
+    const primeReady=!this.bucket?.head||!!(await this.bucket.head('prime-assets-20261116/READY'));
+    const installed=await Promise.all(this.installedTemplates.filter(entry=>!entry.presentationOnly&&(primeReady||!['PRIME','PRIME V'].includes(entry.descriptor.collar))).map(entry=>this.row(entry.descriptor.id))),ids=new Set(this.installedTemplates.map(entry=>entry.descriptor.id));
+    return [...installed.filter(row=>!row.withdrawn&&!row.superseded).map(row=>this.summary(row)),...(!isRemovedMold(BUILTIN_TEMPLATE.id)?[await this.builtin()]:[]),...rows.results.filter(row=>row.id!==BUILTIN_TEMPLATE.id&&!ids.has(row.id)&&!row.id.startsWith('pack26-')&&!supersededIds.has(row.id)&&!isWithdrawnTemplate(row.id)&&!isRemovedMold(row.id)).map(row=>this.summary(row))];
   }
   async available(user,id) {
+    const ordered=this.orderedBase(id);
+    if(ordered)return {...await this.available(user,ordered.baseId),id};
+    const shirtBase=this.shirtBase(id);
+    if(shirtBase)await this.available(user,shirtBase.descriptor.id);
+    const female=String(id).startsWith('female-')?simulatorKit(id):null;if(female?.gender==='FEMININA')await this.available(user,female.baseModel);
     if(!user?.userId)throw new AppError(401,'Entre na sua conta para continuar.');
     if(isRemovedMold(id))throw new AppError(404,REMOVED_MOLD_MESSAGE);
     if(id===BUILTIN_TEMPLATE.id){const builtin=await this.builtin();if(builtin.status!=='published')throw new AppError(404,'Este molde não está disponível para novos projetos.');return builtin;}
+    if(id.includes('-prime-20261116')&&this.bucket?.head&&!await this.bucket.head('prime-assets-20261116/READY'))throw new AppError(503,'Os novos moldes estão sendo preparados. Tente novamente em alguns minutos.');
     const row=await this.row(id);
     if(row.status!=='published')throw new AppError(404,'Este molde não está disponível para novos projetos.');
     return this.summary(row);
   }
   async descriptor(id) {
+    const ordered=this.orderedBase(id);
+    if(ordered)return orderedDescriptor(await this.descriptor(ordered.baseId));
     if(isRemovedMold(id))throw new AppError(404,REMOVED_MOLD_MESSAGE);
     if(id===BUILTIN_TEMPLATE.id)return this.builtin();
     const row=await this.row(id);return {...JSON.parse(row.layout_json),name:row.name,status:row.status,category:row.category};
   }
   async readable(user,id) {
+    const ordered=this.orderedBase(id);
+    if(ordered)return orderedDescriptor(await this.readable(user,ordered.baseId));
     if(!user?.userId)throw new AppError(401,'Entre na sua conta para continuar.');
     if(isRemovedMold(id))throw new AppError(404,REMOVED_MOLD_MESSAGE);
     const state=id===BUILTIN_TEMPLATE.id?await this.builtin():await this.row(id);
-    if(state.status!=='published'&&!isAdminUser(user,this.adminId))throw new AppError(404,'Molde não encontrado.');
+    if(state.status!=='published'&&!state.superseded&&!isAdminUser(user,this.adminId))throw new AppError(404,'Molde não encontrado.');
     return this.descriptor(id);
   }
   async create(user,input,file) {
@@ -155,22 +213,50 @@ export class TemplateService {
     return this.summary(await this.row(id));
   }
   async asset(id,kind) {
+    const ordered=this.orderedBase(id);
+    if(ordered){
+      if(kind==='model'||kind==='source')return this.asset(ordered.baseId,kind);
+      if(!['template','proof','pdf'].includes(kind))throw new AppError(404,'Arquivo não encontrado.');
+      const response=await fetchPackedSvg(this.staticAssets,new URL(ordered.entry.assets.template,'https://atlas.internal'));
+      if(!response.ok)throw new AppError(404,'Mapa indisponível.');
+      const svg=orderedDrawing(await response.text(),await this.descriptor(id),kind==='proof');
+      return kind==='pdf'?{body:await drawingMapPdf(svg),httpMetadata:{contentType:'application/pdf'}}:{body:svg,httpMetadata:{contentType:'image/svg+xml'}};
+    }
+    const base=this.shirtBase(id);
+    if(base){
+      if(kind==='model'||kind==='source')return this.asset(base.descriptor.id,kind);
+      if(!['template','proof','pdf'].includes(kind))throw new AppError(404,'Arquivo não encontrado.');
+      const response=await fetchPackedSvg(this.staticAssets,new URL(base.assets.template,'https://atlas.internal'));
+      if(!response.ok)throw new AppError(404,'Mapa da camiseta indisponível.');
+      const svg=shirtDrawing(await response.text(),shirtDescriptor(base.descriptor));
+      return kind==='pdf'?{body:await drawingMapPdf(svg),httpMetadata:{contentType:'application/pdf'}}:{body:svg,httpMetadata:{contentType:'image/svg+xml'}};
+    }
+    const female=String(id).startsWith('female-')?simulatorKit(id):null;
+    if(female?.gender==='FEMININA'){if(!['model','source','template','proof','pdf'].includes(kind))throw new AppError(404,'Arquivo não encontrado.');const model=await femaleModel(female,this.staticAssets);if(['model','source'].includes(kind))return{body:model,httpMetadata:{contentType:'model/gltf-binary'}};const svg=femaleDrawing(model,female);return kind==='pdf'?{body:await drawingMapPdf(svg),httpMetadata:{contentType:'application/pdf'}}:{body:svg,httpMetadata:{contentType:'image/svg+xml'}};}
     if(isRemovedMold(id))throw new AppError(404,REMOVED_MOLD_MESSAGE);
+    if(kind==='pdf'){
+      const installed=this.installedTemplates.find(entry=>entry.descriptor.id===id);
+      if(installed?.assetsPdf)return {redirect:installed.assetsPdf};
+      let svg=installed?.templateSvg;
+      if(!svg){const row=await this.row(id),object=await this.bucket.get(row.svg_key);if(!object)throw new AppError(404,'Arquivo não encontrado.');svg=await object.text();}
+      return {body:await drawingMapPdf(svg),httpMetadata:{contentType:'application/pdf'}};
+    }
     if(!['model','template','proof','source'].includes(kind))throw new AppError(404,'Arquivo não encontrado.');
     if(id===BUILTIN_TEMPLATE.id) {
       const path={model:BUILTIN_TEMPLATE.modelUrl,template:BUILTIN_TEMPLATE.templateUrl,proof:BUILTIN_TEMPLATE.proofUrl,source:BUILTIN_TEMPLATE.modelUrl}[kind];return {redirect:path};
     }
     const row=await this.row(id),key={model:row.model_key,source:row.source_key,template:row.svg_key,proof:row.proof_key}[kind];
     const installed=this.installedTemplates.find(entry=>entry.descriptor.id===id);
-    if(installed&&key===installed.assets[kind]&&(kind!=='template'||row.name===JSON.parse(row.layout_json).name))return {redirect:key};
-    const object=installed&&kind==='template'&&key===installed.assets.template?{text:async()=>installed.templateSvg}:await this.bucket.get(key);if(!object)throw new AppError(404,'Arquivo não encontrado.');
+    if(installed&&key===installed.assets[kind]&&(kind!=='template'||row.name===JSON.parse(row.layout_json).name))return {redirect:kind==='template'?key+'?corel=2':key};
+    const object=installed&&kind==='template'&&key===installed.assets.template?{text:async()=>{if(installed.templateSvg)return installed.templateSvg;if(!this.staticAssets)throw new AppError(503,'Mapa indisponível.');const res=await fetchPackedSvg(this.staticAssets,new URL('https://atlas.internal'+installed.assets.template));if(!res.ok)throw new AppError(404,'Mapa não encontrado.');return res.text();}}:await this.bucket.get(key);if(!object)throw new AppError(404,'Arquivo não encontrado.');
     if(kind==='template'&&row.name!==JSON.parse(row.layout_json).name){
       const escape=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[char]));
       const original=typeof object.text==='function'?await object.text():String(object.data);
       const svg=original.replace(/<title>[\s\S]*?<\/title>/,()=>`<title>${escape(row.name)} — mapa de desenho</title>`)
         .replace(/(<text x="100" y="90"[^>]*>)[\s\S]*?(<\/text>)/,(_,start,end)=>start+escape(row.name)+end);
-      return {body:svg,data:svg,httpMetadata:{contentType:'image/svg+xml'}};
+      return {body:editableTemplateSvg(svg),data:editableTemplateSvg(svg),httpMetadata:{contentType:'image/svg+xml'}};
     }
+    if(kind==='template'){const svg=editableTemplateSvg(typeof object.text==='function'?await object.text():String(object.data));return {body:svg,data:svg,httpMetadata:{contentType:'image/svg+xml'}};}
     return object;
   }
 }

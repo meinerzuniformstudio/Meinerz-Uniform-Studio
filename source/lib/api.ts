@@ -1,3 +1,4 @@
+import{primeAssets}from'./prime-assets.mjs';
 import {ProductionService} from './production-service.mjs';
 import {OrderTrackingService} from './order-tracking.mjs';
 import { TemplateService } from './template-service.mjs';
@@ -21,7 +22,7 @@ export function service() {
 }
 export function templateService() {
   if (!env.DB || !env.BUCKET) throw new AppError(503, 'O armazenamento está sendo preparado.');
-  return new TemplateService(env.DB, env.BUCKET, env.ADMIN_USER_ID || '', INSTALLED_TEMPLATES);
+  return new TemplateService(env.DB, env.BUCKET, env.ADMIN_USER_ID || '', INSTALLED_TEMPLATES, primeAssets(env.ASSETS,env.BUCKET));
 }
 export function workspaceService(){return new WorkspaceService(env.DB,env.BUCKET,service(),templateService());}
 export function isAdmin(user: any) { return isAdminUser(user, env.ADMIN_USER_ID); }
