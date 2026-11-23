@@ -1,0 +1,91 @@
+{
+  "previousId": "pack26-raglan-redonda-sem-recorte-paired-v1",
+  "bodyUvUnitsPerModelUnit": 2.817441605904279,
+  "method": "intrinsic axis units, sewn cuff alignment, shared pair bounds, outside-readable UV winding",
+  "pairs": [
+    {
+      "kind": "Manga",
+      "leftMesh": 12,
+      "rightMesh": 14,
+      "before": {
+        "7": [
+          0.4161859452724457,
+          0.3651078939437866
+        ],
+        "9": [
+          0.4161859452724457,
+          0.36113202571868896
+        ]
+      },
+      "targetWidth": 0.4015248096056632,
+      "targetHeight": 0.38528337010074915,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.8145839517190813,
+      "leftFrontCorrelationAfter": -0.8145943636713175,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Filete manga",
+      "leftMesh": 13,
+      "rightMesh": 15,
+      "before": {
+        "8": [
+          0.3205956518650055,
+          0.029964685440063477
+        ],
+        "10": [
+          0.32192283868789673,
+          0.030328989028930664
+        ]
+      },
+      "targetWidth": 0.340140253489371,
+      "targetHeight": 0.026147486387463757,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.7669666615644896,
+      "leftFrontCorrelationAfter": -0.7726334456990667,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Cal\u00e7\u00e3o frente",
+      "leftMesh": 0,
+      "rightMesh": 2,
+      "targetWidth": 0.33628407122229137,
+      "targetHeight": 0.4421088569865439,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Cal\u00e7\u00e3o costas",
+      "leftMesh": 1,
+      "rightMesh": 3,
+      "targetWidth": 0.3428846026491308,
+      "targetHeight": 0.23015529390739542,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "C\u00f3s frente",
+      "leftMesh": 4,
+      "rightMesh": 6,
+      "targetWidth": 0.22099580847201106,
+      "targetHeight": 0.04737536609172821,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "C\u00f3s costas",
+      "leftMesh": 5,
+      "rightMesh": 7,
+      "targetWidth": 0.22516002164733423,
+      "targetHeight": 0.04737536609172821,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    }
+  ]
+}

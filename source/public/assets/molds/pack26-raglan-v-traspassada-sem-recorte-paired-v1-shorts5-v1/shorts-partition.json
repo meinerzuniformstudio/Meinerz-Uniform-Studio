@@ -1,0 +1,42 @@
+{
+  "base": "pack26-raglan-v-traspassada-sem-recorte-paired-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06867971364408731,
+  "areaAfter": 0.06867970782628584,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        -0.033269875717477415,
+        -0.319792908340116
+      ],
+      "pala": [
+        0.007568686107608695,
+        0.39761077919431503
+      ]
+    },
+    "1": {
+      "side": [
+        0.04231014166575476,
+        0.37632385708185623
+      ],
+      "pala": [
+        -0.0391296165875533,
+        0.4156615637349008
+      ]
+    },
+    "2": {
+      "side": [
+        0.026736450187976466,
+        0.42206289346719167
+      ]
+    },
+    "3": {
+      "side": [
+        -0.07635733263331104,
+        -0.24801669159171885
+      ]
+    }
+  }
+}

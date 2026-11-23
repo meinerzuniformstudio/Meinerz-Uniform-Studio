@@ -1,0 +1,53 @@
+{
+  "id": "pack26-raglan-v-com-recorte-paired-v1-derived-v1",
+  "name": "KIT · RAGLAN · V · COM RECORTE · CALÇÃO 2 PARTES",
+  "category": "conjunto",
+  "sourceName": "Variante Atlas - RAGLAN V com recortes.glb",
+  "originalSourceSha256": "1f9d0e3d302d8f7862b9af18c5ca335b1aa7edf23515c7bb86baee327561e13d",
+  "labels": [
+    "Calção direito",
+    "Calção esquerdo",
+    "Cós esquerdo",
+    "Cós direito",
+    "Costas",
+    "Filete manga direita",
+    "Filete manga esquerda",
+    "Manga esquerda",
+    "Manga direita",
+    "Gola inteira",
+    "Frente",
+    "Recorte lateral esquerdo",
+    "Recorte lateral direito"
+  ],
+  "panelKinds": [
+    "shorts",
+    "shorts",
+    "waist",
+    "waist",
+    "body",
+    "filet",
+    "filet",
+    "sleeve",
+    "sleeve",
+    "collar",
+    "body",
+    "side-cut",
+    "side-cut"
+  ],
+  "decorativeMeshes": [],
+  "modeling": "RAGLAN",
+  "collar": "V",
+  "sideCut": true,
+  "bottomParts": 2,
+  "variant": "",
+  "packId": "kits-2026-11",
+  "pairNormalization": "intrinsic-paired-v1",
+  "artBleedPixels": 16,
+  "derivedFrom": "pack26-raglan-v-sem-recorte-paired-v1",
+  "cutReference": "pack26-normal-redonda-com-recorte-v2",
+  "cutVersion": "armhole-through-shared-seam-v1",
+  "uvCanonicalMeshes": [
+    11,
+    12
+  ]
+}
