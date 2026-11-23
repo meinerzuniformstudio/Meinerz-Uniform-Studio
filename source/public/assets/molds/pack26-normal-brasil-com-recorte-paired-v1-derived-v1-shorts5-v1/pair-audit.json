@@ -1,0 +1,101 @@
+{
+  "previousId": "pack26-normal-brasil-com-recorte-paired-v1-derived-v1",
+  "bodyUvUnitsPerModelUnit": 2.7034087613798725,
+  "method": "intrinsic axis units, sewn cuff alignment, shared pair bounds, outside-readable UV winding",
+  "pairs": [
+    {
+      "kind": "Manga",
+      "leftMesh": 9,
+      "rightMesh": 12,
+      "before": {
+        "4": [
+          0.23046645522117615,
+          0.13208907842636108
+        ],
+        "7": [
+          0.3889685273170471,
+          0.22293269634246826
+        ]
+      },
+      "targetWidth": 0.41665981912645,
+      "targetHeight": 0.23128525693101112,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.786857412371983,
+      "leftFrontCorrelationAfter": -0.7862089755131029,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Filete manga",
+      "leftMesh": 10,
+      "rightMesh": 11,
+      "before": {
+        "5": [
+          0.18559682369232178,
+          0.010397076606750488
+        ],
+        "6": [
+          0.313240110874176,
+          0.017547607421875
+        ]
+      },
+      "targetWidth": 0.33145098355241154,
+      "targetHeight": 0.02447006165164388,
+      "leftMirrored": false,
+      "rightFrontCorrelation": 0.7791744178898548,
+      "leftFrontCorrelationAfter": -0.770095529695522,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Recorte lateral",
+      "leftMesh": 17,
+      "rightMesh": 18,
+      "targetWidth": 0.09212564929946007,
+      "targetHeight": 0.5277654267847538,
+      "leftMirrored": true,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Cal\u00e7\u00e3o frente",
+      "leftMesh": 0,
+      "rightMesh": 2,
+      "targetWidth": 0.32489950939563095,
+      "targetHeight": 0.42399232960323896,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "Cal\u00e7\u00e3o costas",
+      "leftMesh": 1,
+      "rightMesh": 3,
+      "targetWidth": 0.3279594542529531,
+      "targetHeight": 0.22169098413800914,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "C\u00f3s frente",
+      "leftMesh": 4,
+      "rightMesh": 6,
+      "targetWidth": 0.21412172459154352,
+      "targetHeight": 0.04457457363605499,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    },
+    {
+      "kind": "C\u00f3s costas",
+      "leftMesh": 5,
+      "rightMesh": 7,
+      "targetWidth": 0.21886811924311136,
+      "targetHeight": 0.04457457363605499,
+      "leftMirrored": false,
+      "rightMirrored": false,
+      "uvWinding": "negative (outside-readable)"
+    }
+  ]
+}
