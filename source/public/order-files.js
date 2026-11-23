@@ -3,9 +3,9 @@ import {FITS} from './product-catalog.js';
 import { ORDER_FIELDS, ORDER_LIMITS, PIECE_TYPES, kitComponents, validProductType, isBottomProduct, typeValue, detectHeader, sortOrders, summarizeOrders, orderProblems } from './order-core.js?v=3';
 import {LIST_FIELDS, LIST_TEMPLATE_ID, LIST_TEMPLATE_VERSION, listFields, GROUP_TYPES, LIST_SIZES, listProblems, sortListRows, listSummary} from './order-list.js?v=7';
 
-const TEMPLATE_SHEET='_Modelo Atlas';
+const TEMPLATE_SHEET='_Modelo Meinerz';
 function readTemplate(workbook){
-  const sheet=workbook.getWorksheet(TEMPLATE_SHEET)||workbook.getWorksheet('_Modelo Meinerz');
+  const sheet=workbook.getWorksheet(TEMPLATE_SHEET)||workbook.getWorksheet('_Modelo Atlas');
   if(!sheet||![LIST_TEMPLATE_ID,'meinerz.order-list'].includes(sheet.getCell('A1').value))return null;
   const version=sheet.getCell('B1').value;
   if(![1,LIST_TEMPLATE_VERSION,3].includes(version))throw new Error('Este modelo usa outra versão. Baixe o modelo atual no site.');
@@ -64,7 +64,7 @@ export async function writeListWorkbook(rows,Excel,{title='Pedido',template=fals
   if(!template&&!rows.length)throw new Error('Adicione pelo menos uma linha ao pedido.');
   if(rows.length>ORDER_LIMITS.rows)throw new Error('Use até 5.000 linhas por pedido.');
   if(rows.some(row=>listProblems(row).length))throw new Error('Corrija as linhas sinalizadas antes de baixar o Excel.');
-  const workbook=new Excel.Workbook();workbook.creator='Atlas Uniform Studio · Andrei Raimundi';workbook.subject=title;workbook.created=new Date();
+  const workbook=new Excel.Workbook();workbook.creator='Meinerz Uniform Studio · Andrei Raimundi';workbook.subject=title;workbook.created=new Date();
   const sorted=sortListRows(rows),sheet=workbook.addWorksheet('Pedido');
   const modern=defaults.catalogVersion===3||rows.some(row=>row.catalogVersion===3);
   const templateDefaults={...(modern?{catalogVersion:3}:{}),produto:typeValue(defaults.produto)||String(defaults.produto||'').trim()||'Kit',modelo:String(defaults.modelo??'').trim(),cor:String(defaults.cor??'').trim()};
@@ -180,7 +180,7 @@ function formatSheet(sheet,widths) {
 export async function writeOrderWorkbook(rows,notes,Excel,{title='Pedido organizado'}={}) {
   if(!rows.length)throw new Error('Adicione pelo menos uma linha ao pedido.');
   if(rows.some(row=>orderProblems(row).length))throw new Error('Corrija as linhas sinalizadas antes de exportar.');
-  const workbook=new Excel.Workbook();workbook.creator='Atlas Uniform Studio · Andrei Raimundi';workbook.subject=title;
+  const workbook=new Excel.Workbook();workbook.creator='Meinerz Uniform Studio · Andrei Raimundi';workbook.subject=title;
   workbook.created=new Date();
   const sorted=sortOrders(rows),summary=summarizeOrders(sorted),orders=workbook.addWorksheet('Pedidos organizados');
   orders.addRow(ORDER_FIELDS.map(([,label])=>label.toUpperCase()));

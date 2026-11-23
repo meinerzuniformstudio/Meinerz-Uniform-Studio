@@ -1,0 +1,8 @@
+import {drawingMapPdf} from '../lib/drawing-map-pdf.mjs';
+import {readFile,writeFile} from 'node:fs/promises';
+import Zip from 'jszip';
+import {INSTALLED_TEMPLATES} from '../lib/installed-templates.mjs';
+const manifest=JSON.parse(await readFile('scripts/presentation-pack-manifest.json','utf8')),zip=new Zip();
+zip.file('LEIA-ME.txt','ATLAS - MAPAS DE ARTE REVISADOS\n\n155 moldes: 152 kits e 3 calções de referência.\n\n1. PDF e SVG possuem curvas vetoriais editáveis.\n2. Linha contínua: limite externo da sangria de 10,67 pixels. Linha tracejada: contorno real da peça.\n3. Nomes e guias ficam fora dos campos de arte. Oculte GUIAS_OCULTAR_ANTES_DE_EXPORTAR no SVG; remova guias e textos ao exportar o PDF.\n4. Desenhe até o limite externo e exporte a página inteira em PNG 4096 x 4096.\n5. Use o mesmo molde revisado na apresentação. Artes salvas com mapas anteriores conservam o atlas original.\n\nProporções calibradas pela geometria dos GLBs. Estes são mapas de arte e não arquivos de modelagem física ou graduação.\n');
+for(const entry of INSTALLED_TEMPLATES){const meta=entry.descriptor,folder=meta.packId?['KIT',meta.modeling,meta.collar,(meta.cutType&&meta.cutType!=='SEM RECORTE'?'RECORTE '+meta.cutType:meta.sideCut?'COM RECORTE':'SEM RECORTE')+(meta.variant?' - '+meta.variant:''),`CALCAO ${meta.bottomParts||2} PARTES`].join('/'):'OUTROS/'+meta.name;zip.file(folder+'/MAPA - '+meta.id+'.pdf',await readFile('public'+entry.assetsPdf));for(const [file,label]of [['template.svg','MAPA']])zip.file(folder+'/'+label+' - '+meta.id+'.svg',await readFile('public/assets/molds/'+meta.id+'/'+file));}
+await writeFile('public/assets/molds/pack26-mapas.zip',await zip.generateAsync({type:'nodebuffer',compression:'DEFLATE',compressionOptions:{level:9}}));

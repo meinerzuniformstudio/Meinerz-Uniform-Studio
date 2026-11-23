@@ -1,0 +1,4 @@
+import{readFile,writeFile}from'node:fs/promises';import{createHash}from'node:crypto';
+const entries=JSON.parse(await readFile('work/prime-transport-jobs.json','utf8')),files=[];
+for(const e of entries)for(const file of ['model.delta.gz','source.delta.gz','template.svg','proof.svg']){const path='/assets/molds/'+e.descriptor.id+'/'+file,bytes=await readFile('public'+path);files.push({path,size:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex'),type:file.endsWith('.svg')?'image/svg+xml; charset=utf-8':'application/gzip'});}
+await writeFile('lib/prime-asset-index.mjs','// Immutable checksums for the owner-supplied PRIME batch.\nexport const PRIME_ASSET_INDEX=Object.freeze('+JSON.stringify(files)+');\n');await writeFile('work/prime-r2-files.json',JSON.stringify(files));console.log({files:files.length,bytes:files.reduce((n,f)=>n+f.size,0)});

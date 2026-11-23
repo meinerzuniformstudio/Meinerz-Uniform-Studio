@@ -1,6 +1,6 @@
+import {simulatorKit} from '../public/simulador/kit-catalog.js';
 import {AppError} from './project-service.mjs';
 import {COLORS,UNIFORM_FONTS,paletteColor,DEFAULT_INK} from '../public/simulador/catalog.js';
-import {ELITE_PANELS,ELITE_MODEL} from '../public/simulador/elite.js';
 import {GRAPHIC_IDS} from '../public/simulador/graphics.js';
 import {isShirtFillPanel,GRADIENT_ANGLES} from '../public/simulador/gradient.js';
 import {normalizeText} from '../public/simulador/core.js';
@@ -31,9 +31,10 @@ function logo(value){
  const root=svg.match(/^<svg\b([^>]*)>/);if(!root)fail('Logo SVG inválida.');const dimension=key=>Number(root[1].match(new RegExp('\\b'+key+'="([0-9.]+)"'))?.[1]);const w=dimension('width'),h=dimension('height');if(!w||!h||w>2048||h>2048)fail('Dimensões SVG inválidas.');return {src:value,pixels:{w,h},vector:true};
 }
 export function validateSimulatorState(input){
- if(!input||input.schema!==1||input.model!==ELITE_MODEL||!['kit','shirt','shorts'].includes(input.product)||!Array.isArray(input.panels)||input.panels.length!==19)fail('Escolha uma modelagem disponibilizada pelo administrador.');
- const title=text(input.title,80,false),trim=color(input.trim,input.trimColorId);const out={schema:1,platformBrand:'atlas',model:ELITE_MODEL,title,product:input.product,trim:trim.color,trimColorId:trim.colorId,active:'front',selected:null,order:null,panels:[]};const seen=new Set(),layers=new Set();let count=0;
- for(const p of input.panels){const original=ELITE_PANELS.find(q=>q.id===p?.id);if(!original||seen.has(p.id)||!Array.isArray(p.layers)||p.layers.length>60)fail('Confira os painéis do uniforme.');seen.add(p.id);const next={...original,cm:{w:number(p.cm?.w,1,300),h:number(p.cm?.h,1,300)},...color(p.color,p.colorId),layers:[]};
+ const kit=simulatorKit(input?.model);
+ if(!input||input.schema!==1||!kit||kit.productOnly||!['kit','shirt','shorts'].includes(input.product)||!Array.isArray(input.panels)||input.panels.length!==kit.panels.length)fail('Escolha uma modelagem disponibilizada pelo administrador.');
+ const title=text(input.title,80,false),trim=color(input.trim,input.trimColorId);const out={schema:1,platformBrand:'atlas',model:kit.id,gender:kit.gender||'MASCULINA',title,product:input.product,trim:trim.color,trimColorId:trim.colorId,active:'front',selected:null,order:null,panels:[]};const seen=new Set(),layers=new Set();let count=0;
+ for(const p of input.panels){const original=kit.panels.find(q=>q.id===p?.id);if(!original||seen.has(p.id)||!Array.isArray(p.layers)||p.layers.length>60)fail('Confira os painéis do uniforme.');seen.add(p.id);const next={...original,cm:{w:number(p.cm?.w,Math.min(1,original.cm.w),300),h:number(p.cm?.h,Math.min(1,original.cm.h),300)},...color(p.color,p.colorId),layers:[]};
   if(p.gradient!==undefined){
    if(!isShirtFillPanel(original)||!p.gradient||typeof p.gradient!=='object'||Array.isArray(p.gradient)||!GRADIENT_ANGLES.includes(p.gradient.angle))fail('O degradê é permitido apenas no preenchimento da camiseta e exige uma direção válida.');
    const secondary=color(p.gradient.toColor,p.gradient.toColorId);

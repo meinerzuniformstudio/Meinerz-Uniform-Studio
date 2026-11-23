@@ -47,7 +47,7 @@ function detectManualKit(){
   const select=$('#orderProduct');
   if(['Camiseta','Calção'].includes(select.value)&&$('#manualTop').value&&$('#manualBottom').value){select.value='Kit';syncProduct();toast('Kit de camiseta + calção selecionado. Cada peça mantém seu tamanho.');}
 }
-function resetManual(){catalogManual.reset();catalogManual.sync($('#orderProduct').value);editing=null;draftDirty=false;$('#manualName').value='';$('#manualNumber').value='';$('#manualAdditional').value='';$('#manualQuantity').value='1';$('#manualError').hidden=true;$('#cancelEditBtn').hidden=true;$('#addManualBtn').textContent='Adicionar';$('#manualHint').textContent='Preencha camiseta e calção para montar um kit automaticamente. Nome, número e adicional são opcionais. BL = Baby Look. TAM = Infantil.';renderStats();}
+function resetManual(){$('#listSaveStatus').textContent=dirty?'Alterações na lista · pendente de salvar':savedListId?'Lista salva na conta · versão '+savedListVersion:'Lista ainda não salva na conta.';catalogManual.reset();catalogManual.sync($('#orderProduct').value);editing=null;draftDirty=false;$('#manualName').value='';$('#manualNumber').value='';$('#manualAdditional').value='';$('#manualQuantity').value='1';$('#manualError').hidden=true;$('#cancelEditBtn').hidden=true;$('#addManualBtn').textContent='Adicionar';$('#manualHint').textContent='Preencha camiseta e calção para montar um kit automaticamente. Nome, número e adicional são opcionais. BL = Baby Look. TAM = Infantil.';renderStats();}
 function manualRow(){return normalizeListRow({...catalogManual.read(),grupo:$('#manualGroup').value,nome:$('#manualName').value,numero:$('#manualNumber').value,adicional:$('#manualAdditional').value,tamanhoCamiseta:$('#manualTop').value,tamanhoCalcao:$('#manualBottom').value,quantidade:$('#manualQuantity').value,produto:$('#orderProduct').value,modelo:$('#orderModel').value,cor:$('#orderColor').value},{},{sheet:'Criação manual',text:'Item preenchido manualmente.'});}
 function editRow(row){
   if(draftDirty&&editing!==row.id)return toast('Salve ou descarte o item em preenchimento antes de editar outro.');
@@ -77,6 +77,8 @@ function renderRows(){
   $('.pagination').hidden=filtered.length<=PAGE_SIZE;
 }
 function renderStats(){
+ const progress=$('#workProgress');if(progress){const issues=[...(!records.length?['Adicione itens à lista.']:[]),...(draftDirty?['Adicione ou descarte o item em preenchimento.']:[]),...(unresolved.length?[unresolved.length+' linhas aguardando correção.']:[]),...records.flatMap((row,i)=>listProblems(row).map(problem=>'Linha '+(i+1)+': '+problem)),...(!$('#orderTitle').value.trim()||/^nova lista$/i.test($('#orderTitle').value.trim())?['Dê um nome à lista.']:[]),...(listConflict?['A lista mudou em outra aba. Salve como nova ou reabra a versão atual.']:[])];progress.setAttribute('data-now',busy?'Aguarde a operação em andamento.':draftDirty?'Adicionar ou salvar o item em edição.':issues.length?(!records.length?'Adicione o primeiro item ou importe uma planilha.':issues[0]):dirty?'Aguarde o salvamento ou clique em Salvar rascunho.':!listChecked?'Concluir e conferir lista.':'Usar a lista em um pedido ou exportar a planilha.');progress.setAttribute('data-issues',JSON.stringify(issues));}
+
   const summary=listSummary(records),pending=summary.invalid+unresolved.length;
   $('#recordCount').textContent=`${records.length} ${records.length===1?'item':'itens'}`;$('#pieceCount').textContent=summary.pieces;$('#kitCount').textContent=summary.kits;$('#issueCount').textContent=`${pending} pendência(s)`;
   for(const control of $$('[data-export-orders]'))control.disabled=busy||!records.length||!!pending||draftDirty;
@@ -147,7 +149,7 @@ function download(bytes,name,target){if(urls[target])URL.revokeObjectURL(urls[ta
 for(const selector of ['#orderProduct','#detailProduct'])['Camiseta','Calção','Kit'].forEach(p=>$(selector).append(opt(p,p==='Kit'?'Kit · camiseta + calção':p)));
 GROUP_TYPES.forEach(g=>$('#manualGroup').append(opt(g)));sizeSelect($('#manualTop'));sizeSelect($('#manualBottom'));syncProduct();
 $$('[data-input]').forEach(tab=>tab.addEventListener('click',()=>setMode(tab.dataset.input)));
-function draftChanged(){listGuide.hide();clearTimeout(listAutoTimer);detectManualKit();draftDirty=true;$('#cancelEditBtn').hidden=false;$('#cancelEditBtn').textContent=editing?'Cancelar edição':'Descartar preenchimento';renderStats();renderSummary();}
+function draftChanged(){$('#listSaveStatus').textContent='Item em preenchimento · ainda não adicionado nem salvo';listGuide.hide();clearTimeout(listAutoTimer);detectManualKit();draftDirty=true;$('#cancelEditBtn').hidden=false;$('#cancelEditBtn').textContent=editing?'Cancelar edição':'Descartar preenchimento';renderStats();renderSummary();}
 $('#manualForm').addEventListener('input',draftChanged);$('#manualForm').addEventListener('change',draftChanged);
 $('#manualForm').addEventListener('submit',event=>{
   event.preventDefault();if(busy)return;detectManualKit();const row=manualRow(),problems=listProblems(row);if(problems.length){$('#manualError').textContent=problems.join(' ');$('#manualError').hidden=false;return;}
@@ -191,7 +193,7 @@ async function listApi(path,options){
 function listDocument(){return {schema:1,title:$('#orderTitle').value.trim()||'Nova lista',defaults:defaults(),links:{orderId:$('#listOrderLink').value,projectId:$('#listProjectLink').value},sourceName:fileSource?.file||listSourceName||'',rows:structuredClone(records),unresolved:structuredClone(unresolved)};}
 function saveLocalList(){if(!listAccount)return;try{localStorage.setItem('meinerz-list-draft:'+listAccount,JSON.stringify({id:savedListId,version:savedListVersion,document:listDocument(),dirty}));}catch{}}
 function queueListSave(){
- saveLocalList();clearTimeout(listAutoTimer);$('#listSaveStatus').textContent='Alterações na lista…';
+ saveLocalList();clearTimeout(listAutoTimer);$('#listSaveStatus').textContent='Alterações na lista · pendente de salvar';renderStats();
  if(listAccount&&!listConflict)listAutoTimer=setTimeout(()=>saveList(false),1600);
 }
 async function refreshLists(){
@@ -203,12 +205,12 @@ async function saveList(explicit=true,complete=false){
  if(draftDirty){if(explicit)toast('Adicione ou descarte o item em preenchimento antes de sair.');return false;}
  if(listConflict){if(explicit)toast('A lista mudou em outra aba. Use Salvar como nova para guardar sua edição.');return false;}
  if(complete&&(!listReady()||!$('#orderTitle').value.trim()||/^nova lista$/i.test($('#orderTitle').value.trim()))){toast('Dê um nome à lista, conclua os itens e confira as pendências antes de finalizar.');return false;}
- clearTimeout(listAutoTimer);const created=!savedListId,start=listRevision,payload={document:listDocument(),version:savedListVersion,action:complete?'complete':'save'};$('#saveList').disabled=true;
+ clearTimeout(listAutoTimer);const created=!savedListId,start=listRevision,payload={document:listDocument(),version:savedListVersion,action:complete?'complete':'save'};$('#saveList').disabled=true;$('#listSaveStatus').textContent='Salvando na conta…';
  listSavePromise=(async()=>{try{
   const {list}=await listApi(savedListId?'/api/order-lists/'+encodeURIComponent(savedListId):'/api/order-lists',{method:savedListId?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
   savedListId=list.id;savedListVersion=list.version;dirty=start!==listRevision;listChecked=Boolean(list.reviewed)&&!dirty&&!draftDirty;updateListGuide(complete);canonicalWorkflowPath(workflowRoute('list',{listId:savedListId,orderId:orderTarget||''}));dirty=start!==listRevision;saveLocalList();$('#listSaveStatus').textContent=dirty?'Há alterações novas para salvar.':(listChecked?'Lista conferida':'Rascunho salvo')+' · versão '+list.version;
   await refreshLists().catch(()=>{});if(explicit)toast(complete&&(dirty||draftDirty)?'Há alterações novas. Conclua e confira novamente.':complete?'Lista pronta e conferida. Escolha a próxima etapa quando quiser.':'Rascunho salvo. Conclua e confira a lista quando estiver pronta.');if(dirty)listAutoTimer=setTimeout(()=>saveList(false),500);return !complete||!dirty&&!draftDirty;
- }catch(error){if(error.status===409)listConflict=true;saveLocalList();$('#listSaveStatus').textContent=error.message;return false;}finally{listSavePromise=null;$('#saveList').disabled=false;}})();return listSavePromise;
+ }catch(error){if(error.status===409)listConflict=true;saveLocalList();$('#listSaveStatus').textContent='Não salvo na conta · '+error.message;return false;}finally{listSavePromise=null;$('#saveList').disabled=false;renderStats();}})();return listSavePromise;
 }
 function loadListDocument(document,meta={}){listLinkedOrders=[];
  clearTimeout(listAutoTimer);savedListId=meta.id||null;savedListVersion=meta.version||0;listConflict=false;listRevision++;dirty=Boolean(meta.dirty);

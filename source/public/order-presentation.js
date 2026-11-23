@@ -1,4 +1,4 @@
-import {newKitPage} from './production-core.js?v=15';
+import {newKitPage} from './production-core.js?v=female-20261117';
 import {createOrderProduct,prepareOrderProduct} from './order-composition.js';
 export function presentationGarments(template={}){
  if(!['conjunto','kit'].includes(String(template.category||'').toLowerCase()))return null;
@@ -13,6 +13,7 @@ export function presentationGarments(template={}){
 }
 export function usePresentationKit(order,page,product,template,image,reference){
  const types=presentationGarments(template);if(!types)return null;
+ if(template.gender==='FEMININA'&&(page.mode!=='conjunto'||page.products.length!==2||new Set(page.products.map(p=>p.type)).size!==2))return null;
  if(!page.products.every(p=>types.includes(p.type))){if(order.pages.length>=50)throw Error('Use até 50 desenhos por pedido.');page=newKitPage(types);for(const p of page.products)prepareOrderProduct(p,p.id);order.pages.push(page);}
  for(const type of types)if(!page.products.some(p=>p.type===type)){if(page.products.length>=8)throw Error('Não há espaço para a segunda peça neste desenho.');page.products.push(createOrderProduct(type));}
  page.mode='conjunto';page.title=page.title||'KIT · '+types.join(' + ').toUpperCase();page.visual={mode:'shared',image,transform:{scale:1,x:.5,y:.5}};

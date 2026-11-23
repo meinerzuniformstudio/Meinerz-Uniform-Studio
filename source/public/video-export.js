@@ -17,20 +17,21 @@ export function videoFrameSource(context,options={}){
  if(options.backgroundImage){const image=options.backgroundImage,r=backgroundRect(image.naturalWidth||image.width,image.naturalHeight||image.height,width,height,settings.backgroundFit);back.drawImage(image,r.x,r.y,r.width,r.height);}
  const m=width*.045,head=height*.13;front.fillStyle='#17191b';front.fillRect(0,0,width,head);front.fillRect(0,height*.94,width,height*.06);
  drawBrandLogo(front,logo,m,head*.18,width*.24,head*.65);front.fillStyle='#bba77d';front.fillRect(m,head-2,width-2*m,1);
- front.textAlign='right';front.fillStyle='#e7e6e0';front.font='700 '+Math.min(width*.025,height*.045)+'px "Chakra Petch",Arial';front.fillText(context.name||'Seu uniforme',width-m,head*.47,width*.61);
- front.fillStyle='#c4b18a';front.font='400 '+Math.max(10,Math.min(width*.012,height*.024))+'px "Chakra Petch",Arial';front.fillText('APRESENTAÇÃO 360°',width-m,head*.77,width*.63);
- front.textAlign='left';front.fillText('Design por '+(context.designerName||'Atlas'),m,height*.978,width-2*m);
+ front.textAlign='right';front.fillStyle='#e7e6e0';front.font='700 '+Math.min(width*.025,height*.045)+'px "RBNo3.1",Arial';front.fillText(context.name||'Seu uniforme',width-m,head*.47,width*.61);
+ front.fillStyle='#c4b18a';front.font='400 '+Math.max(10,Math.min(width*.012,height*.024))+'px "RBNo3.1",Arial';front.fillText('APRESENTAÇÃO 360°',width-m,head*.77,width*.63);
+ front.textAlign='left';front.fillText('Design por '+(context.designerName||'Meinerz'),m,height*.978,width-2*m);
  const center=bounds.getCenter(new Vector3()),size=bounds.getSize(new Vector3()),camera=new PerspectiveCamera(32,width/height,.03,500),radius=Math.hypot(size.x,size.z)/2,tanY=Math.tan(32*Math.PI/360),tanX=tanY*width/height;
  const distance=Math.max(size.y*.58/(tanY*.78)+radius,radius/(tanX*.88)+radius)*1.08;
+ const separated=scene.userData?.separatedKit,orientation=separated?.snapshot();
  const saved={size:renderer.getSize(new Vector2()),ratio:renderer.getPixelRatio(),viewport:renderer.getViewport(new Vector4()),scissor:renderer.getScissor(new Vector4()),scissorTest:renderer.getScissorTest(),target:renderer.getRenderTarget(),cube:renderer.getActiveCubeFace(),mip:renderer.getActiveMipmapLevel(),background:scene.background,color:renderer.getClearColor?.(new Color()),alpha:renderer.getClearAlpha?.(),visibility:options.backgroundImage?(context.productionHidden||[]).filter(Boolean).map(o=>[o,o.visible]):[]};
  let restored=false;
- function restore(){if(restored)return;restored=true;scene.background=saved.background;if(saved.color)renderer.setClearColor(saved.color,saved.alpha);for(const [o,visible] of saved.visibility)o.visible=visible;
+ function restore(){if(restored)return;restored=true;if(orientation)separated.restore(orientation);scene.background=saved.background;if(saved.color)renderer.setClearColor(saved.color,saved.alpha);for(const [o,visible] of saved.visibility)o.visible=visible;
   renderer.setPixelRatio(saved.ratio);renderer.setSize(saved.size.x,saved.size.y,false);renderer.setRenderTarget(saved.target,saved.cube,saved.mip);renderer.setViewport(saved.viewport);renderer.setScissor(saved.scissor);renderer.setScissorTest(saved.scissorTest);renderer.render(scene,liveCamera);for(const c of [canvas,backdrop,overlay])c.width=c.height=1;
  }
  try{scene.background=null;renderer.setClearColor?.(0x000000,0);for(const [o]of saved.visibility)o.visible=false;renderer.setPixelRatio(1);renderer.setSize(width,height,false);renderer.setRenderTarget(null);renderer.setScissorTest(false);}
  catch(error){restore();throw error;}
  function draw(progress){
-  const angle=progress*Math.PI*2;camera.position.set(center.x+Math.sin(angle)*distance,center.y+size.y*.08,center.z+Math.cos(angle)*distance);camera.lookAt(center);camera.updateMatrixWorld(true);
+  const angle=progress*Math.PI*2;if(separated){for(const group of separated.groups)group.rotation.y=-angle;separated.root.updateMatrixWorld(true);}camera.position.set(center.x+(separated?0:Math.sin(angle)*distance),center.y+size.y*.08,center.z+(separated?distance:Math.cos(angle)*distance));camera.lookAt(center);camera.updateMatrixWorld(true);
   renderer.render(scene,camera);ctx.drawImage(backdrop,0,0);ctx.save();ctx.filter='contrast('+s.contrast/100+')';ctx.drawImage(renderer.domElement,0,0);ctx.restore();ctx.drawImage(overlay,0,0);return canvas;
  }
  return {canvas,draw,restore,settings};

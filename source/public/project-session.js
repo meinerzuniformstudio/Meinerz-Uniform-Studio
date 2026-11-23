@@ -1,3 +1,4 @@
+import {presentationMoldFilters} from './presentation-mold-filters.js';
 import {moldCollection,collectionMolds,moldOptionName} from './mold-collections.js';
 import {compatibleTemplateArt,templateFamily} from './template-family.js';
 import {createWorkflowGuide,workflowChoose,workflowOrders} from './workflow-guide.js?v=3';
@@ -39,7 +40,9 @@ export function createProjectSession(viewer) {
     return data;
   }
   function state() {
+    const progress=$('#workProgress');if(progress){progress.hidden=readOnly;const issues=[...(!loaded?['Aguarde o carregamento do projeto.']:[]),...(mapError?['A arte não carregou. Tente enviá-la novamente.']:[]),...(loaded&&!project?.hasMap&&!pendingMap?['Carregue o mapa completo da arte.']:[]),...(dirty?['Salve as alterações atuais.']:[]),...(loaded&&!project?.reviewed?['Conclua e confira a apresentação.']:[])];progress.setAttribute('data-now',!loaded?'Carregando apresentação…':saving?'Aguarde o salvamento.':mapError?'Reenviar a arte.':!project?.hasMap&&!pendingMap?'Carregar o mapa completo.':dirty?'Salvar projeto.':!project?.reviewed?'Concluir e conferir a apresentação.':'Exportar ou usar a apresentação em um pedido.');progress.setAttribute('data-issues',JSON.stringify(issues));}
     const select=$('#presentationMoldSelect');if(select)select.disabled=!loaded||saving||switching||completing;
+    document.querySelectorAll?.('#presentationMoldFilters select, #presentationMoldFilters button').forEach(input=>{input.disabled=!loaded||saving||switching||completing||(input.id==='applyPresentationMold'&&select?.value===activeTemplate?.id);});
     if(!readOnly){$('#mapInput').disabled=switching;$('#exampleMapBtn').disabled=switching;}
     $('#saveProjectBtn').disabled = !loaded || saving || switching || completing || !dirty || mapError;
     $('#completeProjectBtn').hidden=readOnly;$('#completeProjectBtn').disabled=!loaded||saving||switching||completing||mapError||Boolean(project?.reviewed&&!dirty);$('#completeProjectBtn').textContent=completing?'Conferindo…':project?.reviewed&&!dirty?'Apresentação conferida':'Concluir e conferir';
@@ -50,13 +53,13 @@ export function createProjectSession(viewer) {
     $('#saveProjectBtn span').textContent = saving ? 'Salvando…' : 'Salvar projeto';
     $('#projectNameInput').disabled = saving || !loaded;
     $('#projectClientInput').disabled = saving || !loaded;
-    if (project && !readOnly) $('#projectVersion').textContent = `VERSÃO ${String(project.version).padStart(2, '0')} · ${new Date(project.updatedAt).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })}`;
+    if (project && !readOnly) $('#projectVersion').textContent = `ATUALIZADO · ${new Date(project.updatedAt).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })}`;
   }
   function changed() { if (!hydrating && !readOnly && loaded) { dirty = true; projectGuide?.hide();state(); } }
   function title(name) {
     $('#projectHeading').textContent = name;
     $('#headerProjectName').textContent = name;
-    document.title = `${name} — Atlas Uniform Studio`;
+    document.title = `${name} — Meinerz Uniform Studio`;
   }
   function fail(message) {
     $('#projectFailureMessage').textContent = message;
@@ -153,7 +156,7 @@ export function createProjectSession(viewer) {
         if (!await viewer.loadMap(presentation.mapUrl, presentation.mapName || 'Arte do projeto')) throw new Error('Não foi possível carregar a arte atualizada.');
         viewer.setVisuals(presentation.visuals); project = presentation; title(presentation.name);
         viewer.setPresentation(presentation.presentation);
-        $('#clientVersion').textContent = `VERSÃO ${String(presentation.version).padStart(2, '0')}`;
+        $('#clientVersion').textContent = 'ARTE ATUAL';
         viewer.toast('Seu designer atualizou esta apresentação.');
       }
       $('#designerName').textContent = presentation.designerName;
@@ -168,10 +171,20 @@ export function createProjectSession(viewer) {
   async function setupMoldPicker(){
     const select=$('#presentationMoldSelect');if(!select)return;
     const {templates}=await api('/api/templates');
-    if(!templates.some(t=>t.id===activeTemplate.id))templates.unshift({id:activeTemplate.id,name:activeTemplate.name,category:activeTemplate.category});
+    if(!templates.some(t=>t.id===activeTemplate.id))templates.unshift({...activeTemplate});
     let activeLine=moldCollection(activeTemplate);const tabHost=$('#presentationMoldCollections'),tabs=[];
     function renderMolds(){
-      select.replaceChildren();const items=collectionMolds(templates,activeLine);
+      select.replaceChildren();select.oninput=null;select.onchange=null;select.hidden=false;const items=collectionMolds(templates,activeLine);
+      const filters=$('#presentationMoldFilters');if(filters)filters.replaceChildren();
+      const pack=items.filter(t=>t.packId);
+      if(filters&&pack.length){
+        const typeLabel=document.createElement('label');typeLabel.textContent='Tipo de peça';const type=document.createElement('select');type.setAttribute('aria-label','Tipo de peça');
+        for(const [value,label]of [['kit','Kit camiseta + calção'],['other','Peças avulsas e modelos anteriores']]){if(value==='other'&&!items.some(t=>!t.packId))continue;const o=document.createElement('option');o.value=value;o.textContent=label;type.append(o);}
+        type.value=items.find(t=>t.id===activeTemplate.id)?.packId?'kit':'other';
+        const fields=document.createElement('div');fields.className='mold-filter-fields';filters.append(typeLabel);typeLabel.append(type);filters.append(fields);
+        function renderType(){fields.replaceChildren();select.hidden=false;if(type.value==='kit'){presentationMoldFilters({host:fields,select,items:pack,currentId:activeTemplate.id,busy:()=>switching||saving||completing});}else{select.oninput=null;select.onchange=null;select.replaceChildren();for(const t of items.filter(t=>!t.packId)){const o=document.createElement('option');o.value=t.id;o.textContent=moldOptionName(t);select.append(o);}select.value=activeTemplate.id;}}
+        type.addEventListener('change',renderType);renderType();for(const [line,button]of tabs)button.setAttribute('aria-pressed',String(line===activeLine));return;
+      }
       for(const [category,label]of [['single','Peças avulsas'],['kit','Kits completos']]){
         const group=document.createElement('optgroup');group.label=label;
         for(const t of items.filter(t=>(t.category==='conjunto')===(category==='kit'))){const option=document.createElement('option');option.value=t.id;option.textContent=moldOptionName(t);group.append(option);}
@@ -214,8 +227,8 @@ export function createProjectSession(viewer) {
         document.body.classList.add('proposal-view');
         const {proposal}=await api(`/api/proposals/${encodeURIComponent(proposalToken)}`);
         const version=proposal.versions.find(v=>v.id===versionId);if(!version)throw new Error('Esta versão não está disponível na proposta.');
-        project=version;viewer.configureTemplate(version.template);title(`${version.name} · V${version.version}`);
-        $('#designerName').textContent=version.designerName;$('#clientVersion').textContent=`VERSÃO ${version.version}`;
+        project=version;viewer.configureTemplate(version.template);title(version.name);
+        $('#designerName').textContent=version.designerName;$('#clientVersion').textContent='ARTE ATUAL';
         viewer.setVisuals(version.visuals);viewer.setPresentation(version.presentation);
         if(!await viewer.loadMap(version.mapUrl,version.mapName))throw new Error('Não foi possível carregar a arte desta versão.');
       } else if (token) {
@@ -223,7 +236,7 @@ export function createProjectSession(viewer) {
         viewer.configureTemplate(template);
         project = presentation; title(project.name);
         $('#designerName').textContent = project.designerName;
-        $('#clientVersion').textContent = `VERSÃO ${String(project.version).padStart(2, '0')}`;
+        $('#clientVersion').textContent = 'ARTE ATUAL';
         viewer.setVisuals(project.visuals);
         viewer.setPresentation(project.presentation);
         if (!await viewer.loadMap(project.mapUrl, project.mapName || 'Arte do projeto')) throw new Error('Não foi possível carregar a arte desta apresentação.');

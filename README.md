@@ -1,5 +1,8 @@
 # MEINERZ UNIFORM STUDIO
 
+Em 23/11/2026 foi preparada a importação da fonte oficial da **v133**. Consulte [a origem, os testes e o inventário de migração](docs/MIGRACAO-SITES-V133.md). As notas sobre v90 abaixo são históricas.
+
+
 Plataforma de Andrei Raimundi para criação de uniformes, apresentações, pedidos e orçamentos.
 
 **Snapshot histórico documentado: v90 — 04/11/2026.** Fonte sincronizada em `source/`,524 arquivos com manifesto SHA-256. Autoria declarada: Andrei Raimundi; direitos reservados.

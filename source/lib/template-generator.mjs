@@ -1,3 +1,5 @@
+import {artBleedSvg,ART_BLEED_PIXELS} from './art-bleed-svg.mjs';
+import {editableTemplateSvg} from './editable-template-svg.mjs';
 // Deterministic GLB → flat drawing atlas. Runs without a GPU or external service.
 // Geometry, indices, normals and original UVs remain intact. Only color UVs are
 // translated into non-overlapping rectangles at one common texel scale.
@@ -80,7 +82,7 @@ function contours(tris, uv) {
   return paths;
 }
 
-function splitPrimitive(json, binary, meshIndex, primitiveIndex) {
+function splitPrimitive(json, binary, meshIndex, primitiveIndex, sharedUvSeam = false) {
   const primitive = json.meshes[meshIndex].primitives[primitiveIndex];
   if (primitive.mode !== undefined && primitive.mode !== 4 || primitive.targets?.length) fail('Use uma malha estática triangulada.');
   if (primitive.attributes?.TEXCOORD_0 === undefined || primitive.attributes?.POSITION === undefined) fail('O molde está sem UVs ou geometria. Exporte do CLO com UV e malha incorporados.');
@@ -93,7 +95,7 @@ function splitPrimitive(json, binary, meshIndex, primitiveIndex) {
   if (indices.length % 3 || indices.length / 3 > TEMPLATE_LIMITS.triangles) fail('Use uma malha com até 200 mil triângulos.');
   const canonical = new Uint32Array(positions.count), unique = new Map(), uv = [];
   for (let i = 0; i < positions.count; i++) {
-    const key = `${positions.data[i*3]},${positions.data[i*3+1]},${positions.data[i*3+2]}|${coordinates.data[i*2]},${coordinates.data[i*2+1]}`;
+    const key = `${sharedUvSeam?'':`${positions.data[i*3]},${positions.data[i*3+1]},${positions.data[i*3+2]}`}|${coordinates.data[i*2]},${coordinates.data[i*2+1]}`;
     if (!unique.has(key)) { unique.set(key, uv.length); uv.push([coordinates.data[i*2], coordinates.data[i*2+1]]); }
     canonical[i] = unique.get(key);
   }
@@ -128,7 +130,7 @@ function splitPrimitive(json, binary, meshIndex, primitiveIndex) {
 }
 
 function pack(islands, scale) {
-  const shelves = [], placed = new Map(), gap = 56, margin = 100, top = 240, bottom = 110;
+  const shelves = [], placed = new Map(), gap = 80, margin = 100, top = 240, bottom = 110;
   const order = [...islands].sort((a,b) => b.height-a.height || b.width-a.width || a.order-b.order);
   for (const part of order) {
     const w = part.width * scale + gap, h = part.height * scale + gap;
@@ -140,18 +142,19 @@ function pack(islands, scale) {
   return placed;
 }
 
-function makeSvg(name, islands, placed, scale, diagnostic = false) {
+function makeSvg(name, islands, placed, scale, diagnostic = false, withBleed = true) {
   const colors = ['#c6a05e','#4a83af','#bd5f57','#72a183','#986fa6','#c18b4e','#5b9fa4'];
   const drawings=[], guides=[];
   for (const part of islands) {
     const rect=placed.get(part.order), color=colors[part.order%colors.length], label=`PAINEL ${String(part.order+1).padStart(2,'0')}`;
     const d=part.paths.map(loop=>loop.map(([u,v],i)=>`${i?'L':'M'}${number(rect.x+(u-part.minU)*scale)},${number(rect.y+(v-part.minV)*scale)}`).join(' ')+' Z').join(' ');
     drawings.push(`<path id="PAINEL_${part.order+1}" fill="${diagnostic?color:'#ffffff'}" fill-rule="evenodd" ${diagnostic?`stroke="${color}" stroke-width="6"`:''} d="${d}"/>`);
-    guides.push(`<path fill="none" stroke="${color}" stroke-width="3" d="${d}"/><text x="${number(rect.x)}" y="${number(rect.y-12)}" font-family="Arial,sans-serif" font-size="23" fill="${color}">${label}</text>`);
+    guides.push(`<path fill="none" stroke="${color}" stroke-width="3" d="${d}"/><text x="${number(rect.x)}" y="${number(rect.y-30)}" font-family="Arial,sans-serif" font-size="23" fill="${color}">${label}</text>`);
     if(diagnostic) drawings.push(`<text x="${number(rect.x+rect.w/2)}" y="${number(rect.y+rect.h/2)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="${Math.min(100,Math.max(16,rect.h/5))}" fill="#ffffff">${part.order+1}</text>`);
   }
-  const title = `<text x="100" y="90" font-family="Arial,sans-serif" font-size="38" font-weight="bold" fill="#272727">${esc(name)}</text><text x="100" y="142" font-family="Arial,sans-serif" font-size="22" fill="#6a6a6a">ATLAS UNIFORM STUDIO · PÁGINA INTEIRA 4096 × 4096 · OCULTE AS GUIAS ANTES DE EXPORTAR</text>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="4096" height="4096" viewBox="0 0 4096 4096"><title>${esc(name)} — mapa de desenho</title><g id="FUNDO_MANTER_4096"><rect width="4096" height="4096" fill="#ffffff"/></g><g id="ARTE_DESENHE_AQUI">${drawings.join('')}</g>${diagnostic?'':`<g id="GUIAS_OCULTAR_ANTES_DE_EXPORTAR">${title}${guides.join('')}</g>`}</svg>`;
+  const title = `<text x="100" y="90" font-family="Arial,sans-serif" font-size="38" font-weight="bold" fill="#272727">${esc(name)}</text><text x="100" y="142" font-family="Arial,sans-serif" font-size="22" fill="#6a6a6a">MEINERZ UNIFORM STUDIO · PÁGINA INTEIRA 4096 × 4096 · OCULTE AS GUIAS ANTES DE EXPORTAR</text>`;
+  const svg=editableTemplateSvg(`<svg xmlns="http://www.w3.org/2000/svg" width="4096" height="4096" viewBox="0 0 4096 4096"><title>${esc(name)} — mapa de desenho</title><g id="FUNDO_MANTER_4096"><rect width="4096" height="4096" fill="#ffffff"/></g><g id="ARTE_DESENHE_AQUI">${drawings.join('')}</g>${diagnostic?'':`<g id="GUIAS_OCULTAR_ANTES_DE_EXPORTAR">${title}${guides.join('')}</g>`}</svg>`);
+  return !diagnostic&&withBleed?artBleedSvg(svg):svg;
 }
 
 function encodeGlb(json, binary) {
@@ -163,6 +166,7 @@ function encodeGlb(json, binary) {
 
 export async function generateTemplate(input, options = {}) {
   const source = input instanceof Uint8Array ? input : new Uint8Array(input), {json,binary}=readGlb(source), records=[], islands=[];
+  const triangleLimit=options.offlineTrusted?400000:TEMPLATE_LIMITS.triangles,vertexLimit=options.offlineTrusted?500000:TEMPLATE_LIMITS.vertices;
   let triangleCount=0,vertexCount=0;
   // Bound peak allocations before building the topology maps in a 128 MB Worker.
   let expectedVertices=0,expectedTriangles=0;
@@ -172,11 +176,11 @@ export async function generateTemplate(input, options = {}) {
     if(!Number.isSafeInteger(count)||!Number.isSafeInteger(elements)||count<0||elements<0)fail('A contagem de vértices do GLB é inválida.');
     expectedVertices+=count;expectedTriangles+=elements/3;
   }
-  if(expectedVertices>TEMPLATE_LIMITS.vertices||expectedTriangles>TEMPLATE_LIMITS.triangles)fail('O molde ultrapassa o limite de 200 mil triângulos ou 250 mil vértices.');
-  if(source.byteLength*4+expectedVertices*400+expectedTriangles*80>96*1024*1024)fail('Este GLB está muito pesado para gerar o mapa online. Reduza as texturas ou simplifique a malha e envie novamente.');
+  if(expectedVertices>vertexLimit||expectedTriangles>triangleLimit)fail('O molde ultrapassa o limite de 200 mil triângulos ou 250 mil vértices.');
+  if(!options.offlineTrusted&&source.byteLength*4+expectedVertices*400+expectedTriangles*80>96*1024*1024)fail('Este GLB está muito pesado para gerar o mapa online. Reduza as texturas ou simplifique a malha e envie novamente.');
   for(let m=0;m<json.meshes.length;m++) for(let p=0;p<json.meshes[m].primitives.length;p++) {
-    const record=splitPrimitive(json,binary,m,p);triangleCount+=record.triangles;vertexCount+=record.vertices;
-    if(triangleCount>TEMPLATE_LIMITS.triangles||vertexCount>TEMPLATE_LIMITS.vertices) fail('O molde ultrapassa o limite de 200 mil triângulos ou 250 mil vértices.');
+    const record=splitPrimitive(json,binary,m,p,Boolean(options.offlineTrusted&&options.uvCanonicalMeshes?.includes(m)));triangleCount+=record.triangles;vertexCount+=record.vertices;
+    if(triangleCount>triangleLimit||vertexCount>vertexLimit) fail('O molde ultrapassa o limite de 200 mil triângulos ou 250 mil vértices.');
     records.push(record);for(const island of record.islands){island.order=islands.length;islands.push(island);}
     if(islands.length>TEMPLATE_LIMITS.islands) fail('O molde tem mais de 128 ilhas UV. Una as partes desnecessárias no programa de origem.');
   }
@@ -206,6 +210,6 @@ export async function generateTemplate(input, options = {}) {
   const name=typeof options.name==='string'?options.name:'Novo molde';
   const descriptor={version:1,kind:'generated',id:options.id||'generated',name,category:options.category||'camiseta',pageSize:PAGE,sourceSha256:sourceHash,orientation:{up:options.up==='z'?'z':'y',front:['+z','-z','+x','-x'].includes(options.front)?options.front:'+z'},triangles:triangleCount,vertices:vertexCount,panelCount:islands.length,
     primitives:records.map(r=>({key:`m${r.meshIndex}p${r.primitiveIndex}`,mesh:r.meshIndex,primitive:r.primitiveIndex,label:json.meshes[r.meshIndex].name||`Parte ${r.meshIndex+1}`,islandCount:r.islands.length})),
-    panels:islands.map(p=>({number:p.order+1,mesh:p.meshIndex,primitive:p.primitiveIndex,rect:placed.get(p.order),uvBounds:[p.minU,p.minV,p.maxU,p.maxV],contourVertices:p.paths.reduce((s,path)=>s+path.length,0)})),texelsPerUvUnit:scale};
-  return {model:encodeGlb(json,outputBinary),svg:makeSvg(name,islands,placed,scale),proof:makeSvg(name,islands,placed,scale,true),descriptor};
+    panels:islands.map(p=>({number:p.order+1,mesh:p.meshIndex,primitive:p.primitiveIndex,rect:placed.get(p.order),uvBounds:[p.minU,p.minV,p.maxU,p.maxV],contourVertices:p.paths.reduce((s,path)=>s+path.length,0)})),texelsPerUvUnit:scale,artBleedPixels:options.drawingBleed===false?undefined:ART_BLEED_PIXELS};
+  return {model:encodeGlb(json,outputBinary),svg:makeSvg(name,islands,placed,scale,false,options.drawingBleed!==false),proof:makeSvg(name,islands,placed,scale,true),descriptor};
 }

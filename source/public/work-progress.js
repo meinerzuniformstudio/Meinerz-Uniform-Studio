@@ -1,0 +1,7 @@
+// Display controller-owned state; never infer that a network save succeeded.
+export function connectWorkProgress(host,doc=document){
+ const now=host.querySelector('[data-work-now]'),summary=host.querySelector('[data-work-summary]'),list=host.querySelector('[data-work-issues]'),details=host.querySelector('[data-work-details]'),saved=host.querySelector('[data-work-save]'),source=doc.querySelector(host.dataset.saveSource);
+ function render(){now.textContent=host.dataset.now||'Continue o preenchimento.';let issues=[];try{issues=JSON.parse(host.dataset.issues||'[]');}catch{}issues=[...new Set(issues.filter(x=>typeof x==='string'&&x.trim()))];summary.textContent=issues.length?issues.length+' '+(issues.length===1?'pendência':'pendências'):/^Carregando/.test(host.dataset.now||'')?'Aguardando dados…':'Nenhuma pendência';list.replaceChildren(...issues.map(text=>{const li=doc.createElement('li');li.textContent=text;return li;}));if(!issues.length)details.open=false;saved.textContent=source?.textContent?.trim()||'Salvamento ainda não confirmado.';}
+ const observer=new MutationObserver(render);observer.observe(host,{attributes:true,attributeFilter:['data-now','data-issues']});if(source)observer.observe(source,{childList:true,subtree:true,characterData:true});render();return ()=>observer.disconnect();
+}
+for(const host of document.querySelectorAll('[data-work-progress]'))connectWorkProgress(host);

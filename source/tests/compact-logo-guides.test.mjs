@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{readFile}from'node:fs/promises';import{INSTALLED_TEMPLATES}from'../lib/installed-templates.mjs';
+test('all SVG and proof sheets omit logo placement suggestions',async()=>{for(const e of INSTALLED_TEMPLATES)for(const type of ['template','proof'])assert.doesNotMatch(await readFile(new URL('../public'+e.assets[type],import.meta.url),'utf8'),/GUIA_LOGO_|FORNECEDOR|BRASÃO|GUIAS DE LOGO/);});

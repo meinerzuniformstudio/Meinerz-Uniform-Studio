@@ -1,0 +1,25 @@
+import{readFile,writeFile,readdir}from'node:fs/promises';
+import{PRESENTATION_PACK_TEMPLATES as pack}from'../lib/presentation-pack-templates.mjs';
+import{SUPERSEDED_PRESENTATION_TEMPLATES as history}from'../lib/superseded-presentation-templates.mjs';
+import{moldCollar,moldCut}from'../public/mold-filters.js';
+const incoming=JSON.parse(await readFile('work/max-final-entries.json','utf8')),raw=JSON.parse(await readFile('scripts/max-upload-manifest.json','utf8'));
+const oldFor=d=>pack.find(e=>{const o=e.descriptor;if(o.modeling!==d.modeling||o.bottomParts!==d.bottomParts||moldCollar(o)!==d.collar||moldCut(o)!==d.cutType)return false;return !d.variant||d.variant==='VERSÃO 02';});
+const replaced=new Map();
+for(const e of incoming){const d=e.descriptor,m=raw.find(m=>m.id===d.preparedFrom);if(!m)throw Error('Missing source provenance');const prior=oldFor(d);if(prior){replaced.set(prior.descriptor.id,prior);d.replaces=prior.descriptor.id;}else delete d.replaces;
+ Object.assign(d,{refreshBatch:'max-2026-11-13',intermediateOnly:false,cutType:m.cutType,variant:m.variant,variantSource:m.variantSource,uploadedSourceSha256:m.uploadedSourceSha256});
+ d.catalogPath=['KIT',d.modeling,d.collar,d.cutType==='SEM RECORTE'?'SEM RECORTE':'RECORTE '+d.cutType,...(d.variant?[d.variant]:[]),'CALÇÃO '+d.bottomParts+' PARTES'];
+ const prep={...m,id:d.id,preparedFrom:d.preparedFrom,replaces:d.replaces,intermediateOnly:false};await writeFile('public/assets/molds/'+d.id+'/descriptor.json',JSON.stringify(d,null,2)+'\n');await writeFile('public/assets/molds/'+d.id+'/preparation.json',JSON.stringify(prep,null,2)+'\n');
+ delete e.templateSvg;
+ if(d.bottomDerivedFrom)e.deltaBaseId=d.bottomParts===4?d.bottomDerivedFrom:incoming.find(x=>x.descriptor.bottomDerivedFrom===d.bottomDerivedFrom&&x.descriptor.bottomParts===4).descriptor.id;
+ else e.deltaBaseId=prior?.descriptor.replaces||pack.find(x=>x.descriptor.modeling===d.modeling&&x.descriptor.collar==='REDONDA'&&!x.descriptor.sideCut&&x.descriptor.bottomParts===2).descriptor.replaces;
+
+}
+const active=[...pack.filter(e=>!replaced.has(e.descriptor.id)),...incoming];
+const key=d=>[d.modeling,moldCollar(d),moldCut(d),d.variant||'',d.bottomParts].join('|');if(new Set(active.map(e=>key(e.descriptor))).size!==active.length)throw Error('Duplicate catalog option');
+const write=(path,name,data)=>writeFile(path,'// Immutable Atlas catalog and archived artwork layouts.\nexport const '+name+'=Object.freeze('+JSON.stringify(data)+');\n');
+await write('lib/presentation-pack-templates.mjs','PRESENTATION_PACK_TEMPLATES',active);await write('lib/superseded-presentation-templates.mjs','SUPERSEDED_PRESENTATION_TEMPLATES',[...history,...replaced.values()]);
+const audit=JSON.parse(await readFile('scripts/map-proportion-audit.json','utf8'));audit.push(...JSON.parse(await readFile('work/max-physical-audit.json','utf8')));await writeFile('scripts/map-proportion-audit.json',JSON.stringify(audit,null,2)+'\n');
+const manifest=JSON.parse(await readFile('scripts/presentation-pack-manifest.json','utf8')).filter(e=>!replaced.has(e.id));for(const e of incoming)manifest.push(JSON.parse(await readFile('public/assets/molds/'+e.descriptor.id+'/preparation.json','utf8')));await writeFile('scripts/presentation-pack-manifest.json',JSON.stringify(manifest,null,2)+'\n');
+const intermediateIds=(await readdir('public/assets/molds')).filter(id=>id.includes('maxbatch-20261113')&&!id.endsWith('-proporcao-v1'));
+const batch={batch:'max-2026-11-13',uploadedFiles:4,newModels:incoming.length,activeKits:active.length,replacedIds:[...replaced.keys()],intermediateIds,entries:incoming.map(e=>({id:e.descriptor.id,source:e.descriptor.variantSource,cutType:e.descriptor.cutType,variant:e.descriptor.variant,collar:e.descriptor.collar,modeling:e.descriptor.modeling,bottomParts:e.descriptor.bottomParts}))};
+await writeFile('scripts/max-upload-audit.json',JSON.stringify(batch,null,2)+'\n');await writeFile('work/max-transport-jobs.json',JSON.stringify(incoming));console.log({active:active.length,added:incoming.length,replaced:replaced.size});

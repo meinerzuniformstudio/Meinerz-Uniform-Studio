@@ -1,0 +1,3 @@
+import{createRequire}from'node:module';import{readdir,readFile,writeFile}from'node:fs/promises';const require=createRequire(import.meta.url),{transform}=createRequire(require.resolve('vite/package.json'))('esbuild');let saved=0;for(const file of await readdir('dist/client/simulador/vendor')){if(!file.endsWith('.js'))continue;const path='dist/client/simulador/vendor/'+file,raw=await readFile(path,'utf8'),result=await transform(raw,{minify:true,format:'esm',target:'es2022',legalComments:'inline'});if(result.code.length<raw.length){await writeFile(path,result.code);saved+=raw.length-result.code.length;}}console.log({simulatorVendorSavedBytes:saved});
+await import('./deduplicate-simulator-three.mjs');
+await import('./compress-vendor-scripts.mjs');

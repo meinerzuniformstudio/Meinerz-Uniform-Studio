@@ -11,15 +11,15 @@ import {ProductionService} from '../lib/production-service.mjs';
 import {SIMULATOR_PRESENTATION_TEMPLATES} from '../lib/simulator-presentation-templates.mjs';
 import {PRESENTATION_LAYOUTS} from '../public/simulador/presentation-layouts.js';
 import {readGlb,readAccessor} from '../lib/template-generator.mjs';
-import {eliteState} from '../public/simulador/elite.js';
+import {eliteState,ELITE_MODEL,ELITE_PANELS} from '../public/simulador/elite.js';
 import {layer} from '../public/simulador/core.js';
 import {imageCache} from '../public/simulador/paint.js';
 import {presentationMap} from '../public/simulador/presentation-bridge.js';
 const require=createRequire(import.meta.url),sharp=createRequire(require.resolve('next/package.json'))('sharp');
-const owner={userId:'alice'},other={userId:'bob'},manifest=JSON.parse(await readFile(new URL('../public/simulador/models/kit-edge-2027.json',import.meta.url),'utf8'));
+const owner={userId:'alice'},other={userId:'bob'},manifest=JSON.parse(await readFile(new URL('../public/simulador/models/max.json',import.meta.url),'utf8'));
 const previewBytes=await readFile(new URL('./fixtures/simulator-logo.png',import.meta.url)),preview='data:image/png;base64,'+previewBytes.toString('base64');
 const mapBytes=await sharp({create:{width:4096,height:4096,channels:4,background:'#e5e5dd'}}).png().toBuffer(),map=new File([mapBytes],'uniforme.png',{type:'image/png'});
-const creation=product=>({...eliteState(manifest.panels),product:product||'kit'});
+const creation=product=>({...eliteState(),product:product||'kit'});
 function setup(){
  const sql=new DatabaseSync(':memory:');sql.exec('PRAGMA foreign_keys=ON');for(const m of migrations)sql.exec(m);
  const db={prepare(query){const statement=sql.prepare(query);let args=[];return {bind(...v){args=v;return this;},async first(){return statement.get(...args)||null;},async all(){return {results:statement.all(...args)};},async run(){return {meta:{changes:statement.run(...args).changes}};}};}};
@@ -44,19 +44,20 @@ test('every presentation vertex retains exact simulator geometry, local UVs and 
   const rects=layout.panels.map(p=>p.rect);for(const a of rects){assert.ok(a.x>=0&&a.y>=0&&a.x+a.w<=4096&&a.y+a.h<=4096);for(const b of rects)if(a!==b)assert.ok(a.x+a.w<b.x||b.x+b.w<a.x||a.y+a.h<b.y||b.y+b.h<a.y);}
  }
 });
-test('the EDGE bridge waits for fonts and logos and paints all nineteen retained atlas panels',async()=>{
+test('the MAX bridge waits for fonts and logos and paints all seventeen current atlas panels',async()=>{
  const state=creation('kit');for(const p of state.panels)p.layers=[];const shorts=state.panels.find(p=>p.id==='short-panel-5');shorts.layers=[layer('text',{text:'00'}),layer('image',{src:preview})];
  const image={width:32,height:24};imageCache.set(preview,image);const calls=[],text=[],destinations=[];let canvasCount=0,fontLoaded=false,logoLoaded=false;
  const context=new Proxy({measureText:()=>({width:120,actualBoundingBoxLeft:60,actualBoundingBoxRight:60,actualBoundingBoxAscent:80,actualBoundingBoxDescent:20}),drawImage:(...args)=>calls.push(args),fillText:t=>text.push(t)},{get:(obj,key)=>key in obj?obj[key]:()=>{}});
  const file=await presentationMap(state,{loadFonts:async()=>{fontLoaded=true;},loadImage:async src=>{assert.equal(src,preview);logoLoaded=true;},canvasFactory:()=>{const atlas=canvasCount++===0;return {getContext:()=>atlas?{clearRect(){},drawImage:(...args)=>{assert.ok(fontLoaded&&logoLoaded);destinations.push(args);}}:context,toBlob:callback=>callback(new Blob(['png']))};}});
- assert.equal(file.type,'image/png');assert.deepEqual(text,['00']);assert.equal(calls[0][0],image);assert.equal(destinations.length,38);assert.equal(state.product,'kit');assert.ok(destinations.every(args=>args.length===5));imageCache.delete(preview);
+ assert.equal(file.type,'image/png');assert.deepEqual(text,['00']);assert.equal(calls[0][0],image);assert.equal(destinations.length,34);assert.equal(state.product,'kit');assert.ok(destinations.every(args=>args.length===5));imageCache.delete(preview);
 });
-test('a confirmed EDGE kit creates a native project and repeated or concurrent clicks reuse it without overwriting edits',async()=>{
+test('a confirmed MAX kit creates a native project and repeated or concurrent clicks reuse it without overwriting edits',async()=>{
  const {simulator,projects,objects,templates}=setup(),saved=await simulator.save(owner,null,{state:creation(),preview});
  const results=await Promise.all([simulator.createPresentation(owner,saved.id,{version:1},map),simulator.createPresentation(owner,saved.id,{version:1},map)]);
  assert.equal(results[0].id,results[1].id);assert.equal((await projects.list(owner)).length,1);const project=results[0];assert.ok(project.hasMap&&project.thumbnailUrl);assert.equal(project.name,saved.title);assert.equal(project.templateId,PRESENTATION_LAYOUTS.kit.id);assert.equal(project.reviewed,false);assert.equal(objects.size,3);
- await assert.rejects(projects.get(other,project.id),{status:404});await assert.rejects(projects.asset(other,project.id,'map'),{status:404});assert.equal((await projects.template(owner,project.id)).panelCount,19);
- assert.ok((await templates.catalog(owner)).some(t=>t.id===project.templateId));
+ await assert.rejects(projects.get(other,project.id),{status:404});await assert.rejects(projects.asset(other,project.id,'map'),{status:404});assert.equal((await projects.template(owner,project.id)).panelCount,17);
+ assert.ok((await templates.catalog(owner)).some(t=>t.id===project.templateId));assert.ok(!(await templates.catalog(owner)).some(t=>t.id.includes('kit-edge')));
+ assert.equal((await projects.create(owner,{name:'MAX atual',templateId:project.templateId})).templateId,project.templateId);
  const edited=await projects.save(owner,project.id,{name:'Apresentação personalizada',version:project.version,visuals:{background:'light'}});
  const again=await simulator.createPresentation(owner,saved.id,{version:1},map);assert.equal(again.id,project.id);assert.equal(again.version,edited.version);assert.equal(again.name,'Apresentação personalizada');
  const shared=await projects.share(owner,project.id,true),token=shared.sharePath.split('/').at(-1);assert.equal((await projects.presentation(token)).name,edited.name);

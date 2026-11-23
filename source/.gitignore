@@ -46,3 +46,6 @@ yarn-error.log*
 
 # Ignore temporary files from atomic model transfers.
 public/assets/molds/**/.model.glb.*
+
+# Offline preparation cache
+__pycache__/

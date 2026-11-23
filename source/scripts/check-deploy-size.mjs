@@ -1,0 +1,2 @@
+import{readdir,stat}from'node:fs/promises';import path from'node:path';async function size(dir){let bytes=0;for(const e of await readdir(dir,{withFileTypes:true})){const p=path.join(dir,e.name);bytes+=e.isDirectory()?await size(p):e.isFile()?(await stat(p)).size:0;}return bytes;}
+const bytes=await size('dist');console.log(JSON.stringify({expandedBytes:bytes,limit:256*1024*1024}));if(bytes>256*1024*1024-3*1024*1024)throw Error('Deployment must fit 256 MiB including tar headers and file padding');

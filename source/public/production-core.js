@@ -1,3 +1,5 @@
+import{femalePresentationProblems}from'./female-order.js';
+import {finishProblems} from './order-finishes.js?v=1';
 import {pricingProblems} from './order-pricing.js';
 import {newRecordId} from './record-id.js';
 import {preserveCatalogList} from './catalog-list.js';
@@ -128,8 +130,10 @@ export function dateProblems(order={}){
  if(valid.deliveryDate&&valid.dispatchDate&&valid.deliveryDate<valid.dispatchDate)errors.push('A entrega não pode ser anterior ao despacho.');return errors;
 }
 export function releaseProblems(order){
- const errors=[...validateOrder(order),...pricingProblems(order)];
- if(order.origin&&order.type==='COMPLEMENTO COM ALTERAÇÕES'&&!String(order.complementChanges||'').trim())errors.push('Descreva as alterações deste complemento antes de conferir.');
+ const errors=[...validateOrder(order),...pricingProblems(order),...finishProblems(order),...femalePresentationProblems(order)];
+ if(/^COMPLEMENTO(?: COM ALTERAÇÕES)?$/.test(order.type)&&!String(order.previousOrder||'').trim())errors.push('Pedido anterior: informe a referência do pedido original para aprovar o complemento.');
+ if(/^COMPLEMENTO(?: COM ALTERAÇÕES)?$/.test(order.type)&&String(order.previousOrder||'').trim()&&String(order.previousOrder).trim().toLocaleLowerCase('pt-BR')===String(order.number||'').trim().toLocaleLowerCase('pt-BR'))errors.push('Pedido anterior: a referência deve ser diferente do número deste complemento.');
+ if(order.type==='COMPLEMENTO COM ALTERAÇÕES'&&!String(order.complementChanges||'').trim())errors.push('Descreva as alterações deste complemento antes de conferir.');
  for(const [field,label] of [['number','Número do pedido'],['client','Cliente'],['orderDate','Data do pedido'],['deliveryDate','Previsão de entrega'],['artist','Responsável técnico']])if(!String(order[field]||'').trim())errors.push(label+': preencha antes de liberar.');
  for(const page of order.pages||[])for(const p of page.products||[])for(const [field,label] of [['model','modelo / molde'],['fabric','tecido principal'],['print','técnica de aplicação']])if(!(field==='model'&&String(p.type||'').trim())&&!String(p[field]||'').trim())errors.push(p.type+': informe '+label+'.');
  return [...new Set(errors)];
