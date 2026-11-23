@@ -1,0 +1,42 @@
+{
+  "base": "pack26-raglan-max-sem-recorte-maxbatch-20261113-paired-v1",
+  "reference": "pack26-calcao-5-partes-referencia",
+  "areaBefore": 0.06934369541704655,
+  "areaAfter": 0.06934369906152639,
+  "maxPositionDisplacement": 0.0,
+  "cutMethod": "reference projected to native UV; affine triangle clipping",
+  "seamProfiles": {
+    "0": {
+      "side": [
+        0.020282073544766632,
+        -0.3591317978905613
+      ],
+      "pala": [
+        0.025734913109373956,
+        0.406994727629392
+      ]
+    },
+    "1": {
+      "side": [
+        -0.019274051627772366,
+        0.36036207155572275
+      ],
+      "pala": [
+        0.019852576131303493,
+        0.38385893450963804
+      ]
+    },
+    "2": {
+      "side": [
+        -0.1408996977193598,
+        0.40438322113111935
+      ]
+    },
+    "3": {
+      "side": [
+        0.08769798709131342,
+        -0.3071092820729279
+      ]
+    }
+  }
+}
